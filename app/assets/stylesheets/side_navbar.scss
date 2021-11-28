@@ -1,0 +1,26 @@
+.side-navbar {
+  grid-area: side-navbar;
+  font-size: 1.5em;
+  font-weight: 500;
+  ul {
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    left: 50%;
+    top: 5px;
+  }
+  li a {
+    display: block;
+    padding: 8px;
+    text-align: left;
+    color: black;
+    text-decoration: none;
+  }
+  li a:hover {
+    background-color: var(--lightgrey);
+    text-shadow: none;
+  }
+}
