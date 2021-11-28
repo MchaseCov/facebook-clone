@@ -1,0 +1,26 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 0.1fr 1.9fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "header-navbar header-navbar header-navbar"
+    "body-content body-content body-content";
+}
+.body-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "side-navbar page-content information-content";
+  grid-area: body-content;
+}
+
+.side-navbar { grid-area: side-navbar; }
+
+.page-content { grid-area: page-content; }
+
+.information-content { grid-area: information-content; }
