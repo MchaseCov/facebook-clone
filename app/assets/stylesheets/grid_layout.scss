@@ -30,4 +30,9 @@
   background-color: white;
   border-color: var(--grey);
   border-radius: 4px;
+  color: black;
+
+  a, a:visited {
+    color: var(--blue);
+  }
  }

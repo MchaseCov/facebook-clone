@@ -2,6 +2,11 @@
   grid-area: side-navbar;
   font-size: 1.5em;
   font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  border-left:1em solid transparent;
+  border-right:1em solid transparent;
+  text-overflow: ellipsis;
   ul {
     width: 100%;
     list-style-type: none;

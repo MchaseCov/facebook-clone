@@ -1,2 +1,8 @@
-<h1>Profiles#show</h1>
-<p>Find me in app/views/profiles/show.html.erb</p>
+<% content_for(:title) do %>
+  <%= @user.full_name %>'s Profile
+<% end %>
+<% content_for :page_content do %>
+  <h1>This is <%= @user.full_name %>'s Profile</h1>
+
+<%= link_to "Add this user as a friend!",friend_requests_path(recieving_user_id: @user.id), method: :post%>
+<% end %>
