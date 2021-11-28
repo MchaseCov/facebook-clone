@@ -1,31 +1,36 @@
 .header-navbar {
+  display: flex;
+  background: var(--blue);
+  color: white;
   justify-self: stretch;
   grid-area: header-navbar;
-  ul {
-    width: 100%;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: black;
-    text-align: center;
-  }
-  li {
-    display:inline-block
-  }
-  li a {
-    display: block;
-    color: grey;
-    padding: 8px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 32px;
-    font-size: 2vw;
-    font-weight: 700;
-  }
-  li a:hover {
-    background-color: grey;
-    color: black;
-    text-shadow: none;
-  }
+  margin: 0;
+  padding: 0;
+}
+
+.header-left {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.header-title {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.links a, a:visited {
+  color: white;
+  margin: 0 5px;
+  text-decoration: none;
 }
