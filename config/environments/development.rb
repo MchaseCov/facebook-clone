@@ -76,4 +76,6 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: '10.0.2.15', port: 3000 }
   config.action_controller.include_all_helpers = true
+
+  config.active_storage.service = :amazon
 end

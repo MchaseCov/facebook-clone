@@ -12,10 +12,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  #Callbacks
+  after_commit :add_default_avatar, on: %i[create update]
+
   # Validations
   validates :email, presence: true
   validates :full_name, presence: true
   validates :nick_name, presence: true, length: { maximum: 50 }
+  validates :avatar, content_type: %i[png jpg jpeg],
+                     size: { less_than: 2.megabytes, message: 'must be less than 2MB in size' }
 
   # Associations
   has_many :friend_sent, class_name: 'Friendship',
@@ -35,4 +40,26 @@ class User < ApplicationRecord
   has_many :received_requests, -> { merge(Friendship.not_friends) },
            through: :friend_recieved,
            source: :sent_by
+  has_one_attached :avatar
+
+  # Methods
+  def avatar_thumbnail(size = '125')
+    avatar.variant(resize: "#{size}x#{size}!").processed
+  end
+
+  private
+
+  def add_default_avatar
+    return if avatar.attached?
+
+    avatar.attach(
+      io: File.open(
+        Rails.root.join(
+          'app', 'assets', 'images', 'default_avatar.jpg'
+        )
+      ),
+      filename: 'default_avatar.jpg',
+      content_type: 'image/jpg'
+    )
+  end
 end
