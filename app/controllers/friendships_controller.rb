@@ -1,4 +1,6 @@
 class FriendshipsController < ApplicationController
+  include FriendshipsHelper
+  
   before_action :fetch_recieving_user, only: %i[create]
   before_action :fetch_existing_request, only: %i[accept_friend_request decline_friend_request]
 
@@ -7,7 +9,7 @@ class FriendshipsController < ApplicationController
     return if friend_request_sent?(@recieving_user)
     return if friend_request_recieved?(@recieving_user)
 
-    @new_friendship = current_user.sent_friend_request.build(sent_to_id: @recieving_user.id)
+    @new_friendship = current_user.friend_sent.build(sent_to_id: @recieving_user.id)
     if @new_friendship.save
       flash[:notice] = 'Friend Request Sent!'
     else
@@ -23,7 +25,7 @@ class FriendshipsController < ApplicationController
     @friendship.status = true
     if @friendship.save
       flash[:notice] = 'Friend Request Accepted!'
-      @friendship_inverse = current_user.friend_request_sent.build(sent_to_id: params[:user_id], status: true)
+      @friendship_inverse = current_user.friend_sent.build(sent_to_id: params[:user_id], status: true)
       @friendship_inverse.save
     else
       flash[:error] = 'Could not accept request!'
