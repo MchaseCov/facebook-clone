@@ -3,5 +3,8 @@
 <% end %>
 <% content_for :page_content do %>
   <h1>This is <%= @user.full_name %>'s Profile</h1>
-
+  Here are all their friends:
+<%@user.friends.each do |f|%>
+<%= f.full_name %>
+<% end %>
 <% end %>
