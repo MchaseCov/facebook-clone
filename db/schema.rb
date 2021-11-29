@@ -10,28 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_29_003353) do
+ActiveRecord::Schema.define(version: 2021_11_29_013713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "friend_requests", force: :cascade do |t|
-    t.bigint "requesting_user_id", null: false
-    t.bigint "recieving_user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["recieving_user_id"], name: "index_friend_requests_on_recieving_user_id"
-    t.index ["requesting_user_id"], name: "index_friend_requests_on_requesting_user_id"
-  end
-
-  create_table "friendships", force: :cascade do |t|
-    t.bigint "friend_a_id", null: false
-    t.bigint "friend_b_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["friend_a_id"], name: "index_friendships_on_friend_a_id"
-    t.index ["friend_b_id"], name: "index_friendships_on_friend_b_id"
-  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -47,8 +29,4 @@ ActiveRecord::Schema.define(version: 2021_11_29_003353) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "friend_requests", "users", column: "recieving_user_id"
-  add_foreign_key "friend_requests", "users", column: "requesting_user_id"
-  add_foreign_key "friendships", "users", column: "friend_a_id"
-  add_foreign_key "friendships", "users", column: "friend_b_id"
 end
