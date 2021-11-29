@@ -1,6 +1,10 @@
 class FriendRequestsController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @pending_requests = FriendRequest.where(recieving_user_id: current_user.id)
+  end
+
   def create
     new_friend_request = FriendRequest.create(requesting_user_id: current_user.id, recieving_user_id: params[:recieving_user_id])
     if new_friend_request.save
@@ -13,7 +17,7 @@ class FriendRequestsController < ApplicationController
   def accept_request
     @friend_request = FriendRequest.find(params[:id])
     if @friend_request.recieving_user_id == current_user.id
-      Friendship.create(friend_1: @friend_request.requesting_user, friend_2: @friend_request.recieving_user)
+      Friendship.create(friend_a: @friend_request.requesting_user, friend_b: @friend_request.recieving_user)
       @friend_request.destroy
       redirect_to profile_url(current_user), notice: 'Friend request accepted!'
     else

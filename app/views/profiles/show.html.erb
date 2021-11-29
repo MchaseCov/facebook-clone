@@ -5,4 +5,11 @@
   <h1>This is <%= @user.full_name %>'s Profile</h1>
 
 <%= link_to "Add this user as a friend!",friend_requests_path(recieving_user_id: @user.id), method: :post%>
+
+<br>
+List of this persons friends:
+<%User.friends(@user).each do |f|%>
+<br>  <%= link_to User.where.id(f).full_name, profile_path(f) %>
+<% end %>
+
 <% end %>
