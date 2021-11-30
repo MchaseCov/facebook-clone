@@ -1,3 +1,89 @@
 // Place all the styles related to the Profiles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+.profile-page {
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: 1fr 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "profile-banner profile-banner"
+    "profile-sidebar profile-feed"; 
+  background-color: var(--dark-blue);
+ }
+
+.profile-banner {
+  grid-area: profile-banner;
+  position: relative;
+}
+.profile-banner-overlay{
+  position: absolute;
+  bottom: -10%;
+  padding-left: 5%;
+  display: flex;
+  background: linear-gradient(0deg, rgba(31,49,83,1) 25%, rgba(255,255,255,0) 100%);
+  width: 95%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding-top: 20px;
+  padding-bottom:5px;
+}
+.profile-banner-information{
+  text-align: left;
+  padding-left: 1em;
+  color: white;
+  width: 100%;
+
+  .profile-name{
+    font-size: 3em;
+    font-weight: 600;
+    -webkit-text-stroke:2px black;
+  }
+  .profile-nick{
+    font-size: 1.75em;
+    font-weight: 400;
+    -webkit-text-stroke:.5px black;
+  }
+}
+.profile-banner-image{
+  width: 100%;
+  height: auto;
+}
+.profile-avatar-image{
+  left: 5%;
+  width: 192px;
+  height: 192px;
+  border-radius: 50%;
+  outline: 4px solid var(--lightest-blue);
+}
+.profile-sidebar {
+  grid-area: profile-sidebar;
+  margin-top: 15%;
+}
+.profile-feed {
+  grid-area: profile-feed;
+  margin-top: 15%;
+}
+.profile-banner-buttons-parent{
+  display: flex;
+  align-content: flex-start;
+  justify-content: space-between;
+  padding-top: 2%;
+  width: 70%;
+}
+.profile-banner-button{
+  background-color: var(--blue);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1em;
+}
+.profile-banner-button:hover{
+  background-color: var(--light-blue);
+  cursor: pointer;
+}

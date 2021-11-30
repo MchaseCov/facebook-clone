@@ -2,20 +2,40 @@
   <%= @user.full_name %>'s Profile
 <% end %>
 <% content_for :page_content do %>
-  <h1>This is <%= @user.full_name %>'s Profile</h1>
-  Here are all their friends:
-  <%@user.friends.each do |f|%>
-  <%= f.full_name %>
+<div class="profile-page">
+  <div class="profile-banner">
+    <%= image_tag((@user.banner), class:"profile-banner-image") %>
+    <div class="profile-banner-overlay">
+      <%= image_tag((@user.avatar), class:"profile-avatar-image") %>
+      <div class="profile-banner-information">
+        <h1 class="profile-name"><%= @user.full_name.titlecase %></h1>
+        <h2 class="profile-nick">(<%= @user.nick_name.titlecase %>)</h2>
+        <div class="profile-banner-buttons-parent">
+        <%= button_to  "Timeline", @user, class:"profile-banner-button", method: :get %>
+        <%= button_to  "About", @user, class:"profile-banner-button", method: :get %>
+        <%= button_to  "Photos", @user, class:"profile-banner-button", method: :get %>
+        <%= button_to  "Friends (#{@user.friends.count})", @user, class:"profile-banner-button", method: :get %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="profile-sidebar">
+    Here are all their friends:
+    <%@user.friends.each do |f|%>
+    <%= f.full_name %>
+    <% end %>
+  </div>
+  <div class="profile-feed">
+  <% if @user.id == current_user.id %>
+    for testing reasons ur friend requests are here
+    <% @user.received_requests.each do |r|%>
+    <%= r.full_name%>
+    <%= link_to "Accept", accept_friend_request_user_friendships_path(r.id) %>
+    <%= link_to "Decline", decline_friend_request_user_friendships_path(r.id) %>
+    <% end %>
+  <% else%>
+    <%= link_to "friend this user", user_friendships_path(@user), method: :post %>
   <% end %>
-<% if @user.id == current_user.id %>
-  for testing reasons ur friend requests are here
-  <% @user.received_requests.each do |r|%>
-  <%= r.full_name%>
-   <%= link_to "Accept", accept_friend_request_user_friendships_path(r.id) %>
-   <%= link_to "Decline", decline_friend_request_user_friendships_path(r.id) %>
-  <% end %>
-<% else%>
-  <%= link_to "friend this user", user_friendships_path(@user), method: :post %>
-<% end %>
-
+  </div>
+</div>
 <% end %>
