@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # User Schema:
   # id:                 integer
   # email:              string
-  # full_name:          string
+  # name:               string
   # nick_name:          string
   # timestamps:         datetime
   #
@@ -19,7 +19,7 @@ class User < ApplicationRecord
 
   # Validations
   validates :email, presence: true
-  validates :full_name, presence: true
+  validates :name, presence: true
   validates :nick_name, presence: true,
                         length: { maximum: 50 }
   validates :avatar, content_type: %i[png jpg jpeg],

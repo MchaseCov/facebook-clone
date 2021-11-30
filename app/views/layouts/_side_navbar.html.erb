@@ -1,7 +1,7 @@
 <% if user_signed_in?%>
   <div class="side-header-parent">
     <div class="side-header-item"><%= image_tag((current_user.avatar), class:"side-navbar-avatar") %></div>
-    <div class="side-header-item interactive section-header"><%= link_to current_user.full_name, user_path(current_user.id) %></div>
+    <div class="side-header-item interactive section-header"><%= link_to current_user.name, user_path(current_user.id) %></div>
     <div class="side-header-item interactive subtext">
       <%= link_to edit_user_registration_path do %>
         <span class="material-icons inline-icon">manage_accounts</span>

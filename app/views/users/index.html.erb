@@ -4,6 +4,6 @@
 <% content_for :page_content do %>
   <h1>This is the index page for all profiles</h1>
   <% @users.each do |u|%>
-  <%= link_to u.full_name, user_path(u) %>
+  <%= link_to u.name, user_path(u) %>
   <% end %>
 <% end %>
