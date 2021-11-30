@@ -10,14 +10,28 @@ Edit <%= resource_name.to_s.humanize %>
 
   <div class="field">
     <% if resource.avatar.attached? %>
-    <%= image_tag(resource.avatar) %>
+    <%= image_tag(resource.avatar_thumbnail) %>
     <% else %>
     <%= image_tag('default_avatar.jpg', size: "125x125")%>
     <% end %>
   </div>
 
   <div class="field">
+    <%= f.label 'Upload an avatar, must be less than 2MB' %>
     <%= f.file_field :avatar %>
+  </div>
+
+  <div class="field">
+    <% if resource.banner.attached? %>
+    <%= image_tag(resource.banner_thumbnail(325,240)) %>
+    <% else %>
+    <%= image_tag('default_banner.jpg', size: "325x240")%>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Upload a banner, must be 16:9 ratio and less than 3MB' %>
+    <%= f.file_field :banner %>
   </div>
 
   <div class="field">

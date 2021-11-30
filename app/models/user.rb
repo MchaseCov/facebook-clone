@@ -12,8 +12,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  #Callbacks
+  # Callbacks
   after_commit :add_default_avatar, on: %i[create update]
+  after_commit :add_default_banner, on: %i[create update]
 
   # Validations
   validates :email, presence: true
@@ -21,7 +22,9 @@ class User < ApplicationRecord
   validates :nick_name, presence: true, length: { maximum: 50 }
   validates :avatar, content_type: %i[png jpg jpeg],
                      size: { less_than: 2.megabytes, message: 'must be less than 2MB in size' }
-
+  validates :banner, content_type: %i[png jpg jpeg],
+                     size: { less_than: 3.megabytes, message: 'must be less than 3MB in size' },
+                     aspect_ratio: :is_16_9
   # Associations
   has_many :friend_sent, class_name: 'Friendship',
                          foreign_key: 'sent_by_id',
@@ -41,10 +44,15 @@ class User < ApplicationRecord
            through: :friend_recieved,
            source: :sent_by
   has_one_attached :avatar
+  has_one_attached :banner
 
   # Methods
   def avatar_thumbnail(size = '125')
     avatar.variant(resize: "#{size}x#{size}!").processed
+  end
+
+  def banner_thumbnail(sizeh = '750', sizew = '480')
+    banner.variant(resize: "#{sizeh}x#{sizew}!").processed
   end
 
   private
@@ -59,6 +67,20 @@ class User < ApplicationRecord
         )
       ),
       filename: 'default_avatar.jpg',
+      content_type: 'image/jpg'
+    )
+  end
+
+  def add_default_banner
+    return if banner.attached?
+
+    banner.attach(
+      io: File.open(
+        Rails.root.join(
+          'app', 'assets', 'images', 'default_banner.jpg'
+        )
+      ),
+      filename: 'default_banner.jpg',
       content_type: 'image/jpg'
     )
   end
