@@ -9,12 +9,13 @@ class Group < ApplicationRecord
   # timestamps:         datetime
   #
   # Callbacks
-  after_commit :add_default_avatar, on: %i[create update]
-  after_commit :add_default_banner, on: %i[create update]
+  before_create :add_default_avatar
+  before_create :add_default_banner
+  after_commit :add_creator_to_users, on: :create
 
   # Scopes
-  scope :public, -> { where('private =?', false) }
-  scope :private, -> { where('private =?', true) }
+  scope :public_visibility, -> { where('private =?', false) }
+  scope :private_visibility, -> { where('private =?', true) }
   scope :recently_created, -> { where('created_date >= :date', date: 1.week.ago) }
 
   # Validations

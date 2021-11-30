@@ -14,8 +14,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # Callbacks
-  after_commit :add_default_avatar, on: %i[create update]
-  after_commit :add_default_banner, on: %i[create update]
+  before_create :add_default_avatar
+  before_create :add_default_banner
 
   # Validations
   validates :email, presence: true
