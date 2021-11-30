@@ -24,7 +24,6 @@ class Group < ApplicationRecord
   validates :description, presence: true,
                           length: { maximum: 255 }
   validates :creator_id, presence: true
-  validates :private, presence: true
   validates :avatar, content_type: %i[png jpg jpeg],
                      size: { less_than: 2.megabytes, message: 'must be less than 2MB in size' }
   validates :banner, content_type: %i[png jpg jpeg],
@@ -38,4 +37,12 @@ class Group < ApplicationRecord
   #   Active Storage
   has_one_attached :avatar
   has_one_attached :banner
+
+  # Methods
+
+  private
+
+  def add_creator_to_users
+    self.users << (User.where(id: self.creator_id))
+  end
 end
