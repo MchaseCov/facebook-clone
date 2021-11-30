@@ -5,6 +5,8 @@
   justify-self: stretch;
   grid-area: header-navbar;
   margin: 0;
+  font-size: 1.25em;
+  font-weight: 500;
 }
 
 .header-left {
@@ -13,6 +15,11 @@
   justify-content: flex-start;
   align-items: center;
   padding-left: 3%;
+
+  a{
+    padding-right: 1em;
+    text-decoration: none;
+  }
 }
 
 .header-title {
