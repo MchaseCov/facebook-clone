@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'posts#index'
   devise_for :users
   resources :posts
+  resources :groups
 
   resources :users, only: %i[index show] do
     resources :friendships, only: %i[create] do

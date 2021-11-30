@@ -1,0 +1,36 @@
+<% content_for(:title) do %>
+  <%= @group.name %>'s Group page
+<% end %>
+<% content_for :page_content do %>
+<div class="profile-page">
+  <div class="profile-banner">
+    <%= image_tag((@group.banner.url), class:"profile-banner-image") %>
+    <div class="profile-banner-overlay">
+      <%= image_tag((@group.avatar), class:"profile-avatar-image") %>
+      <div class="profile-banner-information">
+        <h1 class="profile-name"><%= @group.name.titlecase %></h1>
+        <h2 class="profile-nick">(Created by <%= @group.creator.nick_name.titlecase %>)</h2>
+        <div class="profile-banner-buttons-parent">
+        <%= button_to  "Timeline", @group, class:"profile-banner-button", method: :get %>
+        <%= button_to  "About", @group, class:"profile-banner-button", method: :get %>
+        <%= button_to  "Photos", @group, class:"profile-banner-button", method: :get %>
+        <%= button_to  "Members (#{@group.users.count})", @group, class:"profile-banner-button", method: :get %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="profile-sidebar">
+    Here are all their members:
+    <%@group.users.each do |f|%>
+    <%= f.full_name %>
+    <% end %>
+  </div>
+  <div class="profile-feed">
+  <% if @group.creator.id == current_user.id %>
+    Hey so ur the group admin!!!
+  <% else%>
+  <% end %>
+  </div>
+</div>
+
+<% end %>

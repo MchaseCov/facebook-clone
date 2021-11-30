@@ -1,0 +1,60 @@
+<%= form_with(model: group) do |f| %>
+  <% if group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+        <% group.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+ <div class="field">
+    <% if group.avatar.attached? %>
+    <%= image_tag(group.avatar_thumbnail) %>
+    <% else %>
+    <%= image_tag('default_avatar.jpg', size: "125x125")%>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Upload a group avatar, must be less than 2MB' %>
+    <%= f.file_field :avatar %>
+  </div>
+
+  <div class="field">
+    <% if group.banner.attached? %>
+    <%= image_tag(group.banner_thumbnail(325,240)) %>
+    <% else %>
+    <%= image_tag('default_banner.jpg', size: "325x240")%>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Upload a group banner, must be 16:9 ratio and less than 3MB' %>
+    <%= f.file_field :banner %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name%>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Description of your group (255 character limit)' %><br />
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= hidden_field_tag :private, 'false' %>
+    <%= f.label 'Check this if you would like to make your group private and not show up to other users' %><br />
+    <%= f.check_box :private %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
