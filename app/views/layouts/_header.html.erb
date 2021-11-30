@@ -6,7 +6,24 @@
 <div class="header-title"><%= yield :title%></div>
 
 <div class="header-right">
-    <%= link_to "FriendReqs", posts_path %>
-    <%= link_to "Chats(Placeholder)", posts_path %>
-    <%= link_to "Notifs(Placeholder)", posts_path %>
+    <% if user_signed_in?%>
+    <div class="top-header-item interactive">
+      <%= link_to posts_path do %>
+        <span class="material-icons inline-icon">group_add</span>
+      <% end %>
+    </div>
+    <div class="top-header-item interactive">
+      <%= link_to posts_path do %>
+        <span class="material-icons inline-icon">textsms</span>
+      <% end %>
+    </div>
+    <div class="top-header-item interactive">
+      <%= link_to posts_path do %>
+        <span class="material-icons inline-icon">notifications</span>
+      <% end %>
+    </div>
+    <% else %>
+    <%= link_to "Sign Up", new_user_registration_path %>
+    <%= link_to "Sign In",  new_user_session_path %>
+    <% end %>
 </div>

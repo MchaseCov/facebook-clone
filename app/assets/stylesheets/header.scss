@@ -5,7 +5,6 @@
   justify-self: stretch;
   grid-area: header-navbar;
   margin: 0;
-  padding: 0;
 }
 
 .header-left {
@@ -13,6 +12,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  padding-left: 3%;
 }
 
 .header-title {
@@ -27,10 +27,21 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  padding-right: 10%;
 }
 
 .links a, a:visited {
   color: white;
   margin: 0 5px;
   text-decoration: none;
+}
+.top-header-item {
+  height: 100%;
+  color: white;
+  text-decoration: none;
+  padding-right: 2%;
+  padding-left: 2%;
+}
+.interactive:hover {
+  background-color: var( --light-blue);
 }

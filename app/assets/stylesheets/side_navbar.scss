@@ -1,32 +1,45 @@
 .side-navbar {
   grid-area: side-navbar;
-  font-size: 1.5em;
+  display: flex;
+  flex-flow: column wrap;
+  font-size: 1em;
   font-weight: 500;
-  white-space: nowrap;
-  overflow: hidden;
-  border-left:1em solid transparent;
-  border-right:1em solid transparent;
   text-overflow: ellipsis;
   background-color: var(--blue);
-  ul {
-    width: 100%;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    position: relative;
-    left: 50%;
-    top: 5px;
+  line-height: 1.5em;
+  text-align: left;
+  padding-left: 15%;
+  padding-top: 10%;
+  a {
+    text-decoration: none;
   }
-  li a {
-    display: block;
-    padding: 8px;
-    text-align: left;
+  .side-header-parent {
+    width: 100%;
+  }
+  .side-header-item {
+    width: 100%;
     color: white;
     text-decoration: none;
   }
-  li a:hover {
-    background-color: var(--lightgrey);
-    text-shadow: none;
+  .interactive:hover {
+    background-color: var( --light-blue);
+  }
+  .side-navbar-avatar{
+    width: 150px;
+    height: auto;
+    border-radius: 75px;
+    outline: 4px solid var(--lightest-blue);
+  }
+  .subtext{
+    font-weight: 300;
+  }
+  .section-header{
+    font-weight: 600;
+    font-size: 1.50em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+  }
+  .inline-icon{
+    vertical-align: bottom;
   }
 }

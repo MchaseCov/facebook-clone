@@ -1,6 +1,6 @@
 .container {
   display: grid;
-  grid-template-columns: 0.75fr 1.5fr 0.75fr;
+  grid-template-columns: 0.6fr 1.8fr 0.6fr;
   grid-template-rows: auto 1.9fr;
   gap: 0px 0px;
   grid-auto-flow: row;
@@ -12,7 +12,7 @@
 }
 .body-content {
   display: grid;
-  grid-template-columns: 0.75fr 1.5fr 0.75fr;
+  grid-template-columns: 0.6fr 1.8fr 0.6fr;
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
