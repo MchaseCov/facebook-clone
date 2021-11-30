@@ -1,6 +1,6 @@
 class FriendshipsController < ApplicationController
   include FriendshipsHelper
-  
+
   before_action :fetch_recieving_user, only: %i[create]
   before_action :fetch_existing_request, only: %i[accept_friend_request decline_friend_request]
 
