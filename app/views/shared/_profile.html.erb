@@ -1,0 +1,62 @@
+<% content_for(:title) do %>
+  <%= profile_owner.name %>'s Profile
+<% end %>
+<% content_for :page_content do %>
+<div class="profile-page">
+  <div class="profile-banner">
+    <%= image_tag((profile_owner.banner), class:"profile-banner-image") %>
+    <div class="profile-banner-overlay">
+      <%= image_tag((profile_owner.avatar), class:"profile-avatar-image") %>
+      <div class="profile-banner-information">
+        <h1 class="profile-name"><%= profile_owner.name.titlecase %></h1>
+        <h2 class="profile-nick">(<%= profile_subname.titlecase %>)</h2>
+        <div class="profile-banner-buttons-parent">
+        <%= button_to  "Timeline", profile_owner, class:"profile-banner-button", method: :get %>
+        <%= button_to  "About", profile_owner, class:"profile-banner-button", method: :get %>
+        <%= button_to  "Photos", profile_owner, class:"profile-banner-button", method: :get %>
+        <%= button_to  profile_connections, profile_owner, class:"profile-banner-button", method: :get %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="profile-sidebar">
+    THIS IS THE PROFILE SIDEBAR
+  </div>
+  <div class="profile-feed">
+      THIS IS THE PROFILE FEEEED
+  <% if is_group %>
+    This is a group page!
+      <% if profile_owner.creator_id == current_user.id %>
+      This is YOUR group page!
+      <% else %>
+      This is not your group page.
+        <% if profile_owner.users.include? current_user %>
+        <%= link_to "leave this group", group_user_update_path(profile_owner), method: :delete %> 
+        <% else %>
+        <%= link_to "join this group", group_user_update_path(profile_owner), method: :put %>
+        <% end %>
+      <% end %>
+  <% else %>
+    This is a user page! 
+      <% if profile_owner.id == current_user.id %>
+      This is YOUR user page!
+        for testing reasons ur friend requests are here
+        <% profile_owner.received_requests.each do |r|%>
+        <%= r.name %>
+        <%= link_to "Accept", accept_friend_request_user_friendships_path(r.id) %>
+        <%= link_to "Decline", decline_friend_request_user_friendships_path(r.id) %>
+        <% end %>
+      <% else %>
+      This is not your user page
+        <% if profile_owner.friends.include? current_user %>
+        <%= link_to "unfriend this user", user_friendship_path(profile_owner), method: :delete %> 
+        <% elsif current_user.pending_requests.include? profile_owner %>
+        This user has a pending friend request from you already.
+        <% else %>
+        <%= link_to "Send a friend request to this user", user_friendships_path(profile_owner), method: :post %>
+        <% end %>
+      <% end %>
+  <% end %>
+  </div>
+</div>
+<% end %>

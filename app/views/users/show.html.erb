@@ -2,40 +2,9 @@
   <%= @user.name %>'s Profile
 <% end %>
 <% content_for :page_content do %>
-<div class="profile-page">
-  <div class="profile-banner">
-    <%= image_tag((@user.banner), class:"profile-banner-image") %>
-    <div class="profile-banner-overlay">
-      <%= image_tag((@user.avatar), class:"profile-avatar-image") %>
-      <div class="profile-banner-information">
-        <h1 class="profile-name"><%= @user.name.titlecase %></h1>
-        <h2 class="profile-nick">(<%= @user.nick_name.titlecase %>)</h2>
-        <div class="profile-banner-buttons-parent">
-        <%= button_to  "Timeline", @user, class:"profile-banner-button", method: :get %>
-        <%= button_to  "About", @user, class:"profile-banner-button", method: :get %>
-        <%= button_to  "Photos", @user, class:"profile-banner-button", method: :get %>
-        <%= button_to  "Friends (#{@user.friends.count})", @user, class:"profile-banner-button", method: :get %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="profile-sidebar">
-    Here are all their friends:
-    <%@user.friends.each do |f|%>
-    <%= f.name %>
-    <% end %>
-  </div>
-  <div class="profile-feed">
-  <% if @user.id == current_user.id %>
-    for testing reasons ur friend requests are here
-    <% @user.received_requests.each do |r|%>
-    <%= r.name%>
-    <%= link_to "Accept", accept_friend_request_user_friendships_path(r.id) %>
-    <%= link_to "Decline", decline_friend_request_user_friendships_path(r.id) %>
-    <% end %>
-  <% else%>
-    <%= link_to "friend this user", user_friendships_path(@user), method: :post %>
-  <% end %>
-  </div>
-</div>
+<%= render  "shared/profile", profile_owner: @user,
+                              profile_subname: @user.nick_name,
+                              profile_connections: "Friends (#{@user.friends.count})", 
+                              is_group: false %>
+
 <% end %>
