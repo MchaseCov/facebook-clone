@@ -5,17 +5,6 @@ class FriendshipsController < ApplicationController
   before_action :fetch_recieving_user, only: %i[create]
   before_action :fetch_existing_request, only: %i[accept_friend_request decline_friend_request]
   before_action :fetch_existing_friendship, only: %i[destroy]
-  before_action :validate_user, only: %i[index],
-                                unless: -> { params[:group_id].blank? }
-
-  def index
-    if params[:group_id].blank?
-      fetch_user_friendships
-    else
-      fetch_group_friendships
-    end
-    render 'shared/profiles/index'
-  end
 
   # Creates a new friendship entry between the two users
   def create
@@ -80,11 +69,7 @@ class FriendshipsController < ApplicationController
   end
 
   def fetch_user_friendships
-    @profile_owner = User.find(params[:user_id])
-    @indexed_content = @profile_owner.friends
-    @is_group = false
-    @banner_type = 'users/profile_banner'
-    @button_type = 'users/friendship_button'
+
   end
 
   def fetch_group_friendships

@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   include GroupPrivacyHelper
-  before_action :fetch_indexing_assets, only: %i[index]
-  before_action :fetch_profile_assets, only: %i[show groups]
+  before_action :fetch_indexing_assets, only: %i[index friendships]
+  before_action :fetch_profile_assets, only: %i[show groups friendships]
+  before_action -> { fetch_visible_groups(@profile_owner) }, only: %i[show groups friendships]
 
   def index
     @indexed_content = User.all
@@ -14,11 +15,12 @@ class UsersController < ApplicationController
 
   def groups
     @button_type = 'groups/member_button'
-    @indexed_content = if @profile_owner == current_user
-                         @profile_owner.groups.order(private: :desc)
-                       else
-                         public_or_included(@profile_owner.groups)
-                       end
+    @indexed_content = @groups
+    render 'shared/profiles/index'
+  end
+
+  def friendships
+    @indexed_content = @profile_owner.friends
     render 'shared/profiles/index'
   end
 

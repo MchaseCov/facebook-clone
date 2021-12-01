@@ -13,4 +13,12 @@ module GroupPrivacyHelper
   def public_or_included(g)
     g.public_visibility.or(g.where(id: current_user.groups.pluck(:id))).uniq
   end
+
+  def fetch_visible_groups(grouped_member)
+    @groups = if grouped_member == current_user
+                grouped_member.groups
+              else
+                public_or_included(grouped_member.groups)
+              end
+  end
 end

@@ -3,13 +3,13 @@ Rails.application.routes.draw do
   devise_for :users
   resources :posts
   resources :groups do
-    resources :friendships, only: %i[index]
+    match 'members', to: 'members', via: %i[get], as: 'members'
     match 'users/:id', to: 'groups#users', via: %i[put delete], as: 'user_update'
   end
 
   resources :users, only: %i[index show] do
     match 'groups', to: 'groups', via: %i[get], as: 'groups'
-    resources :friendships, only: %i[index]
+    match 'friendships', to: 'friendships', via: %i[get], as: 'friendships'
     resources :friendships, only: %i[create destroy] do
       collection do
         get 'accept_friend_request'

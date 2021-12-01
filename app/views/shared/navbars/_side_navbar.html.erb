@@ -56,9 +56,9 @@
     <% end %>
 
     <div class="side-header-item interactive subtext">
-      <%= link_to posts_path do %>
+      <%= link_to user_groups_path(current_user) do %>
         <%= image_tag((current_user.avatar_thumbnail(24)), class:"inline-img inline-icon") %>
-        All My Groups**(<%=current_user.groups.count%>)
+        All My Groups (<%=current_user.groups.count%>)
       <% end %>
     </div>
   </div>

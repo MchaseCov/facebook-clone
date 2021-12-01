@@ -1,8 +1,9 @@
 class GroupsController < ApplicationController
   include GroupPrivacyHelper
-  before_action :set_group, only: %i[show edit update destroy users]
+  before_action :set_group, only: %i[show edit update destroy users members]
+  before_action :fetch_profile_assets, only: %i[show members]
+  before_action :validate_user, only: %i[show members]
   before_action :validate_owner, only: %i[edit update destroy]
-  before_action :validate_user, only: %i[show index_users]
 
   def index
     @indexed_content = Group.public_visibility
@@ -12,9 +13,13 @@ class GroupsController < ApplicationController
 
   def show
     @profile_owner = @group
-    @is_group = true
-    @banner_type = 'groups/profile_banner'
     render 'shared/profiles/show'
+  end
+
+  def members
+    @indexed_content = @profile_owner.users
+    @button_type = 'users/friendship_button'
+    render 'shared/profiles/index'
   end
 
   def new
@@ -62,5 +67,11 @@ class GroupsController < ApplicationController
 
   def group_params
     params.require(:group).permit(:name, :description, :private, :avatar, :banner)
+  end
+
+  def fetch_profile_assets
+    @profile_owner = @group
+    @banner_type = 'groups/profile_banner'
+    @is_group = true
   end
 end
