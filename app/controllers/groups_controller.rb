@@ -1,8 +1,11 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: %i[show edit update destroy]
+  before_action :set_group_nested, only: %i[users index_users]
+  before_action :validate_owner, only: %i[edit update destroy]
+  before_action :validate_user, only: %i[show index_users]
 
   def index
-    @groups = Group.all
+    @groups = Group.public_visibility
   end
 
   def show
@@ -42,7 +45,6 @@ class GroupsController < ApplicationController
   end
 
   def users
-    @group = Group.find(params[:group_id])
     if request.put?
       @group.users << current_user
     elsif request.delete?
@@ -53,12 +55,24 @@ class GroupsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_group
     @group = Group.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
+  def set_group_nested
+    @group = Group.find(params[:group_id])
+  end
+
+  def validate_owner
+    head(403) unless @group.creator == current_user
+  end
+
+  def validate_user
+    return unless @group.private == true
+
+    head(403) unless @group.users.include?(current_user) || @group.creator == current_user
+  end
+
   def group_params
     params.require(:group).permit(:name, :description, :private, :avatar, :banner)
   end
