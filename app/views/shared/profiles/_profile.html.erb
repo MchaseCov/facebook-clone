@@ -6,15 +6,11 @@
 
 <div class="profile-page">
   <div class="profile-banner">
-    <%= image_tag((profile_owner.banner), class:"profile-banner-image") %>
+    <%= image_tag((profile_owner.banner_thumbnail(1280, 720)), class:"profile-banner-image") %>
     <div class="profile-banner-overlay">
       <%= image_tag((profile_owner.avatar_thumbnail(256)), class:"profile-avatar-image") %>
       <div class="profile-banner-information">
-        <% if is_group %>
-          <%= render "groups/profile_banner", profile_owner: profile_owner %>
-        <% else %>
-          <%= render "users/profile_banner", profile_owner: profile_owner %>
-        <% end %>
+          <%= render @banner_type, profile_owner: profile_owner %>
       </div>
     </div>
   </div>

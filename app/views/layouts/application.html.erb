@@ -20,12 +20,12 @@
 
   <body>
   <div class="container">
-    <div class="header-navbar"><%= render "layouts/header" %></div>
+    <div class="header-navbar"><%= render "shared/navbars/header" %></div>
     <div class="body-content">
       <%= yield :body_content %>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
-      <div class="side-navbar"><%= render "layouts/side_navbar" %></div>
+      <div class="side-navbar"><%= render "shared/navbars/side_navbar" %></div>
       <div class="page-content"><%= yield :page_content %></div>
       <div class="information-content"><%#= render "layouts/side_navbar" %></div>
     </div>

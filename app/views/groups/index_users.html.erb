@@ -1,7 +1,0 @@
-<% content_for :page_content do %>
-<%= render partial: "shared/profile_user_index",
-           layout: "shared/profile_layout",
-           locals: { profile_owner: @group,
-                     indexed_users: @users,
-                     is_group: true } %> 
-<% end %>

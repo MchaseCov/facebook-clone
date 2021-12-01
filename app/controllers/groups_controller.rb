@@ -1,26 +1,27 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: %i[show edit update destroy]
-  before_action :set_group_nested, only: %i[users index_users]
+  include GroupPrivacyHelper
+  before_action :set_group, only: %i[show edit update destroy users]
   before_action :validate_owner, only: %i[edit update destroy]
   before_action :validate_user, only: %i[show index_users]
 
   def index
-    @groups = Group.public_visibility
+    @indexed_content = Group.public_visibility
+    @button_type = 'groups/member_button'
+    render 'shared/main/index'
   end
 
   def show
-  end
-
-  def index_users
-    @users = @group.users.all
+    @profile_owner = @group
+    @is_group = true
+    @banner_type = 'groups/profile_banner'
+    render 'shared/profiles/show'
   end
 
   def new
     @group = current_user.created_groups.build
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @group = current_user.created_groups.build(group_params)
@@ -56,21 +57,7 @@ class GroupsController < ApplicationController
   private
 
   def set_group
-    @group = Group.find(params[:id])
-  end
-
-  def set_group_nested
-    @group = Group.find(params[:group_id])
-  end
-
-  def validate_owner
-    head(403) unless @group.creator == current_user
-  end
-
-  def validate_user
-    return unless @group.private == true
-
-    head(403) unless @group.users.include?(current_user) || @group.creator == current_user
+    @group = Group.find(params[:id] || params[:group_id])
   end
 
   def group_params

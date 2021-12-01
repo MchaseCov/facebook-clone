@@ -1,0 +1,12 @@
+<%= content_for :profile_stylesheets do%>
+  #profile-sidebar {display: none}
+<% end %>
+
+<% content_for :profile_feed do %>
+<div class="user-index-grid">
+  <%= render partial: "shared/main/user_index_grid", collection: @indexed_content,
+                                                      as: :result,
+                                                      locals: { button_type: @button_type,
+                                                      is_group: @is_group } %>
+</div>
+<% end %>

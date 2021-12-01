@@ -5,6 +5,6 @@
   <%= button_to "About", profile_owner, class:"profile-banner-button", method: :get %>
   <%= button_to "Photos", profile_owner, class:"profile-banner-button", method: :get %>
   <%= button_to "Friends (#{profile_owner.friends.count})", user_friendships_path(profile_owner), class:"profile-banner-button", method: :get %>
-  <%= button_to "Groups", profile_owner, class:"profile-banner-button", method: :get %>
+  <%= button_to "Groups (#{profile_owner.groups.count})", user_groups_path(profile_owner), class:"profile-banner-button", method: :get %>
   <%= render "users/friendship_button", profile_owner: profile_owner %>
 </div>

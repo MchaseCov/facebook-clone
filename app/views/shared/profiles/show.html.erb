@@ -1,0 +1,6 @@
+<% content_for :page_content do %>
+<%= render partial: "shared/profiles/show",
+           layout: "shared/profiles/profile",
+           locals: { profile_owner: @profile_owner,
+                    is_group: @is_group} %> 
+<% end %>
