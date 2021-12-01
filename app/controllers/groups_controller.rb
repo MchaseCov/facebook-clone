@@ -37,6 +37,16 @@ class GroupsController < ApplicationController
     redirect_to groups_url, notice: 'Group successfully destroyed!'
   end
 
+  def users
+    @group = Group.find(params[:group_id])
+    if request.put?
+      @group.users << current_user
+    elsif request.delete?
+      @group.users.destroy current_user
+    end
+    redirect_back(fallback_location: root_path)
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

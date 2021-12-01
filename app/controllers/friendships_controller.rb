@@ -3,6 +3,7 @@ class FriendshipsController < ApplicationController
 
   before_action :fetch_recieving_user, only: %i[create]
   before_action :fetch_existing_request, only: %i[accept_friend_request decline_friend_request]
+  before_action :fetch_existing_friendship, only: %i[destroy]
 
   # Creates a new friendship entry between the two users
   def create
@@ -42,6 +43,15 @@ class FriendshipsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def destroy
+    return unless @friendship && @friendship_inverse
+
+    @friendship.destroy
+    @friendship_inverse.destroy
+    flash[:notice] = 'Successfully Unfriended!'
+    redirect_back(fallback_location: root_path)
+  end
+
   private
 
   def fetch_recieving_user
@@ -50,5 +60,10 @@ class FriendshipsController < ApplicationController
 
   def fetch_existing_request
     @friendship = Friendship.find_by(sent_by_id: params[:user_id], sent_to_id: current_user.id, status: false)
+  end
+
+  def fetch_existing_friendship
+    @friendship = Friendship.find_by(sent_by_id: params[:user_id], sent_to_id: current_user.id, status: true)
+    @friendship_inverse = Friendship.find_by(sent_by_id: current_user.id, sent_to_id: params[:user_id], status: true)
   end
 end
