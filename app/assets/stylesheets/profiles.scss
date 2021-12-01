@@ -5,12 +5,12 @@
 
 .profile-page {
   display: grid; 
-  grid-template-columns: 1fr 1fr; 
+  grid-template-columns: minmax(0, auto) auto; 
   grid-template-rows: 1fr 1fr; 
   gap: 0px 0px; 
   grid-template-areas: 
     "profile-banner profile-banner"
-    "profile-sidebar profile-feed"; 
+    "profile-content profile-content"; 
   background-color: var(--dark-blue);
  }
 
@@ -60,20 +60,32 @@
   outline: 4px solid var(--lightest-blue);
   background-color: var( --dark-blue);
 }
+.profile-content{
+  grid-area: profile-content;
+  margin-top: 10%;
+  display: flex;
+  color: black;
+  width: 98%;
+  justify-content: space-evenly;
+  gap: 50px;
+  justify-self: center;
+}
 .profile-sidebar {
-  grid-area: profile-sidebar;
-  margin-top: 15%;
+  background-color: white;
+  border: solid red 4px;
+  min-width: 45%;
 }
 .profile-feed {
-  grid-area: profile-feed;
-  margin-top: 15%;
+  background-color: white;
+  min-width: 45%;
+  flex-grow: 1;
 }
 .profile-banner-buttons-parent{
   display: flex;
   align-content: flex-start;
-  justify-content: space-between;
+  justify-content: space-around;
   padding-top: 2%;
-  width: 70%;
+  width: 95%;
 }
 .profile-banner-button{
   background-color: var(--blue);

@@ -1,0 +1,25 @@
+<% content_for(:title) do %>
+  <%= profile_owner.name %>'s Profile
+<% end %>
+
+<style><%= content_for :profile_stylesheets %></style>
+
+<div class="profile-page">
+  <div class="profile-banner">
+    <%= image_tag((profile_owner.banner), class:"profile-banner-image") %>
+    <div class="profile-banner-overlay">
+      <%= image_tag((profile_owner.avatar), class:"profile-avatar-image") %>
+      <div class="profile-banner-information">
+        <% if is_group %>
+          <%= render "groups/profile_banner", profile_owner: profile_owner %>
+        <% else %>
+          <%= render "users/profile_banner", profile_owner: profile_owner %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="profile-content">
+    <div class="profile-sidebar" id="profile-sidebar"><%= content_for :profile_sidebar %></div>
+    <div class="profile-feed"><%= content_for :profile_feed %></div>
+  </div>
+</div>

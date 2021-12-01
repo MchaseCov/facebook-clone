@@ -1,3 +1,6 @@
+This file only exists as a place for me to hold onto code I wrote but am currently not using until I have a new place for it
+Plz ignore!!
+
 <% content_for(:title) do %>
   Pending Friend Requests
 <% end %>
@@ -9,3 +12,9 @@
   <br>
   <% end %>
 <% end %>
+
+  <% profile_owner.received_requests.each do |r|%>
+  <%= r.name %>
+  <%= link_to "Accept", accept_friend_request_user_friendships_path(r.id) %>
+  <%= link_to "Decline", decline_friend_request_user_friendships_path(r.id) %>
+  <% end %>

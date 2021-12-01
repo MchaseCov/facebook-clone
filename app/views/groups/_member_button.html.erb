@@ -1,0 +1,9 @@
+<% if profile_owner.creator_id == current_user.id %>
+  <%= button_to 'Edit', edit_group_path(profile_owner), class:"profile-banner-button", method: :get %>
+<% else %>
+  <% if profile_owner.users.include? current_user %>
+    <%= button_to "Leave Group", group_user_update_path(profile_owner), class:"profile-banner-button", method: :delete %> 
+  <% else %>
+    <%= button_to "Join Group", group_user_update_path(profile_owner), class:"profile-banner-button", method: :put %>
+  <% end %>
+<% end %>

@@ -1,0 +1,9 @@
+<h1 class="profile-name"><%= profile_owner.name.titlecase %></h1>
+<h2 class="profile-nick">(Created by: <%= profile_owner.creator.name.titlecase %>)</h2>
+<div class="profile-banner-buttons-parent">
+  <%= button_to "Timeline", profile_owner, class:"profile-banner-button", method: :get %>
+  <%= button_to "About", profile_owner, class:"profile-banner-button", method: :get %>
+  <%= button_to "Photos", profile_owner, class:"profile-banner-button", method: :get %>
+  <%= button_to "Members (#{profile_owner.users.count})", profile_owner, class:"profile-banner-button", method: :get %>
+  <%= render "member_button", profile_owner: profile_owner %>
+</div>

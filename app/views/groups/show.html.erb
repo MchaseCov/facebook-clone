@@ -1,10 +1,6 @@
-<% content_for(:title) do %>
-  <%= @group.name %>'s Group Page
-<% end %>
 <% content_for :page_content do %>
-<%= render  "shared/profile", profile_owner: @group,
-                              profile_subname: @group.creator.name,
-                              profile_connections: "Members (#{@group.users.count})", 
-                              is_group: true %>
-
+<%= render partial: "shared/profile_show",
+           layout: "shared/profile_layout",
+           locals: { profile_owner: @group,
+                              is_group: true } %>
 <% end %>

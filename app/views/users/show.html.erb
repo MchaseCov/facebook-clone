@@ -1,10 +1,6 @@
-<% content_for(:title) do %>
-  <%= @user.name %>'s Profile
-<% end %>
 <% content_for :page_content do %>
-<%= render  "shared/profile", profile_owner: @user,
-                              profile_subname: @user.nick_name,
-                              profile_connections: "Friends (#{@user.friends.count})", 
-                              is_group: false %>
-
+<%= render partial: "shared/profile_show",
+           layout: "shared/profile_layout",
+           locals: { profile_owner: @user,
+                    is_group: false } %> 
 <% end %>
