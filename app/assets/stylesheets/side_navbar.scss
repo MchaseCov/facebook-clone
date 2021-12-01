@@ -13,6 +13,10 @@
   a {
     text-decoration: none;
     color: white;
+    vertical-align: middle;
+    line-height: 1;
+    display:flex;
+    align-items:center;
   }
   .side-header-parent {
     width: 100%;
@@ -42,5 +46,12 @@
   }
   .inline-icon{
     vertical-align: bottom;
+  }
+  .inline-img{
+    border-radius: 50%;
+    background-color: var( --dark-blue);
+    outline: 1px solid var(--lightest-blue);
+    margin: 3px 3px 3px 0px;
+    display: inline-block;
   }
 }

@@ -46,27 +46,18 @@
   <div class="side-header-parent">
     <div class="side-header-item section-header">Groups</div>
 
+    <% current_user.groups.limit(5).each do |group|%>
     <div class="side-header-item interactive subtext">
-      <%= link_to posts_path do %>
-        <span class="material-icons inline-icon">group_work</span>
-        First Group**
+      <%= link_to group do %>
+        <%= image_tag((group.avatar_thumbnail(24)), class:"inline-img inline-icon") %>
+        <%= group.name %>
       <% end %>
     </div>
+    <% end %>
+
     <div class="side-header-item interactive subtext">
       <%= link_to posts_path do %>
-        <span class="material-icons inline-icon">group_work</span>
-        Second Groups**
-      <% end %>
-    </div>
-    <div class="side-header-item interactive subtext">
-      <%= link_to posts_path do %>
-        <span class="material-icons inline-icon">group_work</span>
-        Third Group**
-      <% end %>
-    </div>
-    <div class="side-header-item interactive subtext">
-      <%= link_to posts_path do %>
-        <span class="material-icons inline-icon">group_work</span>
+        <%= image_tag((current_user.avatar_thumbnail(24)), class:"inline-img inline-icon") %>
         All My Groups**
       <% end %>
     </div>
@@ -81,9 +72,9 @@
       <% end %>
     </div>
     <div class="side-header-item interactive subtext">
-      <%= link_to posts_path do %>
+      <%= link_to groups_path do %>
         <span class="material-icons inline-icon">groups</span>
-        Groups**
+        Groups
       <% end %>
     </div>
     <div class="side-header-item interactive subtext">
