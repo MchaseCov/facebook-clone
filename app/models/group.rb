@@ -40,6 +40,10 @@ class Group < ApplicationRecord
 
   # Methods
 
+  def self.user_authorized(user)
+    public_visibility.or(where(id: user.groups.pluck(:id)))
+  end
+
   private
 
   def add_creator_to_users

@@ -16,8 +16,8 @@
   font-weight: 400;
   border-radius: 20px;
   a {
-    color: var(--dark-blue)
-
+    color: var(--dark-blue);
+    text-decoration: none;
   }
 }
 .user-index-name{
@@ -47,4 +47,9 @@
   justify-content: center;
   gap: 24px
 
+}
+
+.user-index-result-icon{
+  vertical-align: bottom;
+  text-decoration: none;
 }

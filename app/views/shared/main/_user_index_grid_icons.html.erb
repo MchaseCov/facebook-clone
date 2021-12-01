@@ -1,0 +1,13 @@
+
+<% if is_group %>
+  <% if result.private %>
+  <span class="material-icons user-index-result-icon">lock</span>
+  <% end %>
+  <% if result.creator == current_user %>
+  <span class="material-icons user-index-result-icon">admin_panel_settings</span>
+  <% end %>
+<% else %>
+  <% if result.friends.find_by(id:current_user.id) %>
+  <span class="material-icons user-index-result-icon">person</span>
+  <% end %>
+<% end %>

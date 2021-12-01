@@ -6,7 +6,8 @@ class GroupsController < ApplicationController
   before_action :validate_owner, only: %i[edit update destroy]
 
   def index
-    @indexed_content = Group.public_visibility
+    @indexed_content = Group.user_authorized(current_user).order(created_at: :desc)
+    @is_group = true
     @button_type = 'groups/member_button'
     render 'shared/main/index'
   end

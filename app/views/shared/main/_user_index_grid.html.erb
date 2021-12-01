@@ -1,5 +1,6 @@
   <div class="user-index-result">
     <li class="user-index-result-contents">
+    <%= render  "shared/main/user_index_grid_icons", is_group: is_group, result: result %>
     <%= link_to result.name.titlecase, result, class:"user-index-name" %>
       <ul class="user-index-grid-sublist">
         <li><%= link_to result do %><%= image_tag((result.avatar_thumbnail(256)), class:"user-index-image") %> <% end %> </li>
