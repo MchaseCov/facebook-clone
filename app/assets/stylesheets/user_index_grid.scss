@@ -1,0 +1,45 @@
+.user-index-grid {
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-rows: repeat(auto-fit, minmax(1fr, 1fr)); 
+  gap: 1em 1em; 
+  grid-template-areas: 
+    ". . ."
+    ". . ."
+    ". . ."; 
+}
+.user-index-result {
+  overflow: hidden;
+  background-color: var(--lightest-blue);
+  color: var(--dark-blue);
+  font-size: 1.25em;
+  font-weight: 400;
+  border-radius: 20px;
+  a {
+    color: var(--dark-blue)
+
+  }
+}
+.user-index-name{
+  color: var(--dark-blue);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: underline;
+  font-size: .8vw;
+  font-weight: 600;
+}
+.user-index-result-contents{
+  width: 100%;
+  list-style-type: none;
+  overflow: hidden;
+}
+.user-index-image{
+  max-width: 100%;
+  border-radius: 128px;
+  outline: solid var(--dark-blue) 2px;
+  margin: 20px 0px 8px 0px
+}
+.user-index-button{
+  margin-bottom: 10px;
+}
