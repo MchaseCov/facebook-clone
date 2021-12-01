@@ -8,7 +8,7 @@
   <div class="profile-banner">
     <%= image_tag((profile_owner.banner), class:"profile-banner-image") %>
     <div class="profile-banner-overlay">
-      <%= image_tag((profile_owner.avatar), class:"profile-avatar-image") %>
+      <%= image_tag((profile_owner.avatar_thumbnail(256)), class:"profile-avatar-image") %>
       <div class="profile-banner-information">
         <% if is_group %>
           <%= render "groups/profile_banner", profile_owner: profile_owner %>

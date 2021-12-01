@@ -28,12 +28,15 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: white;
+  background-color: var(--dark-blue);
   border-color: var(--grey);
-  border-radius: 4px;
   color: black;
 
-  a, a:visited {
-    color: var(--blue);
+  h1{
+    color:white
+  }
+  .page-content-parent{
+    width: 98%;
+    padding-left: 1%;
   }
  }

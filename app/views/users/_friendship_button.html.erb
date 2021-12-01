@@ -2,11 +2,11 @@
   <%= button_to "Edit Profile", edit_user_registration_path, class:"profile-banner-button", method: :get %>
 <% else %>
   <% if profile_owner.friends.include? current_user %>
-    <%= button_to "Unfriend", user_friendship_path(profile_owner), class:"profile-banner-button", method: :delete %> 
+    <%= button_to "Unfriend", user_friendship_path(profile_owner, current_user), class:"profile-banner-button", method: :delete %> 
   <% elsif current_user.pending_requests.include? profile_owner %>
     <div class="profile-banner-button">Request Pending</div>
   <% elsif profile_owner.pending_requests.include? current_user %>
-    <%= button_to "Accept Friendship", accept_friend_request_user_friendships_path(profile_owner.id), class:"profile-banner-button", method: :get %>
+    <%= button_to "Accept Friendship", accept_friend_request_user_friendships_path(profile_owner, current_user), class:"profile-banner-button", method: :get %>
   <% else %>
     <%= button_to "Request Friendship", user_friendships_path(profile_owner), class:"profile-banner-button", method: :post %>
   <% end %>

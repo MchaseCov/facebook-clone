@@ -2,8 +2,8 @@
   <%= button_to 'Edit', edit_group_path(profile_owner), class:"profile-banner-button", method: :get %>
 <% else %>
   <% if profile_owner.users.include? current_user %>
-    <%= button_to "Leave Group", group_user_update_path(profile_owner), class:"profile-banner-button", method: :delete %> 
+    <%= button_to "Leave Group", group_user_update_path(profile_owner, current_user), class:"profile-banner-button", method: :delete %> 
   <% else %>
-    <%= button_to "Join Group", group_user_update_path(profile_owner), class:"profile-banner-button", method: :put %>
+    <%= button_to "Join Group", group_user_update_path(profile_owner, current_user), class:"profile-banner-button", method: :put %>
   <% end %>
 <% end %>
