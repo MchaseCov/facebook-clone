@@ -1,9 +1,13 @@
 class FriendshipsController < ApplicationController
   include FriendshipsHelper
 
-  before_action :fetch_recieving_user, only: %i[create]
+  before_action :fetch_recieving_user, only: %i[create index]
   before_action :fetch_existing_request, only: %i[accept_friend_request decline_friend_request]
   before_action :fetch_existing_friendship, only: %i[destroy]
+
+  def index
+    @friends = @recieving_user.friends
+  end
 
   # Creates a new friendship entry between the two users
   def create
@@ -16,7 +20,7 @@ class FriendshipsController < ApplicationController
     else
       flash[:error] = 'Friend Request Failed!'
     end
-    redirect_back(fallback_location: root_path)
+    redirect_to @recieving_user
   end
 
   # Sets friendship status to true & creates an inverse friendship relation

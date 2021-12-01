@@ -1,9 +1,12 @@
 <% content_for(:title) do %>
   List of Profiles
 <% end %>
+
 <% content_for :page_content do %>
-  <h1>This is the index page for all profiles</h1>
-  <% @users.each do |u|%>
-  <%= link_to u.name, user_path(u) %>
+<div class="page-content-parent">
+    <h1>List of all profiles by created date:</h1>
+  <div class="profile-feed">
+  <%= render  "shared/user_index_grid", indexed_users: @users %>
   <% end %>
-<% end %>
+  </div>
+</div>

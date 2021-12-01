@@ -8,6 +8,10 @@ class GroupsController < ApplicationController
   def show
   end
 
+  def index_users
+    @users = @group.users.all
+  end
+
   def new
     @group = current_user.created_groups.build
   end

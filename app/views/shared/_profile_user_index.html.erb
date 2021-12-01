@@ -1,0 +1,7 @@
+<%= content_for :profile_stylesheets do%>
+  #profile-sidebar {display: none}
+<% end %>
+
+<% content_for :profile_feed do %>
+<%= render  "shared/user_index_grid", indexed_users: indexed_users %>
+<% end %>

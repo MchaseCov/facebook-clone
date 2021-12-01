@@ -4,6 +4,6 @@
   <%= button_to "Timeline", profile_owner, class:"profile-banner-button", method: :get %>
   <%= button_to "About", profile_owner, class:"profile-banner-button", method: :get %>
   <%= button_to "Photos", profile_owner, class:"profile-banner-button", method: :get %>
-  <%= button_to "Members (#{profile_owner.users.count})", profile_owner, class:"profile-banner-button", method: :get %>
+  <%= button_to "Members (#{profile_owner.users.count})", group_users_path(profile_owner), class:"profile-banner-button", method: :get %>
   <%= render "member_button", profile_owner: profile_owner %>
 </div>

@@ -1,0 +1,7 @@
+<% content_for :page_content do %>
+<%= render partial: "shared/profile_user_index",
+           layout: "shared/profile_layout",
+           locals: { profile_owner: @recieving_user,
+                     indexed_users: @friends,
+                     is_group: false } %> 
+<% end %>
