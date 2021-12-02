@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_action -> { fetch_visible_groups(@profile_owner) }, only: %i[show groups friendships]
 
   def index
-    @indexed_content = User.all
+    @indexed_content = User.all.order(current_sign_in_at: :desc)
     render 'shared/main/index'
   end
 
@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   def groups
     @button_type = 'groups/member_button'
     @indexed_content = @groups
+    @is_group = true
     render 'shared/profiles/index'
   end
 

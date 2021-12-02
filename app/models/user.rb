@@ -9,13 +9,17 @@ class User < ApplicationRecord
   #
   # Devise
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # :confirmable, :lockable, :timeoutable, and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :trackable
 
   # Callbacks
   before_create :add_default_avatar
   before_create :add_default_banner
+
+  # Scopes
+  scope :recently_online, -> { where('current_sign_in_at >= :date', date: 3.hour.ago) }
 
   # Validations
   validates :email, presence: true
@@ -56,4 +60,5 @@ class User < ApplicationRecord
   #   Active Storage
   has_one_attached :avatar
   has_one_attached :banner
+
 end
