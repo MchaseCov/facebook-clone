@@ -32,7 +32,9 @@
 .user-index-result-contents{
   width: 100%;
   list-style-type: none;
-  overflow: hidden;
+  overflow: hidden; 
+  height: 100%;
+  position: relative;  
 }
 .user-index-image{
   max-width: 100%;
@@ -46,10 +48,81 @@
   align-items: center;
   justify-content: center;
   gap: 24px
-
 }
 
+.index-result-icons-parent{
+  margin: 0;
+  padding: 0;
+  width: 2.5em;
+  height: 7.5em;
+  position: absolute;
+  bottom: 2%;
+  left: 2%;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: flex-end;
+
+
 .user-index-result-icon{
-  vertical-align: bottom;
-  text-decoration: none;
+  font-size: 2.5em;
+  position: relative;
+}
+
+.online-icon{
+  color: #378D54;
+}
+.away-icon{
+  color: #fc9745
+}
+.offline-icon{
+  color: #b4b6bf
+}
+.friends-icon{
+  color: var(--blue);
+}
+.not-friends-icon{
+  color: #b4b6bf
+}
+.private-icon{
+  color: #b4b6bf
+}
+.public-icon{
+  color: var(--blue);
+}
+.creator-icon{
+  color: #378D54;
+}
+.member-icon{
+  color: var(--blue);
+}
+.not-member-icon{
+  color: #b4b6bf;
+}
+.tooltiptext {
+  visibility: hidden;
+  background-color: var(--dark-blue);
+  color: #fff;
+  text-align: center;
+  padding: 5px 20px;
+  border-radius: 6px;
+  font-size: 1vw;
+  position: absolute;
+  z-index: 1;
+  overflow-x: visible; 
+  left: 105%;
+  top: 5px;
+}
+.user-index-result-icon .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent var(--dark-blue) transparent transparent;
+}
+}
+.user-index-result-icon:hover .tooltiptext {
+  visibility: visible;
 }
