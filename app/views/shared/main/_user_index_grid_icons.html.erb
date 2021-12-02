@@ -21,9 +21,9 @@
   <% else %>
   <span class="material-icons user-index-result-icon not-friends-icon">person<span class="tooltiptext">You aren't friends with this user.</span></span>
   <% end %>
-    <% if result.try(:current_sign_in_at).try { |r| r >= 2.hour.ago } %>
+    <% if result.try(:last_seen_at).try { |r| r >= 2.hour.ago } %>
     <span class="material-icons user-index-result-icon online-icon">circle<span class="tooltiptext">Recently Online</span></span>
-  <% elsif result.try(:current_sign_in_at).try { |r| r >= 6.hour.ago } %>
+  <% elsif result.try(:last_seen_at).try { |r| r >= 6.hour.ago } %>
     <span class="material-icons md-36 user-index-result-icon away-icon">brightness_3<span class="tooltiptext">Away</span></span>
   <% else %>
       <span class="material-icons user-index-result-icon offline-icon">trip_origin<span class="tooltiptext">Offline</span></span>
