@@ -29,3 +29,7 @@
   --light-grey:#f7f7f7;
   background: var(--light-grey);
 }
+
+turbo-frame{
+  outline: 6px solid red;
+}
