@@ -1,14 +1,14 @@
   <div class="user-index-result">
     <li class="user-index-result-contents">
-    <%= link_to result.name.titlecase, result, class:"user-index-name" %>
+    <%= link_to result.name.titlecase, result, class:"user-index-name", 'data-turbo-frame': :_top %>
       <ul class="user-index-grid-sublist">
-        <li><%= link_to result do %><%= image_tag((result.avatar_thumbnail(256)), class:"user-index-image") %> <% end %> </li>
+        <li><%= link_to result, 'data-turbo-frame': :_top  do %><%= image_tag((result.avatar_thumbnail(256)), class:"user-index-image") %> <% end %> </li>
         <li>(<%=result.try(:nick_name) || (link_to "Creator: #{result.creator.name}", result.creator) %>)</li>
         <li>
         <%=pluralize(*(result.try(:friends).then {|f| f.nil? ? [result.users.count, 'user'] : [f.count, 'friend']}))%>
         </li>
         <li class="user-index-button"><%= render button_type, profile_owner: result %></li>
       </ul>
-          <%= render  "shared/main/user_index_grid_icons", is_group: is_group, result: result %>
+          <%= render "shared/main/user_index_grid_icons", result: result %>
     </li>
   </div>

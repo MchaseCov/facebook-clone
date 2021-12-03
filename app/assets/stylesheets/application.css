@@ -33,3 +33,8 @@
 turbo-frame{
   outline: 6px solid red;
 }
+
+html {
+  overflow-x: hidden;
+  margin-right: calc(-1 * (100vw - 100%));
+}

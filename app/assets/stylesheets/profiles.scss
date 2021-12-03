@@ -6,7 +6,7 @@
 .profile-page {
   display: grid; 
   grid-template-columns: minmax(0, auto) auto; 
-  grid-template-rows: 1fr 1fr; 
+  grid-template-rows: 400px auto; 
   gap: 0px 0px; 
   grid-template-areas: 
     "profile-banner profile-banner"
@@ -70,7 +70,6 @@
   justify-content: space-evenly;
   gap: 50px;
   justify-self: center;
-  position: relative
 }
 .profile-sidebar {
   min-width: 45%;
@@ -104,10 +103,9 @@
   grid-area: profile-buttons;
   position: absolute;
   display: flex;
-  top: -25%;
-  right: 0%;
-  justify-content: space-around;
+  top: 400px;
+  left: 35%;
+  justify-content: flex-start;
   padding-top: 2%;
-  width: 80%;
-  max-width: 80%;
+  width: 100%
 }

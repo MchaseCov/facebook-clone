@@ -1,5 +1,5 @@
 <div class="index-result-icons-parent">
-<% if is_group %>
+<% if result.try(:creator_id) %>
 
   <% if result.private %>
   <span class="material-icons user-index-result-icon private-icon">lock<span class="tooltiptext">Private Group</span></span>
