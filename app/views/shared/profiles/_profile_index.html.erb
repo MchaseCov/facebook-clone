@@ -1,12 +1,18 @@
-<%= content_for :profile_stylesheets do%>
-  #profile-sidebar {display: none}
-<% end %>
+<%= turbo_frame_tag id="profile-content", class:"profile-content" do %>
+<div class="profile-buttons">
+  <%= button_to "Timeline", profile_owner, class:"profile-banner-button", method: :get %>
+  <%= button_to "About", profile_owner, class:"profile-banner-button", method: :get %>
+  <%= button_to "Photos", profile_owner, class:"profile-banner-button", method: :get %>
+  <%= button_to "Friends (#{profile_owner.friends.count})", user_friendships_path(profile_owner), class:"profile-banner-button", method: :get %>
+  <%= button_to "Groups (#{@groups.count})", user_groups_path(profile_owner), class:"profile-banner-button", method: :get %>
+  <%= render "users/friendship_button", profile_owner: profile_owner %>
+</div>
 
-<% content_for :profile_feed do %>
+    <div class="profile-feed">
 <div class="user-index-grid">
   <%= render partial: "shared/main/user_index_grid", collection: @indexed_content,
                                                       as: :result,
                                                       locals: { button_type: @button_type,
                                                       is_group: @is_group } %>
-</div>
+</div>    </div>
 <% end %>

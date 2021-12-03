@@ -2,20 +2,17 @@
   <%= profile_owner.name %>'s Profile
 <% end %>
 
-<style><%= content_for :profile_stylesheets %></style>
-
-<div class="profile-page">
   <div class="profile-banner">
     <%= image_tag((profile_owner.banner_thumbnail(1280, 720)), class:"profile-banner-image") %>
     <div class="profile-banner-overlay">
       <%= image_tag((profile_owner.avatar_thumbnail(256)), class:"profile-avatar-image") %>
       <div class="profile-banner-information">
-          <%= render @banner_type, profile_owner: profile_owner %>
+        <% if is_group %>
+
+        <% else %>
+        <h1 class="profile-name"><%= profile_owner.name.titlecase %></h1>
+        <h2 class="profile-nick">(<%= profile_owner.nick_name.titlecase %>)</h2>
+        <% end %>
       </div>
     </div>
   </div>
-  <div class="profile-content">
-    <div class="profile-sidebar" id="profile-sidebar"><%= content_for :profile_sidebar %></div>
-    <div class="profile-feed"><%= content_for :profile_feed %></div>
-  </div>
-</div>

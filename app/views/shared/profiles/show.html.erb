@@ -1,6 +1,11 @@
 <% content_for :page_content do %>
+<div class="profile-page">
+<%= render partial: "shared/profiles/profile_banner",
+           locals: { profile_owner: @profile_owner,
+                    is_group: @is_group} %>
 <%= render partial: "shared/profiles/show",
-           layout: "shared/profiles/profile",
            locals: { profile_owner: @profile_owner,
                     is_group: @is_group} %> 
 <% end %>
+
+<%= content_for?(:page_content)? yield(:page_content) : render("shared/profiles/show") %> 

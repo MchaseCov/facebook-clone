@@ -1,7 +1,17 @@
-<% content_for :profile_sidebar do %>
-  PROFILE SIDEBAR PLACEHOLDER FOR GROUP AND USER
-<% end %>
+<%= turbo_frame_tag id="profile-content", class:"profile-content" do %>
+<div class="profile-buttons">
+  <%= button_to "Timeline", profile_owner, class:"profile-banner-button", method: :get %>
+  <%= button_to "About", profile_owner, class:"profile-banner-button", method: :get %>
+  <%= button_to "Photos", profile_owner, class:"profile-banner-button", method: :get %>
+  <%= button_to "Friends (#{profile_owner.friends.count})", user_friendships_path(profile_owner), class:"profile-banner-button", method: :get %>
+  <%= button_to "Groups (#{@groups.count})", user_groups_path(profile_owner), class:"profile-banner-button", method: :get %>
+  <%= render "users/friendship_button", profile_owner: profile_owner %>
+</div>
+    <div class="profile-sidebar" id="profile-sidebar">
+    SIDEBAR PLACEHOLDER!!
+    </div>
 
-<% content_for :profile_feed do %>
+    <div class="profile-feed">
     PROFILE FEED PLACEHOLDER FOR GROUP AND USER
+    </div>
 <% end %>

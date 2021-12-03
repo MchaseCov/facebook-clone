@@ -70,6 +70,7 @@
   justify-content: space-evenly;
   gap: 50px;
   justify-self: center;
+  position: relative
 }
 .profile-sidebar {
   min-width: 45%;
@@ -98,4 +99,15 @@
 .profile-banner-button:hover{
   background-color: var(--light-blue);
   cursor: pointer;
+}
+.profile-buttons{
+  grid-area: profile-buttons;
+  position: absolute;
+  display: flex;
+  top: -25%;
+  right: 0%;
+  justify-content: space-around;
+  padding-top: 2%;
+  width: 80%;
+  max-width: 80%;
 }
