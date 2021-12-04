@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_02_191552) do
+ActiveRecord::Schema.define(version: 2021_12_04_023628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,17 @@ ActiveRecord::Schema.define(version: 2021_12_02_191552) do
     t.index ["user_id"], name: "index_groups_users_on_user_id"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.text "body"
+    t.bigint "actor_id", null: false
+    t.string "postable_type", null: false
+    t.bigint "postable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["actor_id"], name: "index_posts_on_actor_id"
+    t.index ["postable_type", "postable_id"], name: "index_posts_on_postable"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -90,4 +101,5 @@ ActiveRecord::Schema.define(version: 2021_12_02_191552) do
   add_foreign_key "friendships", "users", column: "sent_by_id"
   add_foreign_key "friendships", "users", column: "sent_to_id"
   add_foreign_key "groups", "users", column: "creator_id"
+  add_foreign_key "posts", "users", column: "actor_id"
 end

@@ -31,12 +31,14 @@ class Group < ApplicationRecord
                      aspect_ratio: :is_16_9
 
   # Associations
-  #   User
-  belongs_to :creator, class_name: 'User', foreign_key: 'creator_id'
-  has_and_belongs_to_many :users
   #   Active Storage
   has_one_attached :avatar
   has_one_attached :banner
+  #   Posts
+  has_many :posts, as: :postable
+  #   User
+  belongs_to :creator, class_name: 'User', foreign_key: 'creator_id'
+  has_and_belongs_to_many :users
 
   # Methods
 

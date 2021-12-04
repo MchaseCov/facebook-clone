@@ -34,6 +34,9 @@ class User < ApplicationRecord
                      aspect_ratio: :is_16_9
 
   # Associations
+  #   Active Storage
+  has_one_attached :avatar
+  has_one_attached :banner
   #   Friendship
   has_many :friend_sent, class_name: 'Friendship',
                          foreign_key: 'sent_by_id',
@@ -58,7 +61,8 @@ class User < ApplicationRecord
                             inverse_of: 'creator',
                             dependent: :destroy
   has_and_belongs_to_many :groups
-  #   Active Storage
-  has_one_attached :avatar
-  has_one_attached :banner
+  #   Posts
+  has_many :posts, as: :postable
+  has_many :authored_posts, foreign_key: 'actor_id',
+                            inverse_of: :post_author
 end
