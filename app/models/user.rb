@@ -38,13 +38,13 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_one_attached :banner
   #   Friendship
-  has_many :friend_sent, class_name: 'Friendship',
-                         foreign_key: 'sent_by_id',
-                         inverse_of: 'sent_by',
+  has_many :friend_sent, class_name: :Friendship,
+                         foreign_key: :sent_by_id,
+                         inverse_of: :sent_by,
                          dependent: :destroy
-  has_many :friend_recieved, class_name: 'Friendship',
-                             foreign_key: 'sent_to_id',
-                             inverse_of: 'sent_to',
+  has_many :friend_recieved, class_name: :Friendship,
+                             foreign_key: :sent_to_id,
+                             inverse_of: :sent_to,
                              dependent: :destroy
   has_many :friends, -> { merge(Friendship.friends) },
            through: :friend_sent,
@@ -56,13 +56,15 @@ class User < ApplicationRecord
            through: :friend_recieved,
            source: :sent_by
   #   Groups
-  has_many :created_groups, class_name: 'Group',
-                            foreign_key: 'creator_id',
-                            inverse_of: 'creator',
+  has_many :created_groups, class_name: :Group,
+                            foreign_key: :creator_id,
+                            inverse_of: :creator,
                             dependent: :destroy
   has_and_belongs_to_many :groups
   #   Posts
   has_many :posts, as: :postable
-  has_many :authored_posts, foreign_key: 'actor_id',
-                            inverse_of: :post_author
+  has_many :authored_posts, class_name: :Post,
+                            foreign_key: :actor_id,
+                            inverse_of: :post_author,
+                            dependent: :destroy
 end

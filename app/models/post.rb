@@ -16,7 +16,7 @@ class Post < ApplicationRecord
   #   [Users, Groups]
   belongs_to :postable, polymorphic: true
   #   Users
-  belongs_to :post_author, class_name: 'User',
-                           foreign_key: 'actor_id',
-                           inverse_of: :created_posts
+  belongs_to :post_author, class_name: :User,
+                           foreign_key: :actor_id,
+                           inverse_of: :authored_post
 end
