@@ -1,0 +1,14 @@
+<%= form_with model:journal, url: url do |f| %>
+
+<div style="background-color:var(--light-grey)">
+<% if journal.errors.any? %>
+<% journal.errors.full_messages.each do |message|%>
+<h3><%= message %> </h3>
+<%end%>
+<% end %>
+  Posting to <%=journalable.name%>
+  <%= f.label :body, "Post contents:" %>
+  <%= f.text_area :body %>
+  <%= f.submit %>
+</div>
+<% end %>

@@ -1,5 +1,5 @@
 <div class="header-left">
-  <%= link_to "Friendsy", posts_path %>
+  <%= link_to "Friendsy", root_path %>
   <%= link_to "Github Repo", "https://github.com/MchaseCov/facebook-clone", target: '_blank' %>
 </div>
 
@@ -8,17 +8,17 @@
 <div class="header-right">
     <% if user_signed_in?%>
     <div class="top-header-item interactive">
-      <%= link_to posts_path do %>
+      <%= link_to root_path do %>
         <span class="material-icons inline-icon">group_add</span>
       <% end %>
     </div>
     <div class="top-header-item interactive">
-      <%= link_to posts_path do %>
+      <%= link_to root_path do %>
         <span class="material-icons inline-icon">textsms</span>
       <% end %>
     </div>
     <div class="top-header-item interactive">
-      <%= link_to posts_path do %>
+      <%= link_to root_path do %>
         <span class="material-icons inline-icon">notifications</span>
       <% end %>
     </div>

@@ -1,0 +1,11 @@
+<% content_for(:title) do %>
+  Home Feed
+<% end %>
+
+  <h1>This is the index page for journals</h1>
+
+  <%= turbo_frame_tag id="journal-window", class:"journal-window" do %>
+  <%= link_to  "uwu make a new journal?", new_journal_path %>
+  <% end %> <br>
+
+<%= render @journals %>

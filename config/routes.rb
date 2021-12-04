@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  root 'posts#index'
+  root 'journals#index'
 
   devise_for :users
 
-  resources :posts, only: %i[index edit update destroy]
+  resources :journals, only: %i[new create index edit update destroy]
 
   resources :groups do
-    resources :posts, only: %i[index new create show]
+    resources :journals, only: %i[index new create show], module: :groups
     member do
       get 'members' # 'members' here refers to a URL & respective controller action, not the route method member.
     end
@@ -14,8 +14,8 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: %i[index show] do
-    resources :posts, only: %i[index new create show]
-    member do # NOTE: may be worth refactoring these back into their respective controlleer with turbo tag partials
+    resources :journals, only: %i[index new create show], module: :users
+    member do # NOTE: may be worth refactoring these back into their respective controller with turbo tag partials
       get 'groups'
       get 'friendships'
     end

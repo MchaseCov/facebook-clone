@@ -1,0 +1,13 @@
+<div style="background-color:var(--light-grey)">
+ Post by: <%= journal.journal_author.name %>
+
+<% unless journal.journal_author == journal.journalable %>
+Posted to: <%= journal.journalable.name %><% end %>
+
+<%= time_ago_in_words(journal.created_at) + ' ago' %> <br>
+
+<%= journal.body %>
+
+</div>
+<br>
+

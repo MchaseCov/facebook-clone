@@ -34,8 +34,8 @@ class Group < ApplicationRecord
   #   Active Storage
   has_one_attached :avatar
   has_one_attached :banner
-  #   Posts
-  has_many :posts, as: :postable
+  #   Journals
+  has_many :journals, as: :journalable
   #   User
   belongs_to :creator, class_name: 'User', foreign_key: 'creator_id'
   has_and_belongs_to_many :users
@@ -43,7 +43,11 @@ class Group < ApplicationRecord
   # Methods
 
   def self.user_authorized(user)
-    public_visibility.or(where(id: user.groups.pluck(:id)))
+    public_visibility.or(includes_user(user))
+  end
+
+  def self.user_unauthorized(user)
+    private_visibility.excludes_user(user)
   end
 
   private

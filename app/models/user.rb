@@ -61,10 +61,10 @@ class User < ApplicationRecord
                             inverse_of: :creator,
                             dependent: :destroy
   has_and_belongs_to_many :groups
-  #   Posts
-  has_many :posts, as: :postable
-  has_many :authored_posts, class_name: :Post,
-                            foreign_key: :actor_id,
-                            inverse_of: :post_author,
-                            dependent: :destroy
+  #   Journals
+  has_many :journals, as: :journalable
+  has_many :authored_journals, class_name: :Journal,
+                               foreign_key: :actor_id,
+                               inverse_of: :journal_author,
+                               dependent: :destroy
 end
