@@ -1,6 +1,6 @@
 <% if user_signed_in?%>
   <div class="side-header-parent">
-    <div class="side-header-item"><%= image_tag((current_user.avatar), class:"side-navbar-avatar", draggable: "false") %></div>
+    <div class="side-header-item"><%= image_tag((current_user.avatar.variant(resize:"150x150")), class:"side-navbar-avatar", draggable: "false") %></div>
     <div class="side-header-item interactive section-header"><%= link_to current_user.name.titlecase, user_path(current_user.id) %></div>
     <div class="side-header-item interactive subtext">
       <%= link_to edit_user_registration_path do %>
@@ -9,7 +9,7 @@
       <% end %>
     </div>
     <div class="side-header-item interactive subtext">
-      <%= link_to destroy_user_session_path, method: :delete do %>
+      <%= link_to destroy_user_session_path, method: :delete, :data => { :no_turbolink => true }  do %>
         <span class="material-icons inline-icon">logout</span>
         Sign Out
       <% end %>
@@ -27,7 +27,7 @@
     <div class="side-header-item interactive subtext">
       <%= link_to user_friendships_path(current_user) do %>
         <span class="material-icons inline-icon">people</span>
-        Friends (<%=current_user.friends.count%>)
+        Friends (<%=current_user.friends.size%>)
       <% end %>
     </div>
     <div class="side-header-item interactive subtext">
@@ -46,19 +46,19 @@
   <div class="side-header-parent">
     <div class="side-header-item section-header">Groups</div>
 
-    <% current_user.groups.limit(5).each do |group|%>
+    <% @sidebar_groups.each do |group|%>
     <div class="side-header-item interactive subtext">
       <%= link_to group do %>
-        <%= image_tag((group.avatar_thumbnail(24)), class:"inline-img inline-icon") %>
-        <%= group.name %> (<%=group.users.count%>)
+        <%= image_tag((group.avatar.variant(resize: "24x24")), class:"inline-img inline-icon") %>
+        <%= group.name %> (<%=group.users.size%>)
       <% end %>
     </div>
     <% end %>
 
     <div class="side-header-item interactive subtext">
       <%= link_to user_groups_path(current_user) do %>
-        <%= image_tag((current_user.avatar_thumbnail(24)), class:"inline-img inline-icon") %>
-        All My Groups (<%=current_user.groups.count%>)
+        <%= image_tag((current_user.avatar.variant(resize: "24x24")), class:"inline-img inline-icon") %>
+        All My Groups (<%=current_user.groups.size%>)
       <% end %>
     </div>
   </div>

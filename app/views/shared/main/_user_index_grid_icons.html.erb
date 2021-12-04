@@ -1,5 +1,5 @@
 <div class="index-result-icons-parent">
-<% if result.try(:creator_id) %>
+<% if result.class.name == "Group" %>
 
   <% if result.private %>
   <span class="material-icons user-index-result-icon private-icon">lock<span class="tooltiptext">Private Group</span></span>
@@ -8,7 +8,7 @@
   <% end %>
   <% if result.creator == current_user %>
   <span class="material-icons user-index-result-icon creator-icon">admin_panel_settings<span class="tooltiptext">You created this group.</span></span>
-  <% elsif current_user.groups.pluck(:id).include? result.id %>
+  <% elsif result.users.pluck(:id).include? current_user.id %>
   <span class="material-icons user-index-result-icon member-icon">groups<span class="tooltiptext">You are a member.</span></span>
   <% else %>
   <span class="material-icons user-index-result-icon not-member-icon">group_off<span class="tooltiptext">You aren't a member.</span></span>
@@ -16,7 +16,7 @@
 
 <% else %>
 
-  <% if result.friends.find_by(id:current_user.id) %>
+  <% if result.friends.include? current_user %>
   <span class="material-icons user-index-result-icon friends-icon">person<span class="tooltiptext">You are friends with this user.</span></span>
   <% else %>
   <span class="material-icons user-index-result-icon not-friends-icon">person<span class="tooltiptext">You aren't friends with this user.</span></span>

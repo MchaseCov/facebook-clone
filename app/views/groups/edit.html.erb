@@ -2,11 +2,7 @@
 Edit <%= @group.name.titlecase %>
 <% end %>
 
-<% content_for :page_content do %>
-
 <%= render 'form', group: @group %>
 
 <%= link_to 'Show group page', @group %> |
 <%= link_to 'Back to all groups', groups_path %>
-
-<% end %>

@@ -2,13 +2,15 @@
     <li class="user-index-result-contents">
     <%= link_to result.name.titlecase, result, class:"user-index-name", 'data-turbo-frame': :_top %>
       <ul class="user-index-grid-sublist">
-        <li><%= link_to result, 'data-turbo-frame': :_top  do %><%= image_tag((result.avatar_thumbnail(256)), class:"user-index-image") %> <% end %> </li>
-        <li>(<%=result.try(:nick_name) || (link_to "Creator: #{result.creator.name}", result.creator) %>)</li>
+        <li><%= link_to result, 'data-turbo-frame': :_top  do %><%= image_tag((result.avatar.variant(resize: "256x256!")), class:"user-index-image") %> <% end %> </li>
+        <li>(<%=link_to *(result.class.name == "Group" ? ["Creator: #{result.creator.name}", result.creator] : [result.nick_name, result]) %>)</li>
         <li>
-        <%=pluralize(*(result.try(:friends).then {|f| f.nil? ? [result.users.count, 'user'] : [f.count, 'friend']}))%>
+        <%=pluralize(*(result.class.name == "Group" ? [result.users.size, 'user'] : [result.friends.size, 'friend']))%>
         </li>
-        <li class="user-index-button"><%= render button_type, profile_owner: result %></li>
+        <li class="user-index-button">
+          <%= render (result.class.name == "Group" ? 'groups/member_button' : 'users/friendship_button'), button_target: result %>
+        </li>
       </ul>
-          <%= render "shared/main/user_index_grid_icons", result: result %>
+        <%= render "shared/main/user_index_grid_icons", result: result %>
     </li>
   </div>

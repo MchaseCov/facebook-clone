@@ -1,5 +1,3 @@
-<%= turbo_frame_tag id="profile-content", class:"profile-content" do %>
-  <%= render "shared/profiles/profile_buttons", profile_owner: profile_owner, is_group: is_group %>
 <div class="profile-feed">
   <div class="user-index-grid">
     <%= render partial: "shared/main/user_index_grid", collection: @indexed_content,
@@ -7,4 +5,3 @@
                                                       locals: { button_type: @button_type } %>
   </div>
 </div>
-<% end %>

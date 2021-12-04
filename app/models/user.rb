@@ -20,6 +20,7 @@ class User < ApplicationRecord
 
   # Scopes
   scope :recently_online, -> { where('last_seen_at >= :time', time: 3.hour.ago) }
+  scope :eager_friendship, -> { includes(:friends, :received_requests, :pending_requests).with_attached_avatar }
 
   # Validations
   validates :email, presence: true

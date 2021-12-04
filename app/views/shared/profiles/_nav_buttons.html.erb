@@ -1,0 +1,13 @@
+<div class="profile-buttons">
+  <%= button_to "Timeline", profile_owner, class:"profile-banner-button", method: :get %>
+  <%= button_to "About", profile_owner, class:"profile-banner-button", method: :get %>
+  <%= button_to "Photos", profile_owner, class:"profile-banner-button", method: :get %>
+  <% if profile_owner.class.name == "Group" %>
+  <%= button_to "Members (#{profile_owner.users.size})", group_members_path(profile_owner), class:"profile-banner-button", method: :get %>
+  <%= render "groups/member_button", button_target: profile_owner %>
+  <% else %>
+  <%= button_to "Friends (#{profile_owner.friends.size})", user_friendships_path(profile_owner), class:"profile-banner-button", method: :get %>
+  <%= button_to "Groups (#{@groups.size})", user_groups_path(profile_owner), class:"profile-banner-button", method: :get %>
+  <%= render "users/friendship_button", button_target: profile_owner %>
+<% end %>
+</div>

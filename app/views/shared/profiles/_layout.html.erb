@@ -2,13 +2,14 @@
   <%= profile_owner.name %>'s Profile
 <% end %>
 
+<div class="profile-page">
   <div class="profile-banner">
-    <%= image_tag((profile_owner.banner_thumbnail(1280, 720)), class:"profile-banner-image") %>
+    <%= image_tag((@profile_owner.banner.variant(resize: "1280x720")), class:"profile-banner-image") %>
     <div class="profile-banner-overlay">
-      <%= image_tag((profile_owner.avatar_thumbnail(256)), class:"profile-avatar-image") %>
+      <%= image_tag((@profile_owner.avatar.variant(resize:"256x256")), class:"profile-avatar-image") %>
       <div class="profile-banner-information">
         <h1 class="profile-name"><%= profile_owner.name.titlecase %></h1>
-        <% if profile_owner.try(:creator_id) %>
+        <% if profile_owner.class.name == "Group" %>
         <h2 class="profile-nick">(Created by: <%= profile_owner.creator.name.titlecase %>)</h2>
         <% else %>
         <h2 class="profile-nick">(<%= profile_owner.nick_name.titlecase %>)</h2>
@@ -16,3 +17,8 @@
       </div>
     </div>
   </div>
+  <%= turbo_frame_tag id="profile-content", class:"profile-content" do %>
+  <%= render "shared/profiles/nav_buttons", profile_owner: profile_owner %>
+  <%= yield %>
+  <% end %>
+</div>

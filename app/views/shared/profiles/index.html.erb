@@ -1,12 +1,6 @@
-<% content_for :page_content do %>
-<div class="profile-page">
-<%= render partial: "shared/profiles/profile_banner",
-           locals: { profile_owner: @profile_owner,
-                    is_group: @is_group} %>
-<%= render partial: "shared/profiles/profile_index",
+<%= render partial: "shared/profiles/index",
+           layout: "shared/profiles/layout",
            locals: { profile_owner: @profile_owner,
                      indexed_content: @indexed_content,
                      is_group: @is_group,
-                     button_type: @button_type } %> 
-<% end %>
-<%= content_for?(:page_content)? yield(:page_content) : render("shared/profiles/profile_index") %> 
+                     button_type: @button_type } %>
