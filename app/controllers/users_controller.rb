@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @journals = Journal.includes(:journal_author, :journalable).where(journalable: @profile_owner)
     render 'shared/profiles/show'
   end
 

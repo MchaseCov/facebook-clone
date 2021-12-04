@@ -17,6 +17,8 @@ class Group < ApplicationRecord
   scope :public_visibility, -> { where('private =?', false) }
   scope :private_visibility, -> { where('private =?', true) }
   scope :recently_created, -> { where('created_date >= :date', date: 1.week.ago) }
+  scope :includes_user, ->(user) { where(id: user.groups.pluck(:id)) }
+  scope :excludes_user, ->(user) { where.not(id: user.groups.pluck(:id)) }
 
   # Validations
   validates :name, presence: true,

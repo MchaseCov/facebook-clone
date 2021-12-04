@@ -4,5 +4,9 @@
     </div>
 
     <div class="profile-feed">
-    PROFILE FEED PLACEHOLDER FOR GROUP AND USER
+    <%= turbo_frame_tag id="journal-window", class:"journal-window" do %>
+    <%= link_to "Leave a Journal on #{profile_owner.name}'s Profile?", eval("new_#{profile_owner.class.name.downcase}_journal_path(profile_owner)") %>
+    <% end %>
+    <br>
+    <%= render partial: "journals/journal.html.erb", collection: journals, as: :journal %>
     </div>
