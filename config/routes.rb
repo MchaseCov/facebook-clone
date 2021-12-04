@@ -1,15 +1,24 @@
 Rails.application.routes.draw do
   root 'posts#index'
+
   devise_for :users
-  resources :posts
+
+  resources :posts, only: %i[index edit update destroy]
+
   resources :groups do
-    match 'members', to: 'members', via: %i[get], as: 'members'
-    match 'users/:id', to: 'groups#users', via: %i[put delete], as: 'user_update'
+    resources :posts, only: %i[index new create show]
+    member do
+      get 'members' # 'members' here refers to a URL & respective controller action, not the route method member.
+    end
+    match 'users/:id', to: 'groups#toggle_membership', via: %i[put delete], as: 'toggle_membership'
   end
 
   resources :users, only: %i[index show] do
-    match 'groups', to: 'groups', via: %i[get], as: 'groups'
-    match 'friendships', to: 'friendships', via: %i[get], as: 'friendships'
+    resources :posts, only: %i[index new create show]
+    member do # NOTE: may be worth refactoring these back into their respective controlleer with turbo tag partials
+      get 'groups'
+      get 'friendships'
+    end
     resources :friendships, only: %i[create destroy] do
       collection do
         get 'accept_friend_request'

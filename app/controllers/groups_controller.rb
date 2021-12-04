@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   include GroupPrivacyHelper
-  before_action :set_group, only: %i[show edit update destroy users members]
-  before_action :fetch_profile_owner, only: %i[show members]
+  before_action :fetch_group, only: %i[show edit update destroy members]
+  before_action :set_profile_owner, only: %i[show members]
   before_action :validate_user, only: %i[show members]
   before_action :validate_owner, only: %i[edit update destroy]
 
@@ -47,7 +47,8 @@ class GroupsController < ApplicationController
     redirect_to groups_url, notice: 'Group successfully destroyed!'
   end
 
-  def users
+  def toggle_membership
+    @group = Group.find(params[:group_id])
     if request.put?
       @group.users << current_user
     elsif request.delete?
@@ -58,15 +59,15 @@ class GroupsController < ApplicationController
 
   private
 
-  def set_group
-    @group = Group.find(params[:group_id] || params[:id])
+  def fetch_group
+    @group = Group.find(params[:id])
   end
 
   def group_params
     params.require(:group).permit(:name, :description, :private, :avatar, :banner)
   end
 
-  def fetch_profile_owner
+  def set_profile_owner
     @profile_owner = @group
   end
 end

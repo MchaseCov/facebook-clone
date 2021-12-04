@@ -25,7 +25,7 @@
       <% end %>
     </div>
     <div class="side-header-item interactive subtext">
-      <%= link_to user_friendships_path(current_user) do %>
+      <%= link_to friendships_user_path(current_user) do %>
         <span class="material-icons inline-icon">people</span>
         Friends (<%=current_user.friends.size%>)
       <% end %>
@@ -56,7 +56,7 @@
     <% end %>
 
     <div class="side-header-item interactive subtext">
-      <%= link_to user_groups_path(current_user) do %>
+      <%= link_to groups_user_path(current_user) do %>
         <%= image_tag((current_user.avatar.variant(resize: "24x24")), class:"inline-img inline-icon") %>
         All My Groups (<%=current_user.groups.size%>)
       <% end %>
