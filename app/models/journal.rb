@@ -10,9 +10,9 @@ class Journal < ApplicationRecord
   # Scopes
   default_scope { order(created_at: :desc) }
   scope :by_friend, -> { where('post_author == :friends', friends: 1.week.ago) }
-  scope :by_user, ->(user) { where(actor_id: user.id) }
+  scope :by_user, ->(user) { where(journal_author: user) }
   # Rails 6.1 does not have support for eagerly loaded ActiveStorage variants and as a result,
-  # listing these variants results in a N+1 query. More information about this can be found at the following PR: 
+  # listing these variants results in a N+1 query. More information about this can be found at the following PR:
   # https://github.com/rails/rails/pull/40842
   # The following scope is to eagerly load variant records and the respective attachments and blobs
   # of those records. This scope solve this alongside a method that is appended during initialization.

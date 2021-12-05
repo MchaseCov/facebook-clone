@@ -1,0 +1,24 @@
+<div class="infobar-parent">
+<% if user_signed_in?%>
+<div class="notif-icons">
+  <div class="icon interactive">
+    <%= link_to root_path do %>
+      <span class="material-icons notification-icon">group_add</span>
+    <% end %>
+  </div>
+  <div class="icon interactive">
+    <%= link_to root_path do %>
+      <span class="material-icons notification-icon">textsms</span>
+    <% end %>
+  </div>
+  <div class="icon interactive">
+    <%= link_to root_path do %>
+      <span class="material-icons notification-icon">notifications</span>
+    <% end %>
+  </div>
+</div>
+<% else %>
+<%= link_to "Sign Up", new_user_registration_path %>
+<%= link_to "Sign In",  new_user_session_path %>
+<% end %>
+</div>

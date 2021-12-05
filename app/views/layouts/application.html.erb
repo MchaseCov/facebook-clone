@@ -21,22 +21,16 @@
   </head>
 
   <body>
-  <div class="container">
-    <div class="header-navbar"><%= render "shared/navbars/header" %></div>
-    <div class="body-content">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <nav class="side-navbar"><%= render "shared/navbars/side_navbar" %></nav>
-      <div class="page-content">
+    <div class="header-navbar" id="top"><%= render "shared/navbars/header" %></div>
+    <nav class="side-navbar"><%= render "shared/navbars/side_navbar" %></nav>
+    <div class="information-bar"><%= render "shared/navbars/information_bar" %></div>
+    <div class="page-content">
       <% flash.each do |type, msg| %>
         <div class="flash flash-<%= type %>">
           <%= msg %>
         </div>
       <% end %>
       <%= yield %>
-      </div>
-      <div class="information-content"><%#= render "layouts/side_navbar" %></div>
     </div>
-  </div>
   </body>
 </html>

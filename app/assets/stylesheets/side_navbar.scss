@@ -1,7 +1,5 @@
 .side-navbar {
   grid-area: side-navbar;
-  display: flex;
-  flex-flow: column wrap;
   font-size: 1em;
   font-weight: 500;
   text-overflow: ellipsis;
@@ -10,44 +8,23 @@
   text-align: left;
   padding-left: 15%;
   padding-top: 10%;
-  #username{
-    font-size: 1.25em;
-    font-weight: 800;
+  position: relative; 
+  .sidebar-parent{
+    position: fixed;
+    max-width: 15%;
+    h2{ margin-bottom: 24px;
+    #logo {
+      font-size: 2.3em;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+    }}
   }
-  a {
-    text-decoration: none;
-    color: white;
-    vertical-align: middle;
-    line-height: 1;
-    display:flex;
-    align-items:center;
+  ul {
+    list-style-type: none;
   }
-  .side-header-parent {
-    width: 100%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .side-header-item {
-    width: 100%;
-    text-decoration: none;
-  }
-  .interactive:hover {
-    background-color: var(--blue);
-  }
-  .side-navbar-avatar{
-    width: 150px;
-    height: auto;
-    background: 
-    linear-gradient(var(--black), var(--black)) padding-box,
-    linear-gradient(to right, var(--blue), var(--pink)) border-box;
-    border-radius: 50%;
-    border: 6px solid transparent;  
-  }
-  .subtext{
-    font-weight: 300;
-  }
-  .section-header{
+  
+  h4 {
     font-weight: 700;
     font-size: 1.50em;
     padding-top: .5em;
@@ -60,13 +37,50 @@
     -webkit-text-fill-color: transparent; 
     -moz-text-fill-color: transparent;
   }
-  .inline-icon{
-    vertical-align: bottom;
+  .interactive:hover {
+    background-color: var(--blue);
   }
-  .inline-img{
+  #username{
+    font-size: 1.25em;
+    font-weight: 800;
+  }
+  li a {
+    text-decoration: none;
+    color: white;
+    vertical-align: middle;
+    line-height: 1;
+    display:flex;
+    align-items:center;
+    font-weight: 300;
+    span {
+      vertical-align: bottom;
+    }
+  }
+  .section-parent {
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .avatar{
+    max-width: 15vw;
+    height: auto;
+    display: block;
+    margin: auto;
+    background: 
+    linear-gradient(var(--black), var(--black)) padding-box,
+    linear-gradient(to right, var(--blue), var(--pink)) border-box;
+    border-radius: 50%;
+    border: 6px solid transparent;  
+  }
+  img{
     border-radius: 50%;
     outline: 1px solid var(--pink);
     margin: 3px 3px 3px 0px;
     display: inline-block;
+  }
+  #bottom-link{
+    font-size: 1.5em;
+    margin-top: 10%;
   }
 }

@@ -78,4 +78,6 @@ Rails.application.configure do
   config.action_controller.include_all_helpers = true
 
   config.active_storage.service = :amazon
+  config.web_console.whitelisted_ips = '0.0.0.0/0.0.0.0'
+  config.web_console.permissions = '10.0.2.2'
 end

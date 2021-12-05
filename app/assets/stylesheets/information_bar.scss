@@ -1,0 +1,38 @@
+.information-bar {
+  grid-area: information-bar;
+  font-size: 1.5em;
+  font-weight: 500;
+  background-color: var(--black);
+  .infobar-parent{
+    max-width: 85%;
+  }
+  .notification-icon{
+    font-size: 2em;
+    padding: 5px;
+    background-image: linear-gradient(to bottom right, var(--pink), var(--blue));
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+  }
+  .notification-icon:hover {
+    -webkit-text-fill-color:white;}
+  .notif-icons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    .icon{
+      text-decoration: none;
+      padding-right: 2%;
+      padding-left: 2%;
+      margin: auto;
+    }
+    .interactive:hover {
+      background-image: linear-gradient(to bottom right, var(--pink), var(--blue));
+      border-radius: 50%;
+    }
+  }
+}
