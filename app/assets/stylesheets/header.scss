@@ -1,17 +1,21 @@
 .header-navbar {
   display: flex;
-  background: var(--blue);
-  color: white;
+  background: var(--black);
+  color: var(--pink);
   justify-self: stretch;
   grid-area: header-navbar;
   margin: 0;
   font-size: 1.25em;
   font-weight: 500;
   a{
-    color: white;
+    color: var(--grey);
   }
 }
-
+#logo {
+  font-size: 2em;
+  font-weight: 700;
+  color: var(--white)
+}
 .header-left {
   flex: 1;
   display: flex;
@@ -41,7 +45,7 @@
 }
 
 .links a, a:visited {
-  color: white;
+  color:  var(--pink);;
   margin: 0 5px;
   text-decoration: none;
 }

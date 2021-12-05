@@ -1,11 +1,15 @@
 <% content_for(:title) do %>
   Home Feed
 <% end %>
-
-  <h1>This is the index page for journals</h1>
-
-  <%= turbo_frame_tag id="journal-window", class:"journal-window" do %>
-  <%= link_to  "uwu make a new journal?", new_journal_path %>
-  <% end %> <br>
-
-<%= render @journals %>
+<a id="top"></a>
+  <h1>Recent posts:</h1>
+<div class="feed-container">
+  <div class="new-journal-region">
+    <%= turbo_frame_tag id="journal-window", class:"journal-window" do %>
+    <%= link_to  "uwu make a new journal?", new_journal_path %>
+    <% end %>
+  </div>
+   <br> <br>
+  <%= render @journals %>
+<%= link_to  "Back to top!", anchor:"top" %>
+</div>

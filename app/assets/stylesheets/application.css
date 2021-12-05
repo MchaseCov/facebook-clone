@@ -21,17 +21,14 @@
  }
 
 :root{
-  --blue: #4267B2;
-  --light-blue: #8b9dc3;
-  --lightest-blue: #dfe3ee;
-  --dark-blue: #1f3153;
-  --grey: #898F9C;
-  --light-grey:#f7f7f7;
-  background: var(--light-grey);
-}
-
-turbo-frame{
-  outline: 6px solid red;
+  --black: #000000;
+  --light-black: #111111;
+  --grey: #262C33;
+  --white: #ffffff;
+  --blue: #0761d1;
+  --pink: #eb4a87;
+  background: var(--light-black);
+  
 }
 
 html {

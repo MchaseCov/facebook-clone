@@ -1,13 +1,14 @@
-<div style="background-color:var(--light-grey)">
+<div class="journal-entry" id="journal-entry-<%=journal_iteration.index%>">
+<%#= link_to  "Jump to next journal", anchor: "journal-entry-#{journal_iteration.index+1}" %>
+<%= image_tag((journal.journal_author.avatar_thumbnail(48)), class:"journal-entry-avatar") %>
  Post by: <%= journal.journal_author.name %>
-
 <% unless journal.journal_author == journal.journalable %>
+<%= image_tag((journal.journalable.avatar_thumbnail(48)), class:"journal-entry-avatar") %>
 Posted to: <%= journal.journalable.name %><% end %>
 
 <%= time_ago_in_words(journal.created_at) + ' ago' %> <br>
 
-<%= journal.body %>
-
+<%= truncate(journal.body, length: 256) { link_to 'Read More', eval("#{journal.journalable.class.name.downcase}_journal_path(journal.journalable, journal)")} %>
 </div>
 <br>
 

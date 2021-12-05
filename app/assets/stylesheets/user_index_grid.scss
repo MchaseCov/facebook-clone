@@ -10,18 +10,18 @@
 }
 .user-index-result {
   overflow: hidden;
-  background-color: var(--lightest-blue);
-  color: var(--dark-blue);
+  background-color: var(--grey);
+  color: var(--white);
   font-size: 1.25em;
   font-weight: 400;
   border-radius: 20px;
   a {
-    color: var(--dark-blue);
+    color: var(--pink);
     text-decoration: none;
   }
 }
 .user-index-name{
-  color: var(--dark-blue);
+  color: var(--pink);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -38,9 +38,12 @@
 }
 .user-index-image{
   max-width: 100%;
-  border-radius: 128px;
-  outline: solid var(--dark-blue) 2px;
-  margin: 20px 0px 8px 0px
+  height: auto;
+  background: 
+  linear-gradient(var(--black), var(--black)) padding-box,
+  linear-gradient(to right, var(--blue), var(--pink)) border-box;
+  border-radius: 50%;
+  border: 6px solid transparent;  
 }
 .user-index-button{
   margin-bottom: 10px;
@@ -100,8 +103,8 @@
 }
 .tooltiptext {
   visibility: hidden;
-  background-color: var(--dark-blue);
-  color: #fff;
+  background-color: var(--black);
+  color: var(--blue);
   text-align: center;
   padding: 5px 20px;
   border-radius: 6px;
@@ -120,7 +123,7 @@
   margin-top: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: transparent var(--dark-blue) transparent transparent;
+  border-color: transparent var(--black) transparent transparent;
 }
 }
 .user-index-result-icon:hover .tooltiptext {

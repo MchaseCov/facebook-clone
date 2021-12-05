@@ -5,11 +5,15 @@
   font-size: 1em;
   font-weight: 500;
   text-overflow: ellipsis;
-  background-color: var(--blue);
+  background-color: var(--black);
   line-height: 1.5em;
   text-align: left;
   padding-left: 15%;
   padding-top: 10%;
+  #username{
+    font-size: 1.25em;
+    font-weight: 800;
+  }
   a {
     text-decoration: none;
     color: white;
@@ -20,37 +24,48 @@
   }
   .side-header-parent {
     width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
   .side-header-item {
     width: 100%;
-    color: white;
     text-decoration: none;
   }
   .interactive:hover {
-    background-color: var( --light-blue);
+    background-color: var(--blue);
   }
   .side-navbar-avatar{
     width: 150px;
     height: auto;
-    border-radius: 75px;
-    outline: 4px solid var(--lightest-blue);
+    background: 
+    linear-gradient(var(--black), var(--black)) padding-box,
+    linear-gradient(to right, var(--blue), var(--pink)) border-box;
+    border-radius: 50%;
+    border: 6px solid transparent;  
   }
   .subtext{
     font-weight: 300;
   }
   .section-header{
-    font-weight: 600;
+    font-weight: 700;
     font-size: 1.50em;
     padding-top: .5em;
     padding-bottom: .5em;
+    background-image: linear-gradient(to right, var(--pink), var(--blue));
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
   }
   .inline-icon{
     vertical-align: bottom;
   }
   .inline-img{
     border-radius: 50%;
-    background-color: var( --dark-blue);
-    outline: 1px solid var(--lightest-blue);
+    outline: 1px solid var(--pink);
     margin: 3px 3px 3px 0px;
     display: inline-block;
   }
