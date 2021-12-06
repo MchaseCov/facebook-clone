@@ -2,8 +2,9 @@ class Comment < ApplicationRecord
   # Comment Schema:
   # body:               text
   # actor_id:           integer
-  # commentable_id:      integer
+  # commentable_id:     integer
   # commentable_type:   string
+  # parent_id:          integer
   # timestamps:         datetime
   #
   # Callbacks
@@ -17,8 +18,12 @@ class Comment < ApplicationRecord
   #   Polymorphic
   #   [Journals, Comments]
   belongs_to :commentable, polymorphic: true
+  belongs_to :parent_journal, class_name: :Journal,
+                              foreign_key: :parent_id,
+                              inverse_of: :children_comments,
+                              optional: true
   #   Comments (self)
-  has_many :comments,
+  has_many :comments, -> { includes(:comments)},
            as: :commentable,
            dependent: :destroy
   #   Users

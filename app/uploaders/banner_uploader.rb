@@ -21,7 +21,7 @@ class BannerUploader < CarrierWave::Uploader::Base
   "/images/fallback/" + [version_name, "default_banner.jpg"].compact.join('_')
   end
 
-  process resize_to_fit: [1280, 720]
+  process resize_to_fill: [1280, 720]
 
   version :thumb do
     process resize_to_fill: [480, 270]

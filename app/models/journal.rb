@@ -22,6 +22,10 @@ class Journal < ApplicationRecord
   #   Comments
   has_many :comments, as: :commentable,
                       dependent: :destroy
+  has_many :children_comments, class_name: :Comment,
+                               foreign_key: :parent_id,
+                               inverse_of: :parent_journal,
+                               dependent: :destroy
   #   Users
   belongs_to :journal_author, class_name: :User,
                               foreign_key: :actor_id,
