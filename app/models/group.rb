@@ -1,5 +1,5 @@
 class Group < ApplicationRecord
-  include AttachmentManager
+  #include AttachmentManager
   # Group Schema:
   # id:                 integer
   # name:               string
@@ -9,8 +9,8 @@ class Group < ApplicationRecord
   # timestamps:         datetime
   #
   # Callbacks
-  before_create :add_default_avatar
-  before_create :add_default_banner
+  #before_create :add_default_avatar
+  #before_create :add_default_banner
   after_commit :add_creator_to_users, on: :create
 
   # Scopes
@@ -26,16 +26,16 @@ class Group < ApplicationRecord
   validates :description, presence: true,
                           length: { maximum: 255 }
   validates :creator_id, presence: true
-  validates :avatar, content_type: %i[png jpg jpeg],
-                     size: { less_than: 2.megabytes, message: 'must be less than 2MB in size' }
-  validates :banner, content_type: %i[png jpg jpeg],
-                     size: { less_than: 3.megabytes, message: 'must be less than 3MB in size' },
-                     aspect_ratio: :is_16_9
+  #validates :avatar, content_type: %i[png jpg jpeg],
+                     #size: { less_than: 2.megabytes, message: 'must be less than 2MB in size' }
+  #validates :banner, content_type: %i[png jpg jpeg],
+                     #size: { less_than: 3.megabytes, message: 'must be less than 3MB in size' },
+                    # aspect_ratio: :is_16_9
 
   # Associations
   #   Active Storage
-  has_one_attached :avatar
-  has_one_attached :banner
+  #has_one_attached :avatar
+  #has_one_attached :banner
   #   Journals
   has_many :journals, as: :journalable
   #   User

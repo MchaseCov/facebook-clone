@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  include AttachmentManager
+  #include AttachmentManager
   # User Schema:
   # id:                 integer
   # email:              string
@@ -15,8 +15,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # Callbacks
-  before_create :add_default_avatar
-  before_create :add_default_banner
+  #before_create :add_default_avatar
+  #before_create :add_default_banner
 
   # Scopes
   scope :recently_online, -> { where('last_seen_at >= :time', time: 3.hour.ago) }
@@ -27,16 +27,16 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :nick_name, presence: true,
                         length: { maximum: 50 }
-  validates :avatar, content_type: %i[png jpg jpeg],
-                     size: { less_than: 2.megabytes, message: 'must be less than 2MB in size' }
-  validates :banner, content_type: %i[png jpg jpeg],
-                     size: { less_than: 3.megabytes, message: 'must be less than 3MB in size' },
-                     aspect_ratio: :is_16_9
+  #validates :avatar, content_type: %i[png jpg jpeg],
+                  #   size: { less_than: 2.megabytes, message: 'must be less than 2MB in size' }
+  #validates :banner, content_type: %i[png jpg jpeg],
+                   #  size: { less_than: 3.megabytes, message: 'must be less than 3MB in size' },
+                   #  aspect_ratio: :is_16_9
 
   # Associations
   #   Active Storage
-  has_one_attached :avatar
-  has_one_attached :banner
+  #has_one_attached :avatar
+  #has_one_attached :banner
   #   Comments
   has_many :authored_comments, class_name: :Comment,
                                foreign_key: :actor_id,

@@ -59,10 +59,14 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "devise", "~> 4.8"
 
 # Active Storage
-gem 'active_storage_validations'
-gem "aws-sdk-s3", require: false
+# gem 'active_storage_validations'
+# gem "aws-sdk-s3", require: false
 gem 'mini_magick', '>= 4.9.5'
 
 # Hotwire
 gem 'hotwire-rails'
 gem 'bullet', group: 'development'
+
+# AWS
+gem 'fog-aws'
+gem "carrierwave"

@@ -1,6 +1,7 @@
 module AttachmentManager
   extend ActiveSupport::Concern
-
+end 
+=begin
   def avatar_thumbnail(size = '125')
     avatar.variant(resize: "#{size}x#{size}!").processed
   end
@@ -37,3 +38,4 @@ module AttachmentManager
     )
   end
 end
+=end
