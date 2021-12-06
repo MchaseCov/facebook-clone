@@ -13,13 +13,16 @@ Posted to: <%= @journal.journalable.name %><% end %>
 <%= time_ago_in_words(@journal.created_at) + ' ago' %> <br>
 
 <%= @journal.body %>
+
+<%= render  "likes/form", content: @journal %>
+
 </div>
 <br>
 <%= turbo_frame_tag id="comment-window", class:"comment-window" do %>
 <%= link_to "Leave a comment to this journal!", new_journal_comment_path(@journal) %>
 <% end %>
 <ul class="comment-parent">
-<%= render partial: "comments/comment", collection: @comments, as: :comment %>
+<%= render partial: "comments/comment", collection: @journal.comments, as: :comment %>
 </ul>
 <%= link_to  "Back to top!", anchor:"top"%>
 </div>

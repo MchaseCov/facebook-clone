@@ -5,8 +5,7 @@ class Users::JournalsController < ::JournalsController
   before_action -> { fetch_visible_groups(@profile_owner) }, only: %i[show]
 
   def show
-    @journal = Journal.find(params[:id])
-    @comments = @journal.comments.eager_load(:comments)
+    @journal = Journal.includes(comments: [:likes, {comments: :likes}]).find(params[:id])
   end
 
   private

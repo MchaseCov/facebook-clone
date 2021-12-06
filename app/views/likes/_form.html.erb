@@ -1,0 +1,9 @@
+<%= pluralize(content.likeable_count, 'like') %>
+<%= link_to eval("#{content.class.name.downcase}_likes_path(content)"), method: :post do %>
+  <% if (content.likes.map{|like| like.actor_id}).include?(current_user.id) %>
+  Remove like
+  <% else %>
+  Like!
+  <% end %>
+<% end %>
+

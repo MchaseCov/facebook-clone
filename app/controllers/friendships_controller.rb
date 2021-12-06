@@ -68,10 +68,6 @@ class FriendshipsController < ApplicationController
     @friendship_inverse = Friendship.find_by(sent_by_id: current_user.id, sent_to_id: params[:user_id], status: true)
   end
 
-  def fetch_user_friendships
-
-  end
-
   def fetch_group_friendships
     @profile_owner = Group.find(params[:group_id])
     @indexed_content = @profile_owner.users

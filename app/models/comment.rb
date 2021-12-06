@@ -23,9 +23,12 @@ class Comment < ApplicationRecord
                               inverse_of: :children_comments,
                               optional: true
   #   Comments (self)
-  has_many :comments, -> { includes(:comments)},
+  has_many :comments, -> { includes(:comments, :likes) },
            as: :commentable,
            dependent: :destroy
+  #   Likes
+  has_many :likes, as: :likeable,
+                   dependent: :destroy
   #   Users
   belongs_to :comment_author, class_name: :User,
                               foreign_key: :actor_id,

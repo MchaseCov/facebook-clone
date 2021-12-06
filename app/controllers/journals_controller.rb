@@ -36,6 +36,7 @@ class JournalsController < ApplicationController
   def fetch_friendly_journals
     @journals = Journal.social_circle(current_user)
                        .where.not(journalable: Group.user_unauthorized(current_user))
-                       .includes(:journal_author, :journalable)
+                       .includes(:journal_author, :journalable, :likes)
+                       .order(created_at: :desc)
   end
 end

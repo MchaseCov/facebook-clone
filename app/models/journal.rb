@@ -8,7 +8,6 @@ class Journal < ApplicationRecord
   #
   # Callbacks
   # Scopes
-  default_scope { order(created_at: :desc) }
   scope :by_friend, -> { where('post_author == :friends', friends: 1.week.ago) }
   scope :by_user, ->(user) { where(journal_author: user) }
 
@@ -26,6 +25,9 @@ class Journal < ApplicationRecord
                                foreign_key: :parent_id,
                                inverse_of: :parent_journal,
                                dependent: :destroy
+  #   Likes
+  has_many :likes, as: :likeable,
+                   dependent: :destroy
   #   Users
   belongs_to :journal_author, class_name: :User,
                               foreign_key: :actor_id,

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_06_160210) do
+ActiveRecord::Schema.define(version: 2021_12_06_183935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2021_12_06_160210) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "parent_id"
+    t.integer "likeable_count"
     t.index ["actor_id"], name: "index_comments_on_actor_id"
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
     t.index ["parent_id"], name: "index_comments_on_parent_id"
@@ -92,8 +93,19 @@ ActiveRecord::Schema.define(version: 2021_12_06_160210) do
     t.bigint "journalable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "likeable_count"
     t.index ["actor_id"], name: "index_journals_on_actor_id"
     t.index ["journalable_type", "journalable_id"], name: "index_journals_on_journalable"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "actor_id", null: false
+    t.string "likeable_type", null: false
+    t.bigint "likeable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["actor_id"], name: "index_likes_on_actor_id"
+    t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable"
   end
 
   create_table "users", force: :cascade do |t|
@@ -120,4 +132,5 @@ ActiveRecord::Schema.define(version: 2021_12_06_160210) do
   add_foreign_key "friendships", "users", column: "sent_to_id"
   add_foreign_key "groups", "users", column: "creator_id"
   add_foreign_key "journals", "users", column: "actor_id"
+  add_foreign_key "likes", "users", column: "actor_id"
 end

@@ -65,4 +65,9 @@ class User < ApplicationRecord
                                foreign_key: :actor_id,
                                inverse_of: :journal_author,
                                dependent: :destroy
+  #   Likes
+  has_many :authored_likes, class_name: :Like,
+                            foreign_key: :actor_id,
+                            inverse_of: :like_author,
+                            dependent: :destroy
 end

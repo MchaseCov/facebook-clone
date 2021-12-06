@@ -8,7 +8,8 @@
     Comment by: <%= comment.comment_author.name %>
     
     <%= time_ago_in_words(comment.created_at) + ' ago' %> <br>
-    <%= comment.body%>
+    <%= comment.body%> <br>
+    <%= render  "likes/form", content: comment %>
     <%= turbo_frame_tag id="comment-window", class:"comment-window" do %>
     <%= link_to "Reply to this comment", new_comment_comment_path(comment) %>
     <% end %>

@@ -4,10 +4,12 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :journals, only: %i[new create index edit update destroy] do
+    resources :likes, only: %i[create], module: :journals
     resources :comments, except: %i[index show], module: :journals
   end
 
   resources :comments, only: [] do
+    resources :likes, only: %i[create], module: :comments
     resources :comments, except: %i[index show], module: :comments
   end
 
