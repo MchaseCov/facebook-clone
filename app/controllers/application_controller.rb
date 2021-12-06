@@ -19,6 +19,6 @@ class ApplicationController < ActionController::Base
   end
 
   def fetch_user_groups
-    @sidebar_groups = Group.where(id: current_user.groups.pluck(:id)).includes(avatar_attachment: :blob).includes(:users).limit(5).references(:users).order(created_at: :desc)
+    @sidebar_groups = Group.where(id: current_user.groups.pluck(:id)).includes(avatar_attachment: :blob).limit(5).order(created_at: :desc)
   end
 end
