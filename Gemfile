@@ -65,3 +65,4 @@ gem 'mini_magick', '>= 4.9.5'
 
 # Hotwire
 gem 'hotwire-rails'
+gem 'bullet', group: 'development'
