@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def permitted_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name nick_name avatar])
-    devise_parameter_sanitizer.permit(:account_update, keys: %i[name nick_name avatar banner])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name nick_name avatar avatar_cache])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[name nick_name avatar avatar_cache banner banner_cache])
   end
 
   private
@@ -19,6 +19,6 @@ class ApplicationController < ActionController::Base
   end
 
   def fetch_user_groups
-    @sidebar_groups = Group.where(id: current_user.groups.pluck(:id)).includes(avatar_attachment: :blob).limit(5).order(created_at: :desc)
+    @sidebar_groups = Group.where(id: current_user.groups.pluck(:id)).limit(5).order(created_at: :desc)
   end
 end

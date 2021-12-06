@@ -4,10 +4,10 @@
 
   <h1>Journal entry:</h1>
 <div class="journal-entry full-entry">
-<%= image_tag((@journal.journal_author.avatar_thumbnail(48)), class:"journal-entry-avatar") %>
+<%= image_tag((@journal.journal_author.avatar.thumb.url), class:"journal-entry-avatar") %>
  Post by: <%= @journal.journal_author.name %>
 <% unless @journal.journal_author == @journal.journalable %>
-<%= image_tag((@journal.journalable.avatar_thumbnail(48)), class:"journal-entry-avatar") %>
+<%= image_tag((@journal.journalable.avatar.thumb.url), class:"journal-entry-avatar") %>
 Posted to: <%= @journal.journalable.name %><% end %>
 
 <%= time_ago_in_words(@journal.created_at) + ' ago' %> <br>

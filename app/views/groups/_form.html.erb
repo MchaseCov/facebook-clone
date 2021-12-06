@@ -11,30 +11,19 @@
     </div>
   <% end %>
   
- <div class="field">
-    <% if group.avatar.attached? %>
-    <%= image_tag(group.avatar_thumbnail) %>
-    <% else %>
-    <%= image_tag('default_avatar.jpg', size: "125x125")%>
-    <% end %>
-  </div>
-
   <div class="field">
-    <%= f.label 'Upload a group avatar, must be less than 2MB' %>
+    <label>Group Avatar</label>
+    <%= image_tag(group.avatar.thumb.url) if group.avatar? %>
     <%= f.file_field :avatar %>
+    <%= f.hidden_field :avatar_cache %>
   </div>
 
-  <div class="field">
-    <% if group.banner.attached? %>
-    <%= image_tag(group.banner_thumbnail(325,240)) %>
-    <% else %>
-    <%= image_tag('default_banner.jpg', size: "325x240")%>
-    <% end %>
-  </div>
 
   <div class="field">
-    <%= f.label 'Upload a group banner, must be 16:9 ratio and less than 3MB' %>
+    <label>Group Banner</label>
+    <%= image_tag(group.banner.thumb.url) if group.banner? %>
     <%= f.file_field :banner %>
+    <%= f.hidden_field :banner_cache %>
   </div>
 
   <div class="field">

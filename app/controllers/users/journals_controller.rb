@@ -6,7 +6,7 @@ class Users::JournalsController < ::JournalsController
 
   def show
     @journal = Journal.find(params[:id])
-    @comments = @journal.comments.includes(comments: {comments: :comments}).references(:comments).load_avatars
+    @comments = @journal.comments.includes(:comment_author, comments: [:comment_author, {comments: :comments }]).references(:comments)
   end
 
   private

@@ -2,7 +2,7 @@
     <li class="user-index-result-contents">
     <%= link_to result.name.titlecase, result, class:"user-index-name", 'data-turbo-frame': :_top %>
       <ul class="user-index-grid-sublist">
-        <li><%= link_to result, 'data-turbo-frame': :_top  do %><%= image_tag((result.avatar.variant(resize: "256x256!")), class:"user-index-image") %> <% end %> </li>
+        <li><%= link_to result, 'data-turbo-frame': :_top  do %><%= image_tag((result.avatar.url), class:"user-index-image") %> <% end %> </li>
         <li>(<%=link_to *(result.class.name == "Group" ? ["Creator: #{result.creator.name}", result.creator] : [result.nick_name, result]) %>)</li>
         <li>
         <%=pluralize(*(result.class.name == "Group" ? [result.users.size, 'user'] : [result.friends.size, 'friend']))%>

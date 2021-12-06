@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
   before_action :validate_owner, only: %i[edit update destroy]
 
   def index
-    @indexed_content = Group.user_authorized(current_user).includes(:users).includes(:creator).with_attached_avatar.order(created_at: :desc)
+    @indexed_content = Group.user_authorized(current_user).includes(:users).includes(:creator).order(created_at: :desc)
     render 'shared/main/index'
   end
 
@@ -65,7 +65,7 @@ class GroupsController < ApplicationController
   end
 
   def group_params
-    params.require(:group).permit(:name, :description, :private, :avatar, :banner)
+    params.require(:group).permit(:name, :description, :private, :avatar, :banner, :avatar_cache, :banner_cache)
   end
 
   def set_profile_owner

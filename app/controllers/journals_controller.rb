@@ -1,7 +1,7 @@
 class JournalsController < ApplicationController
   before_action :fetch_friendly_journals, only: [:index]
   before_action :set_default_journalable, only: %i[new create],
-                if: -> { @journalable.nil? }
+                                          if: -> { @journalable.nil? }
 
   def index; 
   end
@@ -36,6 +36,6 @@ class JournalsController < ApplicationController
   def fetch_friendly_journals
     @journals = Journal.social_circle(current_user)
                        .where.not(journalable: Group.user_unauthorized(current_user))
-                       .load_avatars
+                       .includes(:journal_author, :journalable)
   end
 end

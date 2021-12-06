@@ -3,7 +3,7 @@
 <% if user_signed_in? %>
   <div class="section-parent">
     <div class="section-header"><%= link_to user_path(current_user.id), id:"username" do %>
-    <%= image_tag((current_user.avatar.variant(resize:"150x150")), class:"avatar", draggable: "false") %>
+    <%= image_tag((current_user.avatar.url), class:"avatar", draggable: "false") %>
     <h4><%= current_user.name.titlecase %></h4> <% end %>
     </div>
     <ul>
@@ -24,7 +24,7 @@
   <div class="section-parent">
     <h4 class="section-header">Quick Navigation</h4>
     <ul>
-    <li class="interactive">
+  <li class="interactive">
       <%= link_to root_path do %>
         <span class="material-icons">home</span>
         Home Feed
@@ -56,7 +56,7 @@
       <% @sidebar_groups.each do |group|%>
       <li class="interactive">
         <%= link_to group do %>
-          <%= image_tag((group.avatar.variant(resize: "24x24"))) %>
+          <%= image_tag(group.avatar.small_thumb.url) %>
           <%= group.name %> (<%=group.users.size%>)
         <% end %>
       </li>
@@ -64,7 +64,7 @@
 
       <li class="interactive">
         <%= link_to groups_user_path(current_user) do %>
-          <%= image_tag((current_user.avatar.variant(resize: "24x24"))) %>
+          <%= image_tag(current_user.avatar.small_thumb.url) %>
           All My Groups (<%=current_user.groups.size%>)
         <% end %>
       </li>

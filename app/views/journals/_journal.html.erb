@@ -1,9 +1,9 @@
 <div class="journal-entry" id="journal-entry-<%=journal_iteration.index%>">
 <%#= link_to  "Jump to next journal", anchor: "journal-entry-#{journal_iteration.index+1}" %>
-<%= image_tag((journal.journal_author.avatar_thumbnail(48)), class:"journal-entry-avatar") %>
+<%= image_tag((journal.journal_author.avatar.thumb.url), class:"journal-entry-avatar") %>
  Post by: <%= journal.journal_author.name %>
 <% unless journal.journal_author == journal.journalable %>
-<%= image_tag((journal.journalable.avatar_thumbnail(48)), class:"journal-entry-avatar") %>
+<%= image_tag((journal.journalable.avatar.thumb.url), class:"journal-entry-avatar") %>
 Posted to: <%= journal.journalable.name %><% end %>
 
 <%= time_ago_in_words(journal.created_at) + ' ago' %> <br>
