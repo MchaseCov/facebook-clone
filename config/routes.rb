@@ -3,7 +3,13 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :journals, only: %i[new create index edit update destroy]
+  resources :journals, only: %i[new create index edit update destroy] do
+    resources :comments, except: %i[index show], module: :journals
+  end
+
+  resources :comments, only: [] do
+    resources :comments, except: %i[index show], module: :comments
+  end
 
   resources :groups do
     resources :journals, only: %i[index new create show], module: :groups

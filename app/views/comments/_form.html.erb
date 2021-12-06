@@ -1,0 +1,14 @@
+<%= form_with model:comment, url: url do |f| %>
+
+<div style="background-color:pink">
+<% if comment.errors.any? %>
+<% comment.errors.full_messages.each do |message|%>
+<h3><%= message %> </h3>
+<%end%>
+<% end %>
+
+  <%= f.label :body, "Post comment:" %>
+  <%= f.text_area :body %>
+  <%= f.submit %>
+</div>
+<% end %>

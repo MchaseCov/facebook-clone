@@ -1,0 +1,15 @@
+// Place all the styles related to the Comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.comment-parent{
+  .comment-reply{
+    width: max-content;
+    border-radius: 20px;
+    color:white;
+    box-shadow: 0 4px 8px 0 rgba(56, 18, 42, 0.2), 0 6px 20px 0 rgba(56, 18, 42, 0.19);
+    background-color: var(--grey);
+  }
+ul > li {
+  margin-left: 5%;
+}
+}

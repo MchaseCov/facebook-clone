@@ -37,6 +37,11 @@ class User < ApplicationRecord
   #   Active Storage
   has_one_attached :avatar
   has_one_attached :banner
+  #   Comments
+  has_many :authored_comments, class_name: :Comment,
+                               foreign_key: :actor_id,
+                               inverse_of: :comment_author,
+                               dependent: :destroy
   #   Friendship
   has_many :friend_sent, class_name: :Friendship,
                          foreign_key: :sent_by_id,
@@ -62,7 +67,8 @@ class User < ApplicationRecord
                             dependent: :destroy
   has_and_belongs_to_many :groups
   #   Journals
-  has_many :journals, as: :journalable
+  has_many :journals, as: :journalable,
+                      dependent: :destroy
   has_many :authored_journals, class_name: :Journal,
                                foreign_key: :actor_id,
                                inverse_of: :journal_author,

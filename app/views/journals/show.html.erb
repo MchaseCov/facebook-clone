@@ -1,0 +1,25 @@
+<% content_for(:title) do %>
+  <%=@journal.journal_author.nick_name%>'s Journal
+<% end %>
+
+  <h1>Journal entry:</h1>
+<div class="journal-entry full-entry">
+<%= image_tag((@journal.journal_author.avatar_thumbnail(48)), class:"journal-entry-avatar") %>
+ Post by: <%= @journal.journal_author.name %>
+<% unless @journal.journal_author == @journal.journalable %>
+<%= image_tag((@journal.journalable.avatar_thumbnail(48)), class:"journal-entry-avatar") %>
+Posted to: <%= @journal.journalable.name %><% end %>
+
+<%= time_ago_in_words(@journal.created_at) + ' ago' %> <br>
+
+<%= @journal.body %>
+</div>
+<br>
+<%= turbo_frame_tag id="comment-window", class:"comment-window" do %>
+<%= link_to "Leave a comment to this journal!", new_journal_comment_path(@journal) %>
+<% end %>
+<ul class="comment-parent">
+<%= render partial: "comments/comment", collection: @comments, as: :comment %>
+</ul>
+<%= link_to  "Back to top!", anchor:"top"%>
+</div>

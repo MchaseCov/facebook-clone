@@ -19,27 +19,27 @@ class Journal < ApplicationRecord
   # This includes() statement & associated config/initialize/EagerLoadVariant.rb file come from:
   # https://bill.harding.blog/2021/04/15/applying-a-text-watermark-with-rails-activestorage-6-1/
   scope :load_avatars, -> {
-                         includes(
-                           journal_author: {
-                             avatar_attachment: {
-                               blob: {
-                                 variant_records: {
-                                   image_attachment: :blob
-                                 }
-                               }
-                             }
-                           },
-                           journalable: {
-                             avatar_attachment: {
-                               blob: {
-                                 variant_records: {
-                                   image_attachment: :blob
-                                 }
-                               }
-                             }
-                           }
-                         )
-                       }
+    includes(
+      journal_author: {
+        avatar_attachment: {
+          blob: {
+            variant_records: {
+              image_attachment: :blob
+            }
+          }
+        }
+      },
+      journalable: {
+        avatar_attachment: {
+          blob: {
+            variant_records: {
+              image_attachment: :blob
+            }
+          }
+        }
+      }
+    )
+  }
   # Validations
   validates :body, presence: true, length: { maximum: 10_000 }
 
@@ -47,6 +47,9 @@ class Journal < ApplicationRecord
   #   Polymorphic
   #   [Users, Groups]
   belongs_to :journalable, polymorphic: true
+  #   Comments
+  has_many :comments, as: :commentable,
+                      dependent: :destroy
   #   Users
   belongs_to :journal_author, class_name: :User,
                               foreign_key: :actor_id,

@@ -1,0 +1,3 @@
+<%= turbo_frame_tag id="comment-window", class:"comment-window" do %>
+<%= render 'form', commentable: @commentable, comment: @comment, url: @url %>
+<% end %>
