@@ -5,6 +5,5 @@ class Journals::CommentsController < ::CommentsController
 
   def set_commentable
     @commentable = Journal.find(params[:journal_id])
-    @url = journal_comments_path
   end
 end

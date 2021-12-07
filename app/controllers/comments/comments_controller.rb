@@ -4,7 +4,7 @@ class Comments::CommentsController < ::CommentsController
   private
 
   def set_commentable
-    @commentable = Comment.find(params[:comment_id])
-    @url = comment_comments_path
+    @parent = Comment.find(params[:comment_id])
+    @commentable = @parent.commentable # Even if the comment is nested, it still belongs to the main "commentable"!
   end
 end

@@ -1,9 +1,12 @@
-<%= pluralize(content.likeable_count, 'like') %>
+<div class="like-box">
 <%= link_to eval("#{content.class.name.downcase}_likes_path(content)"), method: :post do %>
-  <% if (content.likes.map{|like| like.actor_id}).include?(current_user.id) %>
-  Remove like
+  <% if (content.likes.map{|like| like.like_author}).include?(Current.user) %>
+  <span class="material-icons like-on">thumb_up</span>
   <% else %>
-  Like!
+  <span class="material-icons like-off">thumb_up</span>
   <% end %>
 <% end %>
-
+<div class="like-count">
+  <%= pluralize(content.likeable_count, 'like') %>
+</div>
+</div>

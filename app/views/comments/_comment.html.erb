@@ -1,21 +1,25 @@
-<li id="comment-reply-<%=comment_iteration.index%>">
-  <div class="comment-reply">
-    <% if comment_iteration.size > 2  %>
-      <%= link_to  "Jump to next comment tree", anchor: "comment-reply-#{comment_iteration.index+1}" %>
-    <% end %>
-
-    <%= image_tag((comment.comment_author.avatar.thumb.url), class:"comment-entry-avatar") %>
-    Comment by: <%= comment.comment_author.name %>
-    
-    <%= time_ago_in_words(comment.created_at) + ' ago' %> <br>
-    <%= comment.body%> <br>
-    <%= render  "likes/form", content: comment %>
-    <%= turbo_frame_tag id="comment-window", class:"comment-window" do %>
-    <%= link_to "Reply to this comment", new_comment_comment_path(comment) %>
-    <% end %>
-  </div>
-  <ul>
-  <%= render partial: "comments/comment", collection: comment.comments, as: :comment %>
-  </ul>
-</li>
+<%=turbo_stream_from comment %>
+  <%= turbo_frame_tag comment, class:"comment-reply" do %>
+    <div class="comment-header">
+      <%= image_tag((comment.comment_author.avatar.thumb.url), class:"comment-avatar") %>
+      <div class="header-text">
+        <h3 class="comment-author"><%= comment.comment_author.name %></h4>
+        <div class="time-text">
+        Posted <%= time_ago_in_words(comment.created_at) + ' ago' %>
+        <% if comment.created_at != comment.updated_at %>
+        | Edited <%= time_ago_in_words(comment.updated_at) + ' ago' %> <br>
+        <% end %>
+        </div>
+      </div>
+      <%= render  "likes/form", content: comment %>
+      </div>
+      <%= comment.body%> <br>
+      <div class= "comment-links-parent">
+      <%= link_to  "Reply", '#', data: {action: "click->comment-reply#toggle" } %>
+      <% if comment.comment_author == current_user %>
+      | <%= link_to "Edit comment", edit_comment_path(comment) %>
+      | <%= link_to  "Delete comment", comment, method: :delete, data: { confirm: "Are you sure?" } if comment.persisted? %>
+      <% end %>
+      </div>
+  <% end %>
 

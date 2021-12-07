@@ -21,3 +21,8 @@
 .full-entry {
   max-height: max-content;
 }
+.journal-entry-avatar{
+  border-radius: 50%;
+  outline: 2px solid var(--pink);
+  margin-top: 5px;
+}

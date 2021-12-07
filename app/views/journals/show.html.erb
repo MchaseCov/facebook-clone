@@ -1,8 +1,7 @@
 <% content_for(:title) do %>
   <%=@journal.journal_author.nick_name%>'s Journal
 <% end %>
-
-  <h1>Journal entry:</h1>
+ <h1>Journal entry:</h1>
 <div class="journal-entry full-entry">
 <%= image_tag((@journal.journal_author.avatar.thumb.url), class:"journal-entry-avatar") %>
  Post by: <%= @journal.journal_author.name %>
@@ -14,15 +13,22 @@ Posted to: <%= @journal.journalable.name %><% end %>
 
 <%= @journal.body %>
 
-<%= render  "likes/form", content: @journal %>
+<%= render "likes/form", content: @journal, current_user: current_user %>
 
 </div>
 <br>
-<%= turbo_frame_tag id="comment-window", class:"comment-window" do %>
-<%= link_to "Leave a comment to this journal!", new_journal_comment_path(@journal) %>
+<%= render "comments/form", comment: Comment.new, commentable: @journal, class:"new-comment-region" %>
+<%= turbo_stream_from @journal, :comments %>
+1
+<%= form_with url: journal_path(@journal), local: true, method: :get do |f| %>
+<%= f.select :order, ["Newest First", "Oldest First", "Most Likes First", "Least Likes First"] %>
+<%= f.submit "Sort Comments!" %>
 <% end %>
-<ul class="comment-parent">
-<%= render partial: "comments/comment", collection: @journal.comments, as: :comment %>
-</ul>
+
+
+
+<%= tag.ul id: "#{dom_id(@journal)}_comments", class:"comment-parent" do%>
+  <%= render partial: "comments/comment_with_replies", collection: @comments, as: :comment %>
+<% end %>
 <%= link_to  "Back to top!", anchor:"top"%>
 </div>

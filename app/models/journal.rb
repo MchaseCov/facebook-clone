@@ -21,10 +21,6 @@ class Journal < ApplicationRecord
   #   Comments
   has_many :comments, as: :commentable,
                       dependent: :destroy
-  has_many :children_comments, class_name: :Comment,
-                               foreign_key: :parent_id,
-                               inverse_of: :parent_journal,
-                               dependent: :destroy
   #   Likes
   has_many :likes, as: :likeable,
                    dependent: :destroy

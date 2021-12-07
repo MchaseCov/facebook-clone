@@ -15,3 +15,6 @@ Rails.start()
 ActiveStorage.start()
 require("channels")
 require("jquery")
+import "controllers"
+require("trix")
+require("@rails/actiontext")

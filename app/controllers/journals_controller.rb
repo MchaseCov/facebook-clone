@@ -6,6 +6,18 @@ class JournalsController < ApplicationController
   def index; 
   end
 
+  def show
+    @journal = Journal.find(params[:id])
+    @comments = @journal.comments
+                        .where(parent_id: nil)
+                        .includes(:likes, :comments, :comment_author)
+    @comments = if params[:order].present?
+                  @comments.search(search_params)
+                else
+                  @comments.order(created_at: :desc)
+                end
+  end
+
   def new
     @journal = @journalable.journals.new
   end
@@ -38,5 +50,11 @@ class JournalsController < ApplicationController
                        .where.not(journalable: Group.user_unauthorized(current_user))
                        .includes(:journal_author, :journalable, :likes)
                        .order(created_at: :desc)
+  end
+
+  def search_params
+    return unless params[:order]
+
+    params.require(:order)
   end
 end

@@ -1,0 +1,10 @@
+<%= turbo_stream_from comment, :comment %>
+<li id="<%=dom_id(comment)%>_with_comments" data-controller="comment-reply">
+<div class="comment-block">
+  <%= render comment, current_user: current_user %>
+</div>
+  <ul id="<%=dom_id(comment)%>_comments">
+    <%= render partial: "comments/form", locals: { comment: Comment.new, commentable: comment, data: { comment_reply_target: "form" }, class: "d-none" } %>
+    <li><%= render partial: "comments/comment_with_replies", collection: comment.comments, as: :comment  %></li>
+  </ul>
+</li>

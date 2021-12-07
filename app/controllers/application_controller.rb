@@ -4,12 +4,21 @@ class ApplicationController < ActionController::Base
   before_action :set_last_seen_at,
                 if: -> { user_signed_in? && (current_user.last_seen_at.nil? || current_user.last_seen_at < 15.minutes.ago) }
   before_action :fetch_user_groups, if: -> { user_signed_in? }
+  around_action :set_current_user
 
   protected
 
   def permitted_params
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[name nick_name avatar avatar_cache])
     devise_parameter_sanitizer.permit(:account_update, keys: %i[name nick_name avatar avatar_cache banner banner_cache])
+  end
+
+  def set_current_user
+    Current.user = current_user
+    yield
+  ensure
+    # to address the thread variable leak issues in Puma/Thin webserver
+    Current.user = nil
   end
 
   private

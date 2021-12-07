@@ -3,14 +3,14 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :journals, only: %i[new create index edit update destroy] do
+  resources :journals, only: %i[show new create index edit update destroy] do
     resources :likes, only: %i[create], module: :journals
-    resources :comments, except: %i[index show], module: :journals
+    resources :comments, module: :journals
   end
 
-  resources :comments, only: [] do
+  resources :comments, only: %i[edit show destroy] do
     resources :likes, only: %i[create], module: :comments
-    resources :comments, except: %i[index show], module: :comments
+    resources :comments, module: :comments
   end
 
   resources :groups do
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: %i[index show] do
-    resources :journals, only: %i[index new create show], module: :users
+    resources :journals, only: %i[index new create], module: :users
     member do # NOTE: may be worth refactoring these back into their respective controller with turbo tag partials
       get 'groups'
       get 'friendships'
