@@ -68,5 +68,7 @@ gem 'hotwire-rails'
 gem 'bullet', group: 'development'
 
 # AWS
+gem "aws-sdk-s3", require: false
 gem 'fog-aws'
 gem "carrierwave"
+
