@@ -10,13 +10,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @journals = Journal.includes(:journal_author, :journalable).where(journalable: @profile_owner)
+    @journals = Journal.includes(:journal_author, :journalable, :likes).where(journalable: @profile_owner)
     render 'shared/profiles/show'
   end
 
   def groups
     @indexed_content = @groups.eager_load(:users, :creator)
-                              .with_attached_avatar
                               .order(created_at: :desc)
     render 'shared/profiles/index'
   end

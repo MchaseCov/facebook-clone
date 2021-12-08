@@ -1,0 +1,13 @@
+<div class="journal-entry" id="<%=dom_id(journal)%>">
+<%= image_tag((journal.journal_author.avatar.thumb.url), class:"journal-entry-avatar") %>
+ Post by: <%= journal.journal_author.name %>
+<% unless journal.journal_author == journal.journalable %>
+<%= image_tag((journal.journalable.avatar.thumb.url), class:"journal-entry-avatar") %>
+Posted to: <%= journal.journalable.name %><% end %>
+
+<%= time_ago_in_words(journal.created_at) + ' ago' %> <br>
+
+<%= truncate(journal.body, length: 256) { link_to 'Read More', journal_path(journal) } %> <br>
+<%= render  "likes/form", content: journal %>
+</div>
+<br>

@@ -4,9 +4,9 @@
     </div>
 
     <div class="profile-feed">
-    <%= turbo_frame_tag id="journal-window", class:"journal-window" do %>
-    <%= link_to "Leave a Journal on #{profile_owner.name}'s Profile?", eval("new_#{profile_owner.class.name.downcase}_journal_path(profile_owner)") %>
-    <% end %>
+    <%= turbo_frame_tag id="new_journal", src:eval("new_#{profile_owner.class.name.downcase}_journal_path(profile_owner)"), target:"_top", class:"journal-window" %>
     <br>
-    <%= render partial: "journals/journal", collection: journals, as: :journal %>
+  <div id="journals">
+    <%= render journals, as: :journal %>
+  </div>
     </div>
