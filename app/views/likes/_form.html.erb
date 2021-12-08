@@ -1,5 +1,5 @@
 <div class="like-box">
-<%= link_to eval("#{content.class.name.downcase}_likes_path(content)"), method: :post do %>
+<%= link_to eval("#{content.class.name.downcase}_likes_path(content)"), method: :post, target: "_top", data: { turbo: false } do %>
   <% if (content.likes.map{|like| like.like_author}).include?(Current.user) %>
   <span class="material-icons like-on">thumb_up</span>
   <% else %>

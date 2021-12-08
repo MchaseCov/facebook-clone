@@ -2,15 +2,14 @@
   Home Feed
 <% end %>
 <a id="top"></a>
-
   <h1>Recent posts:</h1>
 <div class="feed-container">
   <div class="new-journal-region">
-    <%= turbo_frame_tag id="journal-window", class:"journal-window" do %>
-    <%= link_to  "uwu make a new journal?", new_journal_path %>
-    <% end %>
+    <%= turbo_frame_tag id="new_journal", src:new_journal_path, target:"_top", class:"journal-window" %>
   </div>
    <br> <br>
+   <div id="journals">
   <%= render @journals %>
+  </div>
 <%= link_to  "Back to top!", anchor:"top"%>
 </div>

@@ -26,11 +26,18 @@ class JournalsController < ApplicationController
     @journal = @journalable.journals.new(journal_params) do |p|
       p.journal_author = current_user
     end
-    if @journal.save
-      flash[:notice] = 'Your journal has successfully been created!'
-      redirect_to root_path
-    else
-      render :new, alert: @journal.errors.full_messages
+    respond_to do |format|
+      if @journal.save
+        format.turbo_stream
+        format.html { redirect_to root_path }
+      else
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(@journal, partial: 'journals/form',
+                                                              locals: { journal: @journal,
+                                                                        journalable: @journalable })
+        end
+        format.html { render :new }
+      end
     end
   end
 

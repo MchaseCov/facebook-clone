@@ -19,7 +19,7 @@ Posted to: <%= @journal.journalable.name %><% end %>
 <br>
 <%= render "comments/form", comment: Comment.new, commentable: @journal, class:"new-comment-region" %>
 <%= turbo_stream_from @journal, :comments %>
-1
+
 <%= form_with url: journal_path(@journal), local: true, method: :get do |f| %>
 <%= f.select :order, ["Newest First", "Oldest First", "Most Likes First", "Least Likes First"] %>
 <%= f.submit "Sort Comments!" %>

@@ -1,4 +1,5 @@
-<%= form_with model:journal, url: url do |f| %>
+<% model = [local_assigns[:journalable], journal].compact %>
+<%= form_with model:model, data: { controller: "reset-form", id: "new-journal-form", action: "turbo:submit-end->reset-form#reset" } do |f| %>
 
 <div style="background-color:var(--light-grey)">
 <% if journal.errors.any? %>
