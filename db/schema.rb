@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_08_222155) do
+ActiveRecord::Schema.define(version: 2021_12_09_182934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,6 +131,21 @@ ActiveRecord::Schema.define(version: 2021_12_08_222155) do
     t.index ["recipient_id"], name: "index_messages_on_recipient_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "recipient_id", null: false
+    t.bigint "actor_id", null: false
+    t.datetime "read_at"
+    t.string "action"
+    t.string "notifiable_type", null: false
+    t.bigint "notifiable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["actor_id"], name: "index_notifications_on_actor_id"
+    t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable"
+    t.index ["read_at"], name: "index_notifications_on_read_at"
+    t.index ["recipient_id"], name: "index_notifications_on_recipient_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -159,4 +174,6 @@ ActiveRecord::Schema.define(version: 2021_12_08_222155) do
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users", column: "author_id"
   add_foreign_key "messages", "users", column: "recipient_id"
+  add_foreign_key "notifications", "users", column: "actor_id"
+  add_foreign_key "notifications", "users", column: "recipient_id"
 end

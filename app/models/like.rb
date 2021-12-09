@@ -17,5 +17,9 @@ class Like < ApplicationRecord
   belongs_to :like_author, class_name: :User,
                            foreign_key: :actor_id,
                            inverse_of: :authored_likes
+  #   Notifications
+  has_many :notifications, as: :notifiable,
+                           dependent: :destroy
+
   # Methods
 end

@@ -88,6 +88,15 @@ class User < ApplicationRecord
                                foreign_key: :recipient_id,
                                inverse_of: :recipient,
                                dependent: :destroy
+  #   Notifications
+  has_many :recieved_notifications, class_name: :Notification,
+                                    foreign_key: :recipient_id,
+                                    inverse_of: :recipient,
+                                    dependent: :destroy
+  has_many :pushed_notifications, class_name: :Notification,
+                                  foreign_key: :actor_id,
+                                  inverse_of: :actor,
+                                  dependent: :destroy
 
   # Methods
   def total_conversations

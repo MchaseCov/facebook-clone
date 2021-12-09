@@ -30,7 +30,7 @@ class Comment < ApplicationRecord
     broadcast_remove_to self, target: "#{dom_id(self)}_with_comments"
   end
 
-  # ScopesNewest First", "Oldest First", "Most Likes First", "Least Likes First
+  # Scopes
   scope :newest_first, -> { order(created_at: :desc) }
   scope :oldest_first, -> { order(created_at: :asc) }
   scope :most_likes_first, -> { order(:likeable_count) }
@@ -56,6 +56,10 @@ class Comment < ApplicationRecord
   belongs_to :comment_author, class_name: :User,
                               foreign_key: :actor_id,
                               inverse_of: :authored_comments
+  #   Notifications
+  has_many :notifications, as: :notifiable,
+                           dependent: :destroy
+
   # Methods
   def self.search(search)
     return unless search

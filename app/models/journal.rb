@@ -25,6 +25,9 @@ class Journal < ApplicationRecord
   #   Likes
   has_many :likes, as: :likeable,
                    dependent: :destroy
+  #   Notifications
+  has_many :notifications, as: :notifiable,
+                           dependent: :destroy
   #   Users
   belongs_to :journal_author, class_name: :User,
                               foreign_key: :actor_id,
