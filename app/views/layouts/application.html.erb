@@ -3,11 +3,14 @@
   <head>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <!-- Open Sans Font -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+      <!-- "Font" used for sitewide icons! -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>  
+  <!-- Each Page Includes A Custom Title To Yield -->
+  <title>  
     <% if content_for?(:title) %>
-    <%= yield :title %> | Friendsy
+    <%= yield :title %> | Friendsy 
     <% end %>
   </title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -16,24 +19,34 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= turbo_include_tags %>
-    <%#= stimulus_include_tags %>
     <style>
-    <%if user_signed_in?%>
-    <%=".user-#{current_user.id}-message"%>{
-      background-color: var(--blue) !important;
-      padding: 10px 20px 10px 35px;
-      margin: 10px 20% 10px auto;
-      text-align: right;
-    }
-    <%end%>
+      <%if user_signed_in?%>
+      /*Current user's DMs turn blue & align right side*/
+      <%=".user-#{current_user.id}-message"%>{
+        background-color: var(--blue) !important;
+        margin: 10px 35px 10px auto;
+        text-align: right;}
+      <%=".user-#{current_user.id}-message"%> .read-reciept{
+        font-size: .75em;
+        font-weight: 200;
+        display: inline;}
+      <%=".user-#{current_user.id}-avatar"%>{
+        left: auto;
+        right: -30px;
+        outline: 1px solid var(--blue);}
+      /*End current user DM CSS*/
+      <%end%>
     </style>
   </head>
 
   <body>
+    <!-- Upper Header -->
     <div class="header-navbar" id="top"><%= render "shared/navbars/header" %></div>
+    <!-- Left Sidebar -->
     <nav class="side-navbar"><%= render "shared/navbars/side_navbar" %></nav>
+    <!-- Right Sidebar -->
     <div class="information-bar"><%= render "shared/navbars/information_bar" %></div>
+    <!-- Middle Content (the page itself) -->
     <div class="page-content">
       <% flash.each do |type, msg| %>
         <div class="flash flash-<%= type %>">

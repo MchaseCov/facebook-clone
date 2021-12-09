@@ -1,12 +1,118 @@
 // Place all the styles related to the Messages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.message-region {
+  grid-area: message-region;
+  height: 100%;
+  max-height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  flex: 1 1 0px 
+}
+.bottom-anchor{
+  display: none;
+}
+.jump-link{
+  position :sticky;
+  z-index: 2;
+  top:0;
+  background-color: var(--light-black);
+  padding: 2px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+.scroll-fix{
+  display: flex;
+  flex-direction: column-reverse;
+}
+.messages{
+  flex-shrink: 0;
+  overflow-y: auto;
+  height:81vh;
+  max-height:81vh;
+  position: relative;
+}
+.message-avatar{
+  display: inline;
+  z-index: 1;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -25px;
+  left: -30px;
+  outline: 1px solid var(--pink);
+  }
 .chat-message{
-  background-color: rgb(61, 60, 93);
+  background-color: #401423;
   color: white;
-  max-width: 60%;
-  width: max-content;
-  padding: 10px 35px 10px 20px;
+  padding: 10px 20px 10px 20px;
   text-align: left;
-  margin: 10px 0 10px 20%;
+  margin: 10px 0 10px 35px;
+  border-radius: 10px;
+  position: relative;
+  min-width: 200px;
+  max-width:600px;
+  p{
+    display: inline;
+    word-wrap: break-word;
+    white-space: initial;
+  }
+  i{
+    text-align: center;
+    font-size: .75em;
+    font-weight: 200;
+    margin-left: auto;
+    margin-right: auto;
+    
+  }
+  .read-reciept{
+    font-size: .75em;
+    font-weight: 200;
+    display: none
+  }
+}
+.new-message-window{
+  align-self: flex-end;
+  background-color: var(--grey);
+  width: 100%;
+}
+.new-message-form{
+  flex-shrink: 0;
+  background-color: var(--grey);
+  height: max-content;
+  margin-top: auto;
+  textarea{
+    margin-left: auto;
+    margin-right: auto;
+    resize: none;
+    width: 90%;
+    border-radius: 10px;
+    height: 105px;
+    padding: 8px;
+    background-color: var(--light-black);
+    color: white;
+    box-sizing: border-box;
+  }
+  textarea:focus{
+    outline: solid 2px var(--blue);
+  }
+  input{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none;
+    color: white;
+    background-color: var(--black);
+    padding: 6px;
+    border-radius: 10px;
+    outline: 2px solid black;
+    border: 0;
+  }
+  input:hover{
+    background: linear-gradient(to bottom right, var(--blue), var(--pink));
+    cursor: pointer;
+    text-align: center;
+  }
 }
