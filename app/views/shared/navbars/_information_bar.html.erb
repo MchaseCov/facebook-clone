@@ -7,8 +7,14 @@
     <% end %>
   </div>
   <div class="icon interactive">
-    <%= link_to root_path do %>
-      <span class="material-icons notification-icon">textsms</span>
+    <%= link_to conversations_path do %>
+      <% if new_messages > 0 %>
+      <span class="notification-number"><%= new_messages %></span>
+      <style>#unread-icon{color: var(--white);
+      background-color: var(--blue);
+      border-radius: 50%;}</style>
+      <% end %>
+      <span class="material-icons notification-icon" id="unread-icon">textsms</span>
     <% end %>
   </div>
   <div class="icon interactive">

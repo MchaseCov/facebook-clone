@@ -1,0 +1,3 @@
+<%= turbo_frame_tag id="new_message", class:"new-message-window" do %>
+<%= render 'form', conversation: @conversation, message: @message %>
+<% end %>

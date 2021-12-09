@@ -34,6 +34,15 @@ class User < ApplicationRecord
                                foreign_key: :actor_id,
                                inverse_of: :comment_author,
                                dependent: :destroy
+  #   Conversations
+  has_many :started_conversations, class_name: :Conversation,
+                                   foreign_key: :sender_id,
+                                   inverse_of: :sender,
+                                   dependent: :destroy
+  has_many :recieved_conversations, class_name: :Conversation,
+                                    foreign_key: :recipient_id,
+                                    inverse_of: :recipient,
+                                    dependent: :destroy
   #   Friendship
   has_many :friend_sent, class_name: :Friendship,
                          foreign_key: :sent_by_id,
@@ -70,4 +79,18 @@ class User < ApplicationRecord
                             foreign_key: :actor_id,
                             inverse_of: :like_author,
                             dependent: :destroy
+  #   Messages
+  has_many :authored_messages, class_name: :Message,
+                               foreign_key: :author_id,
+                               inverse_of: :author,
+                               dependent: :destroy
+  has_many :recieved_messages, class_name: :Message,
+                               foreign_key: :recipient_id,
+                               inverse_of: :recipient,
+                               dependent: :destroy
+
+  # Methods
+  def total_conversations
+    started_conversations.or(recieved_conversations)
+  end
 end

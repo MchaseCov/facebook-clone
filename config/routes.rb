@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  resources :conversations, only: %i[index create] do
+    resources :messages, only: %i[index new create]
+  end
+
   resources :journals, only: %i[show new create index edit update destroy] do
     resources :likes, only: %i[create], module: :journals
     resources :comments, module: :journals

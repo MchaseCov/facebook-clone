@@ -18,6 +18,16 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= turbo_include_tags %>
     <%#= stimulus_include_tags %>
+    <style>
+    <%if user_signed_in?%>
+    <%=".user-#{current_user.id}-message"%>{
+      background-color: var(--blue) !important;
+      padding: 10px 20px 10px 35px;
+      margin: 10px 20% 10px auto;
+      text-align: right;
+    }
+    <%end%>
+    </style>
   </head>
 
   <body>

@@ -1,0 +1,7 @@
+<% content_for(:title) do %>
+  Chat between <%=@conversation.recipient.nick_name %> & <%=@conversation.sender.nick_name %>
+<% end %>
+
+<%= render @messages %>
+
+<%= turbo_frame_tag id="new_message", src:new_conversation_message_path(@conversation), target:"_top", class:"new-message-window" %>
