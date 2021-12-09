@@ -1,0 +1,21 @@
+  <div class="user-index-result">
+    <li class="user-index-result-contents">
+    <%= link_to result.name.titlecase, result, class:"user-index-name", 'data-turbo-frame': :_top %>
+      <ul class="user-index-grid-sublist">
+        <li><%= link_to result, 'data-turbo-frame': :_top  do %><%= image_tag((result.avatar.url), class:"user-index-image") %> <% end %> </li>
+        <li>(<%=link_to result.nick_name, result %>)</li>
+        <li>
+          <% if result.try(:last_seen_at).try { |r| r >= 2.hour.ago } %>
+            <span class="material-icons user-index-result-icon online-icon">circle<span class="tooltiptext">Recently Online</span></span>
+          <% elsif result.try(:last_seen_at).try { |r| r >= 6.hour.ago } %>
+            <span class="material-icons md-36 user-index-result-icon away-icon">brightness_3<span class="tooltiptext">Away</span></span>
+          <% else %>
+            <span class="material-icons user-index-result-icon offline-icon">trip_origin<span class="tooltiptext">Offline</span></span>
+          <% end %>
+        </li>
+        <li class="user-index-button">
+          <%= link_to "Start Messaging!", conversations_path(sender_id: current_user.id, recipient_id: result.id), method: :post %>
+        </li>
+      </ul>
+    </li>
+  </div>

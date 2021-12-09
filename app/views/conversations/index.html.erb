@@ -1,19 +1,16 @@
 <% content_for(:title) do %>
   My Inbox
 <% end %>
-
-<h1>All Conversations:</h1>
-<% @conversations.each do |conversation| %>
-  <h4><%= link_to conversation.chat_partner(current_user).nick_name,
-                  conversation_messages_path(conversation)%>
-                  (<%=conversation_new_messages(conversation)%>)</h4>
-     <%=conversation.most_recent_message.body %>             
-<% end %>
-
-<h1>Start a chat!</h1>
-
-<ul>
-<% @users.each do |user| %>
- <li><%= link_to user.nick_name, conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post %></li>
-<% end %>
-</ul>
+<div class="conversation-grid">
+<aside class="conversation-list">
+<h1>Conversations:</h1>
+<%= render @conversations %>
+</aside>
+<main class="message-friends-list">
+<h2>Start A Convo!</h2>
+<div class="user-index-grid">
+<%= render partial: "friends_list", collection: @users,
+                                      as: :result %>
+</div>
+</main>
+</div>

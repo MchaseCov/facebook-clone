@@ -1,5 +1,9 @@
 <div class="chat-message user-<%=message.author.id%>-message">
-  <%= message.author.name %>
-  <%= message.created_ago %>
-  <%= message.body %>
+  <p><%= message.body %></p><br>
+  <%= image_tag((message.author.avatar.thumb.url), class:"message-avatar user-#{message.author.id}-avatar") %>
+    <% if message.read_at? %>
+     <i class="read-reciept"><span class="material-icons read-reciept">done</span>read | </i>
+  <% end %>
+  <i><%= message.created_ago %></i>
+
 </div>

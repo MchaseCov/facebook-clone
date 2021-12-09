@@ -1,0 +1,12 @@
+<%= link_to conversation_messages_path(conversation) do%>
+<div class="conversation-listing" id="<%=dom_id(conversation)%>">
+      <%= image_tag((conversation.chat_partner(current_user).avatar.thumb.url), class:"conversation-listing-avatar") %>
+          <% if 0 < conversation_new_messages(conversation)%>
+    <span class="material-icons unread-icon">circle</span><% end %>
+  <div class="convo-header">
+  <h4><%= conversation.chat_partner(current_user).nick_name %></h4>
+  <h6><%= time_ago_in_words(conversation.most_recent_message.created_at, scope: 'datetime.distance_in_words.short') %></h6> 
+  </div>         
+ <p><%=truncate(conversation.most_recent_message.body, length: 28) %></p>   
+</div>
+<% end %>
