@@ -6,16 +6,16 @@ Edit <%= resource_name.to_s.humanize %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <label>My Avatar</label>
-    <%= image_tag(@user.avatar.thumb.url) if @user.avatar? %>
+    <label>My Avatar</label> <br>
+    <%= image_tag(@user.avatar.thumb.url,  style:"color:white") if @user.avatar? %> <br>
     <%= f.file_field :avatar %>
     <%= f.hidden_field :avatar_cache %>
   </div>
 
 
   <div class="field">
-    <label>My Banner</label>
-    <%= image_tag(@user.banner.thumb.url) if @user.banner? %>
+    <label>My Banner</label> <br>
+    <%= image_tag(@user.banner.thumb.url) if @user.banner? %> <br>
     <%= f.file_field :banner %>
     <%= f.hidden_field :banner_cache %>
   </div>

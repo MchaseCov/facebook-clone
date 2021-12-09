@@ -2,9 +2,9 @@ class ConversationsController < ApplicationController
   before_action :sanitize_page_params
   before_action :authenticate_friendship, only: %i[create]
   def index
-    @users = current_user.friends
+    @users = current_user.friends.order('last_seen_at DESC NULLS LAST')
     @conversations = current_user.total_conversations
-                                 .includes(:recipient, most_recent_message: :author)
+                                 .includes(:most_recent_message)
                                  .order(updated_at: :desc)
   end
 

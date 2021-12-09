@@ -28,6 +28,10 @@ class Message < ApplicationRecord
   # Methods
   include ActionView::Helpers::DateHelper
   def created_ago
-    "#{time_ago_in_words(created_at)} ago"
+    "sent #{time_ago_in_words(created_at)} ago"
+  end
+
+  def read_ago
+    "#{time_ago_in_words(read_at)} ago"
   end
 end

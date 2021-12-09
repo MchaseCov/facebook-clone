@@ -5,8 +5,8 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <label>My Avatar</label>
-    <%= image_tag(@user.avatar_url) if @user.avatar? %>
+    <label>My Avatar</label> <br>
+    <%= image_tag(@user.avatar_url) if @user.avatar? %> <br>
     <%= f.file_field :avatar %>
     <%= f.hidden_field :avatar_cache %>
   </div>

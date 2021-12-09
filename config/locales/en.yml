@@ -28,6 +28,36 @@
 #
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  datetime:
+    distance_in_words:
+      short:
+        about_x_hours: '%{count}h'
+        about_x_months: '%{count}m'
+        about_x_years: '%{count}y'
+        almost_x_years: '%{count}y'
+        half_a_minute: 30s
+        less_than_x_seconds: '%{count}s'
+        less_than_x_minutes: '%{count}m' 
+        over_x_years: '%{count}y'
+        x_seconds: '%{count}s'
+        x_minutes: '%{count}m'
+        x_days: '%{count}d'
+        x_months: '%{count}m'
+        x_years: '%{count}y'
+
+               # => less than a minute
+# 30 secs <-> 1 min, 29 secs                                                # => 1 minute
+# 1 min, 30 secs <-> 44 mins, 29 secs                                       # => [2..44] minutes
+# 44 mins, 30 secs <-> 89 mins, 29 secs                                     # => about 1 hour
+# 89 mins, 30 secs <-> 23 hrs, 59 mins, 29 secs                             # => about [2..24] hours
+# 23 hrs, 59 mins, 30 secs <-> 41 hrs, 59 mins, 29 secs                     # => 1 day
+# 41 hrs, 59 mins, 30 secs  <-> 29 days, 23 hrs, 59 mins, 29 secs           # => [2..29] days
+# 29 days, 23 hrs, 59 mins, 30 secs <-> 44 days, 23 hrs, 59 mins, 29 secs   # => about 1 month
+# 44 days, 23 hrs, 59 mins, 30 secs <-> 59 days, 23 hrs, 59 mins, 29 secs   # => about 2 months
+# 59 days, 23 hrs, 59 mins, 30 secs <-> 1 yr minus 1 sec                    # => [2..12] months
+# 1 yr <-> 1 yr, 3 months                                                   # => about 1 year
+# 1 yr, 3 months <-> 1 yr, 9 months                                         # => over 1 year
+# 1 yr, 9 months <-> 2 yr minus 1 sec                                       # => almost 2 years
+# 2 yrs <-> max time or date                                                # => (same rules as 1 yr)
+

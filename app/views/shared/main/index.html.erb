@@ -3,7 +3,7 @@
 <% end %>
 
 <div class="page-content-parent">
-    <h1>List of all <%= @indexed_content.table_name.titlecase %> by created date:</h1>
+    <h1>List of all <%= @indexed_content.table_name.titlecase %> by last activity:</h1>
   <div class="profile-feed">
   <div class="user-index-grid">
   <%= render partial: "shared/main/user_index_grid", collection: @indexed_content, as: :result %>

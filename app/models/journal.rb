@@ -17,7 +17,8 @@ class Journal < ApplicationRecord
   # Associations
   #   Polymorphic
   #   [Users, Groups]
-  belongs_to :journalable, polymorphic: true
+  belongs_to :journalable, polymorphic: true,
+                           touch: true
   #   Comments
   has_many :comments, as: :commentable,
                       dependent: :destroy

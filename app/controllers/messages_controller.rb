@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   before_action :fetch_conversation
   before_action :verify_participation
+  before_action :fetch_current_user_conversations
 
   def index
     @messages = @conversation.messages.includes(:author)
@@ -42,5 +43,11 @@ class MessagesController < ApplicationController
     else
       head 403
     end
+  end
+
+  def fetch_current_user_conversations
+    @conversations = current_user.total_conversations
+                                 .includes(:most_recent_message)
+                                 .order(updated_at: :desc)
   end
 end
