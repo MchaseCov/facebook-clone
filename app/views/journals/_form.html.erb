@@ -8,8 +8,8 @@
 <%end%>
 <% end %>
   <h4>Write a Journal:</h4>
-  <% if journalable && journalable != current_user %>
-    <h5><%="(Your journal will automatically tag @#{journalable.nick_name})"%></h5>
+  <% if journal.journalable && journal.journalable != current_user %>
+    <h5><%="(Your journal will automatically tag @#{journal.journalable.nick_name})"%></h5>
   <% end %>
   <%= f.text_area :body %> 
   <div class="journal_image_field">

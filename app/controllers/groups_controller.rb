@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   include GroupPrivacyHelper
   before_action :fetch_group, only: %i[show edit update destroy members]
-  before_action :set_profile_owner, only: %i[show members]
+  before_action :set_profile_owner, only: %i[show members edit]
   before_action :validate_user, only: %i[show members]
   before_action :validate_owner, only: %i[edit update destroy]
 

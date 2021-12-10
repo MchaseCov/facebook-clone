@@ -1,59 +1,65 @@
 <% content_for(:title) do %>
-  <%=@journal.journal_author.nick_name%>'s Journal
+<%=@journal.journal_author.nick_name%>'s Journal
 <% end %>
- <h1>Journal entry:</h1>
- <%= turbo_frame_tag id="show_journal" do %>
- <article class="journal-entry full-entry" id="<%=dom_id(@journal)%>">
 
-<div class="journal-header">
-  <%= image_tag((@journal.journal_author.avatar.thumb.url), class:"journal-entry-avatar") %>
-  <div class="header-text">
-    <h4><%= link_to  "@#{@journal.journal_author.nick_name}", @journal.journal_author, class:"author_url" %></h4>
-    <i><%= time_ago_in_words(@journal.created_at) + ' ago' %></i>
-    <% if @journal.created_at != @journal.updated_at %>
-      <i>| Edited <%= time_ago_in_words(@journal.updated_at) + ' ago' %></i>
-    <% end %>
-  </div>
-  <div class="journal-likes">
-    <%= render  "likes/form", content: @journal %>
-          <div class="comment-box">
-          <%= link_to journal_path(@journal) do %>
-          <span class="material-icons">chat_bubble</span>
+<!-- The following block is mostly the same as the _journal.html.erb partial-->
+<!-- With the exception of the image size and lack of truncation -->
+
+<h1>Journal entry:</h1>
+<%= turbo_frame_tag id="show_journal" do %>
+
+  <article class="journal-entry full-entry" id="<%=dom_id(@journal)%>">
+      <div class="journal-header">
+          <%= image_tag((@journal.journal_author.avatar.thumb.url), class:"journal-entry-avatar") %>
+          <div class="header-text">
+              <h4><%= link_to  "@#{@journal.journal_author.nick_name}", @journal.journal_author, class:"author_url",'data-turbo-frame': :_top %></h4>
+              <i><%= time_ago_in_words(@journal.created_at) + ' ago' %></i>
+              <% if @journal.created_at != @journal.updated_at %>
+                  <i>| Edited <%= time_ago_in_words(@journal.updated_at) + ' ago' %></i>
+              <% end %>
+          </div>
+          <div class="journal-likes">
+              <%= render  "likes/form", content: @journal %>
+              <div class="comment-box">
+                   <%= link_to journal_path(@journal) do %>
+                      <span class="material-icons">chat_bubble</span>
                     <% end %>
-          <div @class="comment-count">
-          <%= pluralize(@journal.commentable_count, 'comment') %>
+                    <div @class="comment-count">
+                        <%= pluralize(@journal.commentable_count, 'comment') %>
+                    </div>
+              </div>
           </div>
-          </div>
-  </div>
-</div>
-
-<p class="journal-body">
-  <% unless @journal.journal_author == @journal.journalable %>
-  <%= image_tag((@journal.journalable.avatar.small_thumb.url), class:"journal-entry-avatar") %>
-  <%= link_to "@#{@journal.journalable.name}", @journal.journalable, class:"tagged" %>
-  <% end %>
-  <%= @journal.body %> <br>
-</p>
-<%= image_tag(@journal.image.url, class:"journal-image-attch") if @journal.image? %>
-  <span class="edit-links user-<%=@journal.journal_author.id%>-edit-links">
-  <%= link_to "Edit journal", edit_journal_path(@journal) %>
-  | <%= link_to  "Delete journal", @journal, method: :delete, data: { confirm: "Are you sure?" }%>
-  </span>
-</article>
+      </div> <!--End of Journal Header-->
+      <p class="journal-body">
+          <% unless @journal.journal_author == @journal.journalable %>
+              <%= image_tag((@journal.journalable.avatar.small_thumb.url), class:"journal-entry-avatar") %>
+              <%= link_to "@#{@journal.journalable.name}", @journal.journalable, class:"tagged", 'data-turbo-frame': :_top %>
+          <% end %>
+          <%= @journal.body %> <br>
+      </p>
+      <%= image_tag(@journal.image.url, class:"journal-image-attch") if @journal.image? %>
+      <span class="edit-links user-<%=@journal.journal_author.id%>-edit-links">
+          <%= link_to "Edit journal", edit_journal_path(@journal), 'data-turbo-frame': :_top %> | 
+          <%= link_to  "Delete journal", @journal, method: :delete, data: { confirm: "Are you sure?" }, 'data-turbo-frame': :_top%>
+      </span>
+  </article>
 <% end %>
 <br>
+<!-- End of Journal-->
+
 <%= render "comments/form", comment: Comment.new, commentable: @journal, class:"new-comment-region" %>
 <%= turbo_stream_from @journal, :comments %>
 
+
 <%= form_with url: journal_path(@journal), local: true, method: :get do |f| %>
-<%= f.select :order, ["Newest First", "Oldest First", "Most Likes First", "Least Likes First"] %>
-<%= f.submit "Sort Comments!" %>
+    <%= f.select :order, ["Newest First", "Oldest First", "Most Likes First", "Least Likes First"] %>
+    <%= f.submit "Sort Comments!" %>
 <% end %>
 
 
 
 <%= tag.ul id: "#{dom_id(@journal)}_comments", class:"comment-parent" do%>
-  <%= render partial: "comments/comment_with_replies", collection: @comments, as: :comment %>
+    <%= render partial: "comments/comment_with_replies", collection: @comments, as: :comment %>
 <% end %>
 <%= link_to  "Back to top!", anchor:"top"%>
 </div>

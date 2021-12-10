@@ -63,7 +63,7 @@ class CommentsController < ApplicationController
                                                             data: data,
                                                             class: htmlclass })
       end
-      format.html { redirect_to @commentable }
+      format.html { redirect_to commentable }
     end
   end
 end

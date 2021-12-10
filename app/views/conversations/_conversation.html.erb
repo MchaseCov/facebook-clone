@@ -1,4 +1,4 @@
-<%= link_to conversation_messages_path(conversation) do%>
+<%= link_to conversation_messages_path(conversation), 'data-turbo-frame': :_top  do%>
 <div class="conversation-listing" id="<%=dom_id(conversation)%>">
       <%= image_tag((conversation.chat_partner(current_user).avatar.thumb.url), class:"conversation-listing-avatar") %>
           <% if 0 < conversation_new_messages(conversation)%>

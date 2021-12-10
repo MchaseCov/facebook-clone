@@ -1,5 +1,5 @@
 <div class="index-result-icons-parent">
-<% if result.class.name == "Group" %>
+<% if result.instance_of?(Group) %>
 
   <% if result.private %>
   <span class="material-icons user-index-result-icon private-icon">lock<span class="tooltiptext">Private Group</span></span>

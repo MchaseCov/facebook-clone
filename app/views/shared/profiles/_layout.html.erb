@@ -4,12 +4,12 @@
 
 <div class="profile-page">
   <div class="profile-banner">
-    <%= image_tag((@profile_owner.banner.url), class:"profile-banner-image") %>
+    <%= image_tag((profile_owner.banner.url), class:"profile-banner-image") %>
     <div class="profile-banner-overlay">
-      <%= image_tag((@profile_owner.avatar.url), class:"profile-avatar-image") %>
+      <%= image_tag((profile_owner.avatar.url), class:"profile-avatar-image") %>
       <div class="profile-banner-information">
         <h1 class="profile-name"><%= profile_owner.name.titlecase %></h1>
-        <% if profile_owner.class.name == "Group" %>
+        <% if profile_owner.instance_of?(Group) %>
         <h2 class="profile-nick">(Created by: <%= profile_owner.creator.name.titlecase %>)</h2>
         <% else %>
         <h2 class="profile-nick">(<%= profile_owner.nick_name.titlecase %>)</h2>

@@ -106,7 +106,17 @@
   </div>
 <% else %>
   <div class="section-parent">
-    <li>Something about what this website is and why you should sign up</li>
+  <ul>
+    <h4 class="section-header">Welcome to Friendsy!</h4>
+    <li>Sign up and start finding friends in an instant!!</li>
+  </ul>
+  <ul>
+    <h4 class="section-header">Registration Links:</h4>
+    <li class="interactive"><%= link_to "Sign Up", new_user_registration_path %></li>
+    <li class="interactive"><%= link_to "Sign In",  new_user_session_path %></li>
+    <h4 class="section-header">More Information:</h4>
+    <li class="interactive"><%= link_to  "Check out the Github Repo", 'https://github.com/MchaseCov/facebook-clone', target: :_blank %> </li>
+  </ul>
   </div>
 <% end %>
 </div>

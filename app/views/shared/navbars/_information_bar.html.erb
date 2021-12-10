@@ -29,13 +29,7 @@
       <% end %>
     </div>
   </div>
-  <%= turbo_frame_tag id="notification-dropdown", target: '_top', class:"infobar-dropdown-parent" do %>
-    This will get replaced when clicked maybe!
-  <% end %>
-  stuff !
-  <% else %>
-  <%= link_to "Sign Up", new_user_registration_path %>
-  <%= link_to "Sign In",  new_user_session_path %>
+  <%= turbo_frame_tag id="notification-dropdown", target: '_top', class:"infobar-dropdown-parent"%>
   <% end %>
 </div>
     

@@ -1,4 +1,4 @@
-<% if button_target.id == current_user.id %>
+<% if button_target == current_user %>
   <%= link_to "Edit Profile", edit_user_registration_path, class:"profile-banner-button", method: :get, 'data-turbo-frame': :_top  %>
 <% else %>
   <% if button_target.friends.include? current_user %>

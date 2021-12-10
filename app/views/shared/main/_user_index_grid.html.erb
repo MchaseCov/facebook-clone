@@ -3,12 +3,12 @@
     <%= link_to result.name.titlecase, result, class:"user-index-name", 'data-turbo-frame': :_top %>
       <ul class="user-index-grid-sublist">
         <li><%= link_to result, 'data-turbo-frame': :_top  do %><%= image_tag((result.avatar.url), class:"user-index-image") %> <% end %> </li>
-        <li>(<%=link_to *(result.class.name == "Group" ? ["Creator: #{result.creator.name}", result.creator] : [result.nick_name, result]) %>)</li>
+        <li>(<%=link_to *(result.instance_of?(Group) ? ["Creator: #{result.creator.name}", result.creator] : [result.nick_name, result]) %>)</li>
         <li>
-        <%=pluralize(*(result.class.name == "Group" ? [result.users.size, 'user'] : [result.friends.size, 'friend']))%>
+        <%=pluralize(*(result.instance_of?(Group) ? [result.users.size, 'user'] : [result.friends.size, 'friend']))%>
         </li>
         <li class="user-index-button">
-          <%= render (result.class.name == "Group" ? 'groups/member_button' : 'users/friendship_button'), button_target: result %>
+          <%= render (result.instance_of?(Group) ? 'groups/member_button' : 'users/friendship_button'), button_target: result %>
         </li>
       </ul>
         <%= render "shared/main/user_index_grid_icons", result: result %>
