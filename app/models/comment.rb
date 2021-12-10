@@ -42,7 +42,8 @@ class Comment < ApplicationRecord
 
   # Associations
   #   Polymorphic [Journals]
-  belongs_to :commentable, polymorphic: true
+  belongs_to :commentable, polymorphic: true,
+                           counter_cache: :commentable_count
   #   Comments (self)
   has_many :comments, -> { includes(:likes, :comment_author, comments: :comments) },
            foreign_key: :parent_id,

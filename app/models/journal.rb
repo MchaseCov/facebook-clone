@@ -4,10 +4,15 @@ class Journal < ApplicationRecord
   # actor_id:           integer
   # journalable_id:     integer
   # journalable_type:   string
+  # image:              string (Carrierwave gem)
   # timestamps:         datetime
   #
   # Callbacks
   after_create_commit :create_notification
+
+  # Carrierwave
+  mount_uploader :image, ImageUploader
+
   # Scopes
   scope :by_friend, -> { where('post_author == :friends', friends: 1.week.ago) }
   scope :by_user, ->(user) { where(journal_author: user) }

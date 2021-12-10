@@ -87,9 +87,9 @@
 }
 
 .like-box{
-  display: block;
-  margin-left: auto;
   text-align: center;
+  display: inline-block;
+  margin-left: auto;
   .like-on{
     color: var(--blue);
   }

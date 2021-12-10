@@ -17,6 +17,7 @@ class Group < ApplicationRecord
   mount_uploader :banner, BannerUploader
 
   # Scopes
+  alias_attribute :nick_name, :name
   scope :public_visibility, -> { where('private =?', false) }
   scope :private_visibility, -> { where('private =?', true) }
   scope :recently_created, -> { where('created_date >= :date', date: 1.week.ago) }

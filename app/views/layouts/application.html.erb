@@ -19,7 +19,7 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <style>
+    <style> /*TURBO STREAM WORKAROUNDS*/
       <%if user_signed_in?%>
       /*Current user's DMs turn blue & align right side*/
       <%=".user-#{current_user.id}-message"%>{
@@ -34,7 +34,9 @@
         left: auto;
         right: -30px;
         outline: 1px solid var(--blue);}
-      /*End current user DM CSS*/
+      /*Current User can see Edit/Delete links (they do not function for other users even if they display)*/
+      <%=".user-#{current_user.id}-edit-links"%>{
+        display: inline}
       <%end%>
     </style>
   </head>

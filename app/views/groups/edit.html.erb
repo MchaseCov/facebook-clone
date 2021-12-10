@@ -1,8 +1,4 @@
-<% content_for(:title) do %>
-Edit <%= @group.name.titlecase %>
-<% end %>
+<%= render partial: "shared/profiles/edit",
+           layout: "shared/profiles/layout",
+           locals: { profile_owner: @profile_owner } %> 
 
-<%= render 'form', group: @group %>
-
-<%= link_to 'Show group page', @group %> |
-<%= link_to 'Back to all groups', groups_path %>

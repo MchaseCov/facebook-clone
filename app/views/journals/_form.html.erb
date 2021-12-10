@@ -1,15 +1,25 @@
 <% model = [local_assigns[:journalable], journal].compact %>
 <%= form_with model:model, data: { controller: "reset-form", id: "new-journal-form", action: "turbo:submit-end->reset-form#reset" } do |f| %>
 
-<div style="background-color:var(--light-grey)">
+<div class="new-journal-form-base">
 <% if journal.errors.any? %>
 <% journal.errors.full_messages.each do |message|%>
 <h3><%= message %> </h3>
 <%end%>
 <% end %>
-  Posting to <%=journalable.name%>
-  <%= f.label :body, "Post contents:" %>
-  <%= f.text_area :body %>
+  <h4>Write a Journal:</h4>
+  <% if journalable && journalable != current_user %>
+    <h5><%="(Your journal will automatically tag @#{journalable.nick_name})"%></h5>
+  <% end %>
+  <%= f.text_area :body %> 
+  <div class="journal_image_field">
+    <%= image_tag(journal.image.thumb.url) if journal.image? %> <br>
+    <%= f.file_field :image %>
+    <label for="journal_image">
+    <span class="material-icons image_upload_icon">image</span>
+    </label>
+    <%= f.hidden_field :image_cache %>
+  </div><br>
   <%= f.submit %>
 </div>
 <% end %>
