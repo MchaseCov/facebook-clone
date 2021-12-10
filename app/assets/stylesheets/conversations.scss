@@ -24,7 +24,11 @@
   a{text-decoration: none;}
   width: 100%;
   overflow-wrap: break-word;
-  flex: 1 1 0px
+  flex: 1 1 0px;
+  h1{
+    font-size: 24px;
+    text-align: center;
+  }
 }
 
 .conversation-listing{

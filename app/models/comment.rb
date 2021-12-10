@@ -30,6 +30,8 @@ class Comment < ApplicationRecord
     broadcast_remove_to self, target: "#{dom_id(self)}_with_comments"
   end
 
+  after_create_commit :create_notification
+
   # Scopes
   scope :newest_first, -> { order(created_at: :desc) }
   scope :oldest_first, -> { order(created_at: :asc) }
@@ -39,8 +41,7 @@ class Comment < ApplicationRecord
   validates :body, presence: true, length: { maximum: 1_000 }
 
   # Associations
-  #   Polymorphic
-  #   [Journals]
+  #   Polymorphic [Journals]
   belongs_to :commentable, polymorphic: true
   #   Comments (self)
   has_many :comments, -> { includes(:likes, :comment_author, comments: :comments) },
@@ -75,6 +76,25 @@ class Comment < ApplicationRecord
       least_likes_first
     else
       newest_first
+    end
+  end
+
+  private
+
+  def create_notification
+    if !self.parent_id.nil? # Commenting on a comment
+      return if parent.comment_author == comment_author # No Notif if comment on own Comment
+
+      parent.comment_author.recieved_notifications.create(actor: comment_author,
+                                                          action: "replied to your Comment
+                                                                  on #{commentable.journal_author.nick_name}'s Journal",
+                                                          notifiable: self)
+    elsif commentable_type == 'Journal'
+      return if commentable.journal_author == comment_author # No Notif if comment on own Journal
+
+      commentable.journal_author.recieved_notifications.create(actor: comment_author,
+                                                               action: 'commented on your Journal',
+                                                               notifiable: self)
     end
   end
 end

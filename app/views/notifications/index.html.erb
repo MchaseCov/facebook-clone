@@ -1,0 +1,11 @@
+<% content_for(:title) do %>
+  Your Notifications
+<% end %>
+
+<%= turbo_frame_tag id="notification-dropdown" do %>
+  <% if @notifications.blank? %>
+    No notifs placeholder :)
+  <% else %>
+    <%= render  "form", notifications: @notifications %>
+  <% end %>
+<% end %>

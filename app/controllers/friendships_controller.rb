@@ -27,6 +27,7 @@ class FriendshipsController < ApplicationController
     @friendship.status = true
     if @friendship.save
       flash[:notice] = 'Friend Request Accepted!'
+      @friendship.create_notification
       @friendship_inverse = current_user.friend_sent.build(sent_to_id: params[:user_id], status: true)
       @friendship_inverse.save
     else
@@ -51,6 +52,11 @@ class FriendshipsController < ApplicationController
     @friendship_inverse.destroy
     flash[:notice] = 'Successfully Unfriended!'
     redirect_back(fallback_location: root_path)
+  end
+
+  def index
+    @received_requests = current_user.received_requests.order(name: :desc)
+    @pending_requests = current_user.pending_requests.order(name: :desc)
   end
 
   private

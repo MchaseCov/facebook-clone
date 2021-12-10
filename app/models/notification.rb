@@ -13,12 +13,12 @@ class Notification < ApplicationRecord
 
   # Scopes
   scope :unread, -> { where(read_at: nil) }
-
+  scope :read, -> { where.not(read_at: nil) }
   # Validations
   validates_presence_of :recipient_id, :actor_id, :action
 
   # Associations
-  #   Polymorphic [Journals, Comments, Likes] (Messages & Friend Reqs have their own notification scopes)
+  #   Polymorphic [Journals, Comments, Likes, Friendship] (Messages have their own notification scopes)
   belongs_to :notifiable, polymorphic: true
   #   Users
   belongs_to :recipient, class_name: :User,

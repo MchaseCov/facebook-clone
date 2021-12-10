@@ -1,7 +1,5 @@
 .information-bar {
   grid-area: information-bar;
-  font-size: 1.5em;
-  font-weight: 500;
   background-color: var(--black);
   .infobar-parent{
     max-width: 85%;
@@ -16,9 +14,11 @@
   .notif-icons{
     display: flex;
     justify-content: center;
-    margin-bottom: auto;
+    margin-bottom: 2px;
     max-width: 100%;
     .icon{
+      font-size: 24px;
+      font-weight: 500;
       position: relative;
       text-decoration: none;
       padding-right: 2%;
@@ -39,4 +39,8 @@
   text-align: center;
   width: 40px;
   border-radius: 50%;
+  z-index: 3;
+}
+.infobar-dropdown-parent{
+
 }

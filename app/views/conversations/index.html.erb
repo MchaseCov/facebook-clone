@@ -2,10 +2,12 @@
   My Inbox
 <% end %>
 <div class="conversation-grid">
-<aside class="conversation-list">
+<%= turbo_frame_tag id="notification-dropdown", class:"turbo-dropdown" do %>
+<div class="conversation-list">
 <h1>Conversations:</h1>
 <%= render @conversations %>
-</aside>
+</div>
+<% end %>
 <main class="message-friends-list">
 <h2>Start A Convo!</h2>
 <div class="user-index-grid">

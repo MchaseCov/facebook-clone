@@ -97,6 +97,14 @@ class User < ApplicationRecord
                                   foreign_key: :actor_id,
                                   inverse_of: :actor,
                                   dependent: :destroy
+  has_many :unread_notifications, -> { merge(Notification.unread) },
+           class_name: :Notification,
+           foreign_key: :recipient_id,
+           inverse_of: :recipient
+  has_many :read_notifications, -> { merge(Notification.read) },
+           class_name: :Notification,
+           foreign_key: :recipient_id,
+           inverse_of: :recipient
 
   # Methods
   def total_conversations

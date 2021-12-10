@@ -19,7 +19,7 @@ class GroupsController < ApplicationController
   end
 
   def members
-    @indexed_content = @profile_owner.users.eager_friendship
+    @indexed_content = @profile_owner.users
     render 'shared/profiles/index'
   end
 

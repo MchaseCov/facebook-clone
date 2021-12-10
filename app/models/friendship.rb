@@ -15,10 +15,20 @@ class Friendship < ApplicationRecord
   validate :cannot_friend_self
 
   # Associations
+  #   Notifications
+  has_many :notifications, as: :notifiable,
+                           dependent: :destroy
+  #   User
   belongs_to :sent_to, class_name: :User, foreign_key: :sent_to_id
   belongs_to :sent_by, class_name: :User, foreign_key: :sent_by_id
 
   # Methods
+
+  def create_notification
+    sent_by.recieved_notifications.create(actor: sent_to,
+                                                   action: 'accepted your friend request!',
+                                                   notifiable: self)
+  end
 
   private
 
