@@ -14,40 +14,15 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.new(comment_params)
     @comment.comment_author = current_user
     @comment.parent_id = @parent&.id
-
-    respond_to do |format|
-      if @comment.save
-        comment = Comment.new
-        format.turbo_stream do
-          if @parent
-            # If reply is to another comment and successful, hide form
-            render turbo_stream: turbo_stream.replace(dom_id_for_records(@parent, comment),
-                                                      partial: 'comments/form',
-                                                      locals: { comment: comment,
-                                                                commentable: @parent,
-                                                                current_user: current_user,
-                                                                data: { comment_reply_target: :form },
-                                                                class: 'd-none' })
-          else
-            render turbo_stream: turbo_stream.replace(dom_id_for_records(@commentable, comment),
-                                                      partial: 'comments/form',
-                                                      locals: { comment: comment,
-                                                                commentable: @commentable,
-                                                                current_user: current_user,
-                                                                class: 'new-comment-region' })
-          end
-        end
+    if @comment.save
+      comment = Comment.new
+      if @parent # If reply is to another comment and successful, hide form
+        turbo_stream_render(@parent, comment, 'd-none', { comment_reply_target: :form })
       else
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(dom_id_for_records(@parent || @commentable, @comment),
-                                                    partial: 'comments/form',
-                                                    locals: { comment: @comment,
-                                                              commentable: @parent || @commentable,
-                                                              current_user: current_user,
-                                                              class: @parent.present? ? nil : 'new-comment-region' })
-        end
+        turbo_stream_render(@commentable, comment, 'new-comment-region', '')
       end
-      format.html { redirect_to @commentable }
+    else
+      turbo_stream_render((@parent || @commentable), @comment, (@parent.present? ? nil : 'new-comment-region'), nil)
     end
   end
 
@@ -75,5 +50,20 @@ class CommentsController < ApplicationController
 
   def fetch_comment
     @comment = current_user.authored_comments.find(params[:id])
+  end
+
+  def turbo_stream_render(commentable, comment, htmlclass, data)
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace(dom_id_for_records(commentable, comment),
+                                                  partial: 'comments/form',
+                                                  locals: { comment: comment,
+                                                            commentable: commentable,
+                                                            current_user: current_user,
+                                                            data: data,
+                                                            class: htmlclass })
+      end
+      format.html { redirect_to @commentable }
+    end
   end
 end
