@@ -1,5 +1,5 @@
 <%= form_with url: "/notifications", method: :post do |f| %>
-  <% @notifications.each do |n| %>
+  <% notifications.each do |n| %>
     <%= f.check_box :ids, {multiple: true}, n.id, nil %>
     <%= f.label n.id do %>
       <%=time_ago_in_words(n.created_at) %> ago:
@@ -19,4 +19,4 @@
   <%= f.submit "Mark as read!" %>
 <% end %>
 
-<%= link_to  "Mark ALL as read", notifications_read_all_path, data: { confirm: "Mark all notifications as read?" }, method: :post %>
+<%= link_to  "Mark ALL as read", read_all_notification_path, data: { confirm: "Mark all notifications as read?" }, method: :post %>
