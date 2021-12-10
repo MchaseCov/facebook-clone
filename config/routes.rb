@@ -1,29 +1,34 @@
 Rails.application.routes.draw do
   root 'journals#index'
 
-  devise_for :users
+  # COMMENTS [comment likes, nested comments]
+  resources :comments, only: %i[edit show destroy] do
+    resources :likes, only: %i[create], module: :comments
+    resources :comments, except: %i[index], module: :comments
+  end
 
+  # CONVERSATIONS & MESSAGES
   resources :conversations, only: %i[index create] do
     resources :messages, only: %i[index new create]
   end
 
-  resources :journals, only: %i[show new create index edit update destroy] do
-    resources :likes, only: %i[create], module: :journals
-    resources :comments, module: :journals
-  end
-
-  resources :comments, only: %i[edit show destroy] do
-    resources :likes, only: %i[create], module: :comments
-    resources :comments, module: :comments
-  end
-
+  # GROUPS [Journals, Membership]
   resources :groups do
-    resources :journals, only: %i[index new create show], module: :groups
+    resources :journals, only: %i[index new create], module: :groups
     member do
       get 'members' # 'members' here refers to a URL & respective controller action, not the route method member.
     end
     match 'users/:id', to: 'groups#toggle_membership', via: %i[put delete], as: 'toggle_membership'
   end
+
+  # JOURNALS [journal likes, comments]
+  resources :journals do
+    resources :likes, only: %i[create], module: :journals
+    resources :comments, except: %i[index], module: :journals
+  end
+
+  # USERS [Devise, Journals, Friendships]
+  devise_for :users
 
   resources :users, only: %i[index show] do
     resources :journals, only: %i[index new create], module: :users
@@ -39,7 +44,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :notifications, only: [:index]
+  # FRIEND REQUEST LIST
+  resources :friendships, only: [:index]
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  # NOTIFICATIONS LIST
+  resources :notifications, only: %i[index destroy]
+  match 'notifications', to: 'notifications#read', via: [:post]
+  match 'notifications/read_all', to: 'notifications#read_all', via: [:post], as: 'notifications_read_all'
 end
