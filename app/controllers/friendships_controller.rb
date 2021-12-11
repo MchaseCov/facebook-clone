@@ -1,3 +1,5 @@
+# Controller for the creation of Friendships
+# Each accepted friendship has two listings, inverse to each other.
 class FriendshipsController < ApplicationController
   include FriendshipsHelper
   include GroupPrivacyHelper
@@ -54,6 +56,7 @@ class FriendshipsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  # Lists all friend requests for a user
   def index
     @received_requests = current_user.received_requests.order(name: :desc)
     @pending_requests = current_user.pending_requests.order(name: :desc)
@@ -72,13 +75,5 @@ class FriendshipsController < ApplicationController
   def fetch_existing_friendship
     @friendship = Friendship.find_by(sent_by_id: params[:user_id], sent_to_id: current_user.id, status: true)
     @friendship_inverse = Friendship.find_by(sent_by_id: current_user.id, sent_to_id: params[:user_id], status: true)
-  end
-
-  def fetch_group_friendships
-    @profile_owner = Group.find(params[:group_id])
-    @indexed_content = @profile_owner.users
-    @is_group = true
-    @banner_type = 'groups/profile_banner'
-    @button_type = 'users/friendship_button'
   end
 end

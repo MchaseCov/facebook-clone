@@ -1,6 +1,9 @@
+# Controller for the creation and display of Conversations
 class ConversationsController < ApplicationController
   before_action :sanitize_page_params
   before_action :authenticate_friendship, only: %i[create]
+
+  # An index of users you can converse with, and of your ongoing conversations
   def index
     @users = current_user.friends.order('last_seen_at DESC NULLS LAST')
     @conversations = current_user.total_conversations
@@ -19,6 +22,7 @@ class ConversationsController < ApplicationController
     params.permit(:sender_id, :recipient_id)
   end
 
+  # Must be friends with the user you want to chat to!
   def authenticate_friendship
     return if current_user.friends.ids.include?(params[:recipient_id]) && params[:sender_id] == current_user.id
 

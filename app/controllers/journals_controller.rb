@@ -1,26 +1,20 @@
+# Controller for the creation and display of Journals (posts)
+# Moduled with /users/journals_controller & /groups/journals_controller
 class JournalsController < ApplicationController
   include GroupPrivacyHelper
   before_action :fetch_journal, only: %i[edit update destroy]
   before_action :fetch_friendly_journals, only: [:index]
   before_action :set_default_journalable, only: %i[new create],
                                           if: -> { @journalable.nil? }
-  before_action -> { validate_user(@group = @journalable) }, only: %i[show new create],
-                                                             if: -> { @journalable.instance_of?(Group) }
+  def index; end
 
-  def index; 
-  end
-
+  # Comments where {parent_id: nil} are top-level comments that we feed into our partial to begin the nested comments
   def show
     @journal = Journal.find(params[:id])
     check_permissions(@journal.journalable) if @journal.journalable.instance_of?(Group)
     @comments = @journal.comments
                         .where(parent_id: nil)
                         .includes(:likes, :comments, :comment_author)
-    @comments = if params[:order].present?
-                  @comments.search(search_params)
-                else
-                  @comments.order(created_at: :desc)
-                end
   end
 
   def new
@@ -28,6 +22,7 @@ class JournalsController < ApplicationController
     @journal = @journalable.journals.new
   end
 
+  # Turbo stream allows us to preprend a new journal to the timeline instantly. This is NOT a broadcast.
   def create
     check_permissions(@journalable) if @journalable.instance_of?(Group)
     @journal = @journalable.journals.new(journal_params) do |p|
@@ -64,6 +59,9 @@ class JournalsController < ApplicationController
 
   private
 
+  # If you did not feed through /users/journals_controller or /groups/journals_controller
+  # when making a new Journal, by default make a Journal to your own wall.
+  # (This intentionally happens when posting from the main index page)
   def set_default_journalable
     @journalable = current_user
   end
@@ -72,6 +70,7 @@ class JournalsController < ApplicationController
     params.require(:journal).permit(:body, :image, :image_cache)
   end
 
+  # Ensure main timeline consists of only public posts made by friends
   def fetch_friendly_journals
     @journals = Journal.social_circle(current_user)
                        .where.not(journalable: Group.user_unauthorized(current_user))
@@ -79,12 +78,7 @@ class JournalsController < ApplicationController
                        .order(created_at: :desc)
   end
 
-  def search_params
-    return unless params[:order]
-
-    params.require(:order)
-  end
-
+  # If posting to group, make sure the user has permission, i.e., not posting to private group without membership
   def check_permissions(journalable)
     @group = journalable
     validate_user

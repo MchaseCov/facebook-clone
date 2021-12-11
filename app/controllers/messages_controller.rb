@@ -1,8 +1,10 @@
+# Controller for fetching and creating messages in a conversation. See also: conversations_controller.rb
 class MessagesController < ApplicationController
   before_action :fetch_conversation
   before_action :verify_participation
   before_action :fetch_current_user_conversations
 
+  # List of all messages in a conversation, i.e., a chat room.
   def index
     @messages = @conversation.messages.includes(:author)
     @messages.unread_messages(current_user).each do |message|

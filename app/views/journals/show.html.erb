@@ -50,14 +50,6 @@
 <%= render "comments/form", comment: Comment.new, commentable: @journal, class:"new-comment-region" %>
 <%= turbo_stream_from @journal, :comments %>
 
-
-<%= form_with url: journal_path(@journal), local: true, method: :get do |f| %>
-    <%= f.select :order, ["Newest First", "Oldest First", "Most Likes First", "Least Likes First"] %>
-    <%= f.submit "Sort Comments!" %>
-<% end %>
-
-
-
 <%= tag.ul id: "#{dom_id(@journal)}_comments", class:"comment-parent" do%>
     <%= render partial: "comments/comment_with_replies", collection: @comments, as: :comment %>
 <% end %>

@@ -1,4 +1,8 @@
+# Controller for creation and deletion of user likes on posts/comments.
+# Moduled with /journals/likes_controller & /comments/likes_controller
 class LikesController < ApplicationController
+  # Combined with the if statement, creates a 'toggle' for the like in one controller action.
+  # I made this as an alternative idea to explore but realistically would be better off as 2 routes.
   def create
     redirect_back(fallback_location: root_path) and return if dislike(@likeable, current_user)
 

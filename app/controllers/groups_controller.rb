@@ -1,3 +1,4 @@
+# Controller for the creation, membership, and display of Groups
 class GroupsController < ApplicationController
   include GroupPrivacyHelper
   before_action :fetch_group, only: %i[show edit update destroy members images]

@@ -1,3 +1,4 @@
+# Controller for User profiles and listing all users. Devise handles user creation.
 class UsersController < ApplicationController
   include GroupPrivacyHelper
   before_action :fetch_profile_owner, except: %i[index]
