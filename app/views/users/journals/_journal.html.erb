@@ -27,7 +27,10 @@
           <% end %>
           <%= truncate(journal.body, length: 256) { link_to 'Read More', journal_path(journal), 'data-turbo-frame': :_top } %> <br>
       </p>
-      <%= image_tag(journal.image.thumb.url, class:"journal-image-attch") if journal.image? %>
+      <% if journal.image? %>
+        <%= image_tag(journal.image.thumb.url, class:"journal-image-attch") %>
+        <%= link_to 'View full image', journal_path(journal), 'data-turbo-frame': :_top%>
+      <% end %>
   </article>
 
 

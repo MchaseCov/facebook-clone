@@ -37,9 +37,9 @@
       <% end %>
     </li>
     <li class="interactive">
-      <%= link_to root_path do %>
+      <%= link_to images_user_path(current_user) do %>
         <span class="material-icons">image</span>
-        Photos**
+        Photos
       <% end %>
     </li>
     <li class="interactive">
@@ -86,15 +86,9 @@
         <% end %>
       </li>
       <li class="interactive">
-        <%= link_to root_path do %>
-          <span class="material-icons">event</span>
-          Events**
-        <% end %>
-      </li>
-      <li class="interactive">
-        <%= link_to root_path do %>
-          <span class="material-icons">storefront</span>
-          Marketplace**
+        <%= link_to 'https://github.com/MchaseCov/facebook-clone', target: :_blank do %>
+          <span class="material-icons">code</span>
+          Github Repo
         <% end %>
       </li>
     </ul>

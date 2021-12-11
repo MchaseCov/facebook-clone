@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   # GROUPS [Journals, Membership]
   resources :groups do
     member do
-      get 'members' # 'members' here refers to a URL & respective controller action, not the route method member.
+      get 'members' # 'members' here refers to a URL & respective controller action, not the method 'member'!
+      get 'images'
     end
     match 'users/:id', to: 'groups#toggle_membership', via: %i[put delete], as: 'toggle_membership'
     resources :journals, only: %i[index new create], module: :groups
