@@ -1,35 +1,40 @@
 <div class="infobar-parent">
   <% if user_signed_in?%>
-  <div class="notif-icons">
-    <div class="icon interactive">
-      <%= link_to friendships_path, 'data-turbo-frame': "notification-dropdown" do %>
-        <% if recieved_friend_requests > 0 %>
-          <span class="notification-number"><%= recieved_friend_requests %></span>
-          <style>#friend-req-icon{color: var(--white);background-color: var(--blue);border-radius: 50%;}</style>
+    <div class="notif-icons">
+      <div class="icon interactive">
+        <%= link_to friendships_path, 'data-turbo-frame': "notification-dropdown" do %>
+          <% if recieved_friend_requests > 0 %>
+            <span class="notification-number"><%= recieved_friend_requests %></span>
+            <style>
+              #friend-req-icon{color: var(--white);background-color: var(--blue);border-radius: 50%;}
+            </style>
+          <% end %>
+          <span class="material-icons notification-icon" id="friend-req-icon">group_add</span>
         <% end %>
-        <span class="material-icons notification-icon" id="friend-req-icon">group_add</span>
-      <% end %>
-    </div>
-    <div class="icon interactive">
-      <%= link_to conversations_path, 'data-turbo-frame': "notification-dropdown" do %>
-        <% if new_messages > 0 %>
-          <span class="notification-number"><%= new_messages %></span>
-          <style>#unread-icon{color: var(--white);background-color: var(--blue);border-radius: 50%;}</style>
+      </div>
+      <div class="icon interactive">
+        <%= link_to conversations_path, 'data-turbo-frame': "notification-dropdown" do %>
+          <% if new_messages > 0 %>
+            <span class="notification-number"><%= new_messages %></span>
+            <style>
+              #unread-icon{color: var(--white);background-color: var(--blue);border-radius: 50%;}
+            </style>
+          <% end %>
+          <span class="material-icons notification-icon" id="unread-icon">textsms</span>
         <% end %>
-        <span class="material-icons notification-icon" id="unread-icon">textsms</span>
-      <% end %>
-    </div>
-    <div class="icon interactive">
-    <%= link_to notifications_path, 'data-turbo-frame': "notification-dropdown" do %>
-        <% if unread_notifications > 0 %>
-          <span class="notification-number"><%= unread_notifications %></span>
-          <style>#notification-icon{color: var(--white);background-color: var(--blue);border-radius: 50%;}</style>
+      </div>
+      <div class="icon interactive">
+        <%= link_to notifications_path, 'data-turbo-frame': "notification-dropdown" do %>
+          <% if unread_notifications > 0 %>
+            <span class="notification-number"><%= unread_notifications %></span>
+            <style>
+              #notification-icon{color: var(--white);background-color: var(--blue);border-radius: 50%;}
+            </style>
+          <% end %>
+          <span class="material-icons notification-icon" id="notification-icon">notifications</span>
         <% end %>
-        <span class="material-icons notification-icon" id="notification-icon">notifications</span>
-      <% end %>
+      </div>
     </div>
-  </div>
-  <%= turbo_frame_tag id="notification-dropdown", target: '_top', class:"infobar-dropdown-parent"%>
+    <%= turbo_frame_tag id="notification-dropdown", target: '_top', class:"infobar-dropdown-parent"%>
   <% end %>
 </div>
-    

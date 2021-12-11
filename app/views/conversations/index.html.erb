@@ -2,17 +2,17 @@
   My Inbox
 <% end %>
 <div class="conversation-grid">
-<%= turbo_frame_tag id="notification-dropdown", class:"turbo-dropdown" do %>
-<div class="conversation-list">
-<h1>Conversations:</h1>
-<%= render @conversations %>
-</div>
-<% end %>
-<main class="message-friends-list">
-<h2>Start A Convo!</h2>
-<div class="user-index-grid">
-<%= render partial: "friends_list", collection: @users,
+  <%= turbo_frame_tag id="notification-dropdown", class:"turbo-dropdown" do %>
+    <div class="conversation-list">
+      <h1>Conversations:</h1>
+      <%= render @conversations %>
+    </div>
+  <% end %>
+  <main class="message-friends-list">
+    <h2>Start A Convo!</h2>
+    <div class="user-index-grid">
+      <%= render partial: "friends_list", collection: @users,
                                       as: :result %>
-</div>
-</main>
+    </div>
+  </main>
 </div>

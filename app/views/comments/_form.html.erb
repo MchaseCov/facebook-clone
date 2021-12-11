@@ -3,17 +3,15 @@
               id: dom_id_for_records(*model),
               data: local_assigns[:data],
               class: local_assigns[:class] do |f| %>
-
-<div class="comment-reply comment-form">
-<% if comment.errors.any? %>
-<% comment.errors.full_messages.each do |message|%>
-<h3><%= message %> </h3>
-<%end%>
-<% end %>
-
-  <%= f.label :body, "Comment text:" %>
-  <%= f.text_area :body, id: "#{dom_id_for_records(*model)}_body" %>
-  <%= f.submit %>
-  <%= link_to  "Cancel", comment if comment.persisted? %>
-</div>
+  <div class="comment-reply comment-form">
+    <% if comment.errors.any? %>
+      <% comment.errors.full_messages.each do |message|%>
+        <h3><%= message %> </h3>
+      <%end%>
+    <% end %>
+    <%= f.label :body, "Comment text:" %>
+    <%= f.text_area :body, id: "#{dom_id_for_records(*model)}_body" %>
+    <%= f.submit %>
+    <%= link_to  "Cancel", comment if comment.persisted? %>
+  </div>
 <% end %>

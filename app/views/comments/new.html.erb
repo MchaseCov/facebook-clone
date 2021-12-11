@@ -1,4 +1,4 @@
 <%= turbo_frame_tag id="comment-window", class:"comment-window" do %>
-<br>
-<%= render 'form', commentable: @commentable, comment: @comment, user: current_user %>
+  <br>
+  <%= render 'form', commentable: @commentable, comment: @comment, user: current_user %>
 <% end %>

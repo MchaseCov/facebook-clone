@@ -7,7 +7,7 @@
   margin: 0;
   font-size: 24px;
   font-weight: 500;
-  a{
+  a {
     color: var(--grey);
   }
 }
@@ -18,7 +18,7 @@
   align-items: center;
   padding-left: 3%;
 
-  a{
+  a {
     padding-right: 1em;
     text-decoration: none;
   }
@@ -39,8 +39,9 @@
   padding-right: 10%;
 }
 
-.links a, a:visited {
-  color:  var(--pink);;
+.links a,
+a:visited {
+  color: var(--pink);
   margin: 0 5px;
   text-decoration: none;
 }

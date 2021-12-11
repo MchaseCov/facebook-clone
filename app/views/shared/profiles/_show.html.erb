@@ -1,12 +1,10 @@
-
-    <div class="profile-sidebar" id="profile-sidebar">
-    SIDEBAR PLACEHOLDER!!
-    </div>
-
-    <div class="profile-feed">
-    <%= turbo_frame_tag id="new_journal", src:eval("new_#{profile_owner.class.name.downcase}_journal_path(profile_owner)"), target:"_top", class:"journal-window" %>
-    <br>
+<div class="profile-sidebar" id="profile-sidebar">
+  SIDEBAR PLACEHOLDER!!
+</div>
+<div class="profile-feed">
+  <%= turbo_frame_tag id="new_journal", src:eval("new_#{profile_owner.class.name.downcase}_journal_path(profile_owner)"), target:"_top", class:"journal-window" %>
+  <br>
   <div id="journals">
     <%= render journals, as: :journal %>
   </div>
-    </div>
+</div>

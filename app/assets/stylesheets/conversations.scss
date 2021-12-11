@@ -2,65 +2,66 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 .conversation-grid {
-  display: grid; 
-  grid-template-columns: .33fr 1fr; 
-  grid-template-rows: 1fr; 
-  gap: 0px 0px; 
-  grid-template-areas: 
-    "conversation-list message-region"; 
+  display: grid;
+  grid-template-columns: 0.33fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas: "conversation-list message-region";
   height: 100%;
   max-height: 100vh;
 }
 
 .conversation-list {
   grid-area: conversation-list;
-  color:white;
+  color: white;
   background-color: var(--grey);
   height: 100%;
   max-height: 100%;
   overflow-y: auto;
-  position: sticky; 
+  position: sticky;
   max-height: 100vh;
-  a{text-decoration: none;}
+  a {
+    text-decoration: none;
+  }
   width: 100%;
   overflow-wrap: break-word;
   flex: 1 1 0px;
-  h1{
+  h1 {
     font-size: 24px;
     text-align: center;
   }
 }
 
-.conversation-listing{
+.conversation-listing {
   height: 75px;
-  position:relative;
+  position: relative;
   margin-bottom: 5px;
-  p{
+  p {
     text-align: left;
     margin: 0 5px 0 65px;
   }
   overflow-y: hidden;
 }
-.convo-header{
-  display:flex;
+.convo-header {
+  display: flex;
   justify-content: space-between;
   margin-left: 65px;
   margin-right: 10px;
-  h6{
+  h6 {
     flex: 50%;
     display: inline;
     text-align: right;
   }
-  h4{
+  h4 {
     flex: 50%;
     display: inline;
     text-align: left;
   }
 }
-.conversation-listing:hover{
+.conversation-listing:hover {
   box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
 }
-.conversation-listing-avatar{
+.conversation-listing-avatar {
   border-radius: 50%;
   outline: 1px solid var(--pink);
   position: absolute;
@@ -68,14 +69,13 @@
   top: 50%;
   transform: translateY(-50%);
 }
-.unread-icon{
+.unread-icon {
   color: var(--pink);
   position: absolute;
   left: 40px;
   bottom: 10%;
   transform: translateY(10%);
 }
-
 
 .message-friends-list {
   grid-area: message-region;

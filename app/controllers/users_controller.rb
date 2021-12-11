@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
   # Index of a specific user's friends using reusable grid partial.
   def friendships
-    @indexed_content = @profile_owner.friend
+    @indexed_content = @profile_owner.friends
                                      .includes(:friends)
                                      .order('last_seen_at DESC NULLS LAST')
     render 'shared/profiles/index'

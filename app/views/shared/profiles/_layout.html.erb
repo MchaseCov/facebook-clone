@@ -1,7 +1,6 @@
 <% content_for(:title) do %>
   <%= profile_owner.name %>'s Profile
 <% end %>
-
 <div class="profile-page">
   <div class="profile-banner">
     <%= image_tag((profile_owner.banner.url), class:"profile-banner-image") %>
@@ -10,15 +9,15 @@
       <div class="profile-banner-information">
         <h1 class="profile-name"><%= profile_owner.name.titlecase %></h1>
         <% if profile_owner.instance_of?(Group) %>
-        <h2 class="profile-nick">(Created by: <%= profile_owner.creator.name.titlecase %>)</h2>
+          <h2 class="profile-nick">(Created by: <%= profile_owner.creator.name.titlecase %>)</h2>
         <% else %>
-        <h2 class="profile-nick">(<%= profile_owner.nick_name.titlecase %>)</h2>
+          <h2 class="profile-nick">(<%= profile_owner.nick_name.titlecase %>)</h2>
         <% end %>
       </div>
     </div>
   </div>
   <%= turbo_frame_tag id="profile-content", class:"profile-content" do %>
-  <%= render "shared/profiles/nav_buttons", profile_owner: profile_owner %>
-  <%= yield %>
+    <%= render "shared/profiles/nav_buttons", profile_owner: profile_owner %>
+    <%= yield %>
   <% end %>
 </div>

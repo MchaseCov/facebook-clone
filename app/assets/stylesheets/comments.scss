@@ -2,77 +2,78 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.comment-parent{
+.comment-parent {
   width: 90%;
-  text-align:left;
+  text-align: left;
   margin-left: 20px;
-  ul{
-  list-style-type: none;}
-  a{
-    color: var(--pink)
+  ul {
+    list-style-type: none;
+  }
+  a {
+    color: var(--pink);
   }
   ul > li {
     margin-left: 50px;
   }
-  .nest-layer-12{
+  .nest-layer-12 {
     ul > li {
       margin-left: 0px;
     }
   }
-  .comment-block{
+  .comment-block {
     margin-bottom: 10px;
     padding: 10px 10px 5px 10px;
     width: 100%;
     min-width: 200px;
     border-radius: 20px;
-    color:white;
+    color: white;
     background-color: var(--grey);
-    .comment-reply{
+    .comment-reply {
       overflow-wrap: anywhere;
-    .comment-header{
-      display: flex;
-      gap: 10px;
-      height: 50px;
-      margin-bottom: 10px;
-      .comment-avatar{
-        border-radius: 50%;
-        outline: 1px solid var(--pink);
-      }
-      .header-text{
+      .comment-header {
         display: flex;
-        flex-flow: row wrap;
-      .comment-author{
-        flex-basis: 100%;
+        gap: 10px;
+        height: 50px;
+        margin-bottom: 10px;
+        .comment-avatar {
+          border-radius: 50%;
+          outline: 1px solid var(--pink);
+        }
+        .header-text {
+          display: flex;
+          flex-flow: row wrap;
+          .comment-author {
+            flex-basis: 100%;
+          }
+          .time-text {
+            font-weight: 200;
+          }
+        }
       }
-      .time-text{
-        font-weight: 200;
+      .comment-links-parent {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        a {
+          text-decoration: none;
+          color: white;
+          background-color: var(--black);
+          padding: 6px;
+          border-radius: 10px;
+        }
+        a:hover {
+          background: linear-gradient(to bottom right, var(--blue), var(--pink));
+          cursor: pointer;
+          outline: 2px solid black;
+          text-align: center;
+        }
       }
-      } 
-    }
-    .comment-links-parent{
-      margin-top: 10px;
-      margin-bottom: 10px;
-    a{
-      text-decoration: none;
-      color: white;
-      background-color: var(--black);
-      padding: 6px;
-      border-radius: 10px;
-    }
-    a:hover{
-      background: linear-gradient(to bottom right, var(--blue), var(--pink));
-      cursor: pointer;
-      outline: 2px solid black;
-      text-align: center;
-    }
     }
   }
-}
-  .comment-form{
+  .comment-form {
     max-width: 400px;
     width: 80%;
     margin-top: 20px;
-    textarea{
+    textarea {
       resize: none;
       width: 80%;
       max-width: 325px;
@@ -81,42 +82,42 @@
     }
   }
 }
-.new-comment-region{
+.new-comment-region {
   margin-bottom: 30px;
   flex-basis: column wrap;
-  .comment-reply{
+  .comment-reply {
     margin-left: auto;
     margin-right: auto;
   }
-  }
-.d-none{
-  display: none
+}
+.d-none {
+  display: none;
 }
 
-.like-box{
+.like-box {
   text-align: center;
   display: inline-block;
   margin-left: auto;
-  .like-on{
+  .like-on {
     color: var(--blue);
   }
-  .like-off{
+  .like-off {
     color: white;
   }
-  .like-count{
-  font-weight: 200;
+  .like-count {
+    font-weight: 200;
   }
 }
-.comment-form{
+.comment-form {
   text-align: center;
   display: flex;
   width: 80%;
   flex-flow: column wrap;
   border-radius: 20px;
-  color:white;
+  color: white;
   background-color: var(--grey);
-  margin-bottom:10px;
-  textarea{
+  margin-bottom: 10px;
+  textarea {
     margin-left: auto;
     margin-right: auto;
     resize: none;
@@ -125,7 +126,7 @@
     height: 150px;
     padding: 8px;
   }
-  input{
+  input {
     margin-top: 5px;
     margin-bottom: 5px;
     width: 50%;
@@ -139,13 +140,13 @@
     outline: 2px solid black;
     border: 0;
   }
-  input:hover{
+  input:hover {
     background: linear-gradient(to bottom right, var(--blue), var(--pink));
     cursor: pointer;
     text-align: center;
   }
 }
 
-.edit-links{
+.edit-links {
   display: none;
 }

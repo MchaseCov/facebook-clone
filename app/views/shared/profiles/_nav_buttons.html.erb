@@ -2,13 +2,13 @@
   <%= button_to "Timeline", profile_owner, class:"profile-banner-button", method: :get %>
   <%= button_to "About", profile_owner, class:"profile-banner-button", method: :get %>
   <% if profile_owner.instance_of?(Group) %>
-  <%= button_to "Photos", images_group_path(profile_owner), class:"profile-banner-button", method: :get %>
-  <%= button_to "Members (#{profile_owner.users.size})", members_group_path(profile_owner), class:"profile-banner-button", method: :get %>
-  <%= render "groups/member_button", button_target: profile_owner %>
+    <%= button_to "Photos", images_group_path(profile_owner), class:"profile-banner-button", method: :get %>
+    <%= button_to "Members (#{profile_owner.users.size})", members_group_path(profile_owner), class:"profile-banner-button", method: :get %>
+    <%= render "groups/member_button", button_target: profile_owner %>
   <% else %>
-  <%= button_to "Photos", images_user_path(profile_owner), class:"profile-banner-button", method: :get %>
-  <%= button_to "Friends (#{profile_owner.friends.size})", friendships_user_path(profile_owner), class:"profile-banner-button", method: :get %>
-  <%= button_to "Groups (#{@groups.size})", groups_user_path(profile_owner), class:"profile-banner-button", method: :get %>
-  <%= render "users/friendship_button", button_target: profile_owner %>
-<% end %>
+    <%= button_to "Photos", images_user_path(profile_owner), class:"profile-banner-button", method: :get %>
+    <%= button_to "Friends (#{profile_owner.friends.size})", friendships_user_path(profile_owner), class:"profile-banner-button", method: :get %>
+    <%= button_to "Groups (#{@groups.size})", groups_user_path(profile_owner), class:"profile-banner-button", method: :get %>
+    <%= render "users/friendship_button", button_target: profile_owner %>
+  <% end %>
 </div>

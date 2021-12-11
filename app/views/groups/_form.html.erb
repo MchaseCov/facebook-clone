@@ -2,7 +2,6 @@
   <% if group.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
-
       <ul>
         <% group.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,40 +9,32 @@
       </ul>
     </div>
   <% end %>
-  
   <div class="field">
     <label>Group Avatar</label>
     <%= image_tag(group.avatar.thumb.url) if group.avatar? %>
     <%= f.file_field :avatar %>
     <%= f.hidden_field :avatar_cache %>
   </div>
-
-
   <div class="field">
     <label>Group Banner</label>
     <%= image_tag(group.banner.thumb.url) if group.banner? %>
     <%= f.file_field :banner %>
     <%= f.hidden_field :banner_cache %>
   </div>
-
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name%>
   </div>
-
   <div class="field">
     <%= f.label 'Description of your group (255 character limit)' %><br />
     <%= f.text_field :description %>
   </div>
-
   <div class="field">
     <%= hidden_field_tag :private, 'false' %>
     <%= f.label 'Check this if you would like to make your group private and not show up to other users' %><br />
     <%= f.check_box :private %>
   </div>
-
   <div class="actions">
     <%= f.submit %>
   </div>
-
 <% end %>

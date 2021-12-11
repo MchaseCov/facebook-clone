@@ -8,57 +8,56 @@
   text-align: left;
   padding-left: 15%;
   padding-top: 10%;
-  position: relative; 
+  position: relative;
   z-index: 2;
   max-width: 20vw;
-  .sidebar-parent{
+  .sidebar-parent {
     display: flex;
     flex-direction: column;
     position: fixed;
     max-width: 20vw;
     background-color: var(--black);
-    h2{ margin-bottom: 24px;
+    height: 100%;
+    h2 {
+      margin-bottom: 24px;
       display: block;
-    .logo {
-      font-size: 4rem;
-      font-weight: 700;
-      color: var(--white);
-      text-decoration: none;
-    }}
+      .logo {
+        font-size: 4rem;
+        font-weight: 700;
+        color: var(--white);
+        text-decoration: none;
+      }
+    }
   }
   ul {
     list-style-type: none;
   }
-  
+
   h4 {
     font-weight: 700;
-    font-size: 1.50em;
-    padding: .5rem 0 .5rem 0;
+    font-size: 1.5rem;
+    padding: 0.5rem 0 0.5rem 0;
     background-image: linear-gradient(to right, var(--pink), var(--blue));
     -webkit-background-clip: text;
-            background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-background-clip: text;
-    -webkit-text-fill-color: transparent; 
+    -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
   }
-  .interactive{
+  .interactive {
     padding-left: 0;
   }
   .interactive:hover {
     background-color: var(--blue);
-  }
-  #username{
-    font-size: 1.25em;
-    font-weight: 800;
   }
   li a {
     text-decoration: none;
     color: white;
     vertical-align: middle;
     line-height: 1;
-    display:flex;
-    align-items:center;
+    display: flex;
+    align-items: center;
     font-weight: 300;
     span {
       vertical-align: bottom;
@@ -72,24 +71,23 @@
     margin-left: auto;
     margin-right: auto;
   }
-  .avatar{
+  .avatar {
     max-width: 15vw;
     height: auto;
     display: block;
     margin: auto;
-    background: 
-    linear-gradient(var(--black), var(--black)) padding-box,
-    linear-gradient(to right, var(--blue), var(--pink)) border-box;
+    background: linear-gradient(var(--black), var(--black)) padding-box,
+      linear-gradient(to right, var(--blue), var(--pink)) border-box;
     border-radius: 50%;
-    border: 6px solid transparent;  
+    border: 6px solid transparent;
   }
-  img{
+  img {
     border-radius: 50%;
     outline: 1px solid var(--pink);
     margin: 3px 3px 3px 0px;
     display: inline-block;
   }
-  #bottom-link{
+  #bottom-link {
     font-size: 1.5em;
     margin-top: 10%;
   }

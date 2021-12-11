@@ -4,19 +4,18 @@
     <%= f.label n.id do %>
       <%=time_ago_in_words(n.created_at) %> ago:
       <%=link_to n.actor.nick_name, n.actor %>
-        <% if n.notifiable_type == "Comment" %>
-            <%= link_to n.action, journal_path(n.notifiable.commentable, anchor: "comment_#{n.notifiable.id}")%>
-        <% elsif n.notifiable_type == "Friendship"%> 
-            <%=n.action%>
-        <% else %>
-            <%=link_to *(n.notifiable_type == "Like" ? [n.notifiable.likeable] : [n.notifiable]) do %>
-                <%=n.action%>
-            <% end %>
+      <% if n.notifiable_type == "Comment" %>
+        <%= link_to n.action, journal_path(n.notifiable.commentable, anchor: "comment_#{n.notifiable.id}")%>
+      <% elsif n.notifiable_type == "Friendship"%>
+        <%=n.action%>
+      <% else %>
+        <%=link_to *(n.notifiable_type == "Like" ? [n.notifiable.likeable] : [n.notifiable]) do %>
+          <%=n.action%>
         <% end %>
-        <br>
+      <% end %>
+      <br>
     <% end %>
   <% end %>
   <%= f.submit "Mark as read!" %>
 <% end %>
-
 <%= link_to  "Mark ALL as read", read_all_notification_path, data: { confirm: "Mark all notifications as read?" }, method: :post %>

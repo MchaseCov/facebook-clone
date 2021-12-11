@@ -1,25 +1,25 @@
 <%=turbo_stream_from comment %>
-  <%= turbo_frame_tag comment, class:"comment-reply" do %>
-    <div class="comment-header">
-      <%= image_tag((comment.comment_author.avatar.thumb.url), class:"comment-avatar") %>
-      <div class="header-text">
-        <h3 class="comment-author"><%= comment.comment_author.name %></h3>
-        <div class="time-text">
+<%= turbo_frame_tag comment, class:"comment-reply" do %>
+  <div class="comment-header">
+    <%= image_tag((comment.comment_author.avatar.thumb.url), class:"comment-avatar") %>
+    <div class="header-text">
+      <h3 class="comment-author"><%= comment.comment_author.name %></h3>
+      <div class="time-text">
         Posted <%= time_ago_in_words(comment.created_at) + ' ago' %>
         <% if comment.created_at != comment.updated_at %>
-        | Edited <%= time_ago_in_words(comment.updated_at) + ' ago' %> <br>
+          | Edited <%= time_ago_in_words(comment.updated_at) + ' ago' %> <br>
         <% end %>
-        </div>
       </div>
-      <%= render  "likes/form", content: comment %>
-      </div>
-      <p><%= comment.body%></p> <br>
-      <div class= "comment-links-parent">
-      <%= link_to  "Reply", '#', data: {action: "click->comment-reply#toggle" } %>
-      <span class="edit-links user-<%=comment.comment_author.id%>-edit-links">
+    </div>
+    <%= render  "likes/form", content: comment %>
+  </div>
+  <p><%= comment.body%></p>
+  <br>
+  <div class= "comment-links-parent">
+    <%= link_to  "Reply", '#', data: {action: "click->comment-reply#toggle" } %>
+    <span class="edit-links user-<%=comment.comment_author.id%>-edit-links">
       | <%= link_to "Edit comment", edit_comment_path(comment) %>
       | <%= link_to  "Delete comment", comment, method: :delete, data: { confirm: "Are you sure?" } if comment.persisted? %>
-      </span>
-      </div>
-  <% end %>
-
+    </span>
+  </div>
+<% end %>

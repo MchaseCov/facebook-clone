@@ -1,28 +1,24 @@
 <% content_for(:title) do %>
   Chat with <%=@conversation.chat_partner(current_user).name%>
 <% end %>
-
 <style>
-/*HIGHLIGHT CURRENT CONVO IN LIST*/
   <%="##{dom_id(@conversation)}"%>{
     box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.2);
   }
 </style>
 <div class="conversation-grid">
-
   <aside class="conversation-list">
-  <%= link_to conversations_path do %>
-    <h1>Conversations:</h1><% end %>
+    <%= link_to conversations_path do %>
+      <h1>Conversations:</h1>
+    <% end %>
     <%= render @conversations %>
   </aside>
-
   <main class="message-region">
-      <article class="messages">
+    <article class="messages">
       <a href="#bottom-anchor" class="jump-link">Jump to Bottom!</a>
-        <%= render @messages %>
-        <source id="bottom-anchor">
-      </article>
+      <%= render @messages %>
+      <source id="bottom-anchor">
+    </article>
     <%= turbo_frame_tag id="new_message", src:new_conversation_message_path(@conversation), target:"_top", class:"new-message-window" %>
   </main>
-
 </div>

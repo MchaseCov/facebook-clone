@@ -2,23 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-
 .profile-page {
-  display: grid; 
-  grid-template-columns: minmax(0, auto) auto; 
-  grid-template-rows: 400px auto; 
-  gap: 0px 0px; 
-  grid-template-areas: 
+  display: grid;
+  grid-template-columns: minmax(0, auto) auto;
+  grid-template-rows: 400px auto;
+  gap: 0px 0px;
+  grid-template-areas:
     "profile-banner profile-banner"
-    "profile-content profile-content"; 
+    "profile-content profile-content";
   background-color: var(--dark-blue);
- }
+}
 
 .profile-banner {
   grid-area: profile-banner;
   position: relative;
 }
-.profile-banner-overlay{
+.profile-banner-overlay {
   position: absolute;
   bottom: -10%;
   padding-left: 5%;
@@ -28,16 +27,16 @@
   overflow-x: auto;
   overflow-y: visible;
   padding-top: 20px;
-  padding-bottom:5px;
+  padding-bottom: 5px;
 }
-.profile-banner-information{
+.profile-banner-information {
   text-align: left;
   padding-left: 1em;
   color: white;
   width: 100%;
   max-width: max-content;
 
-  .profile-name{
+  .profile-name {
     font-size: 3em;
     font-weight: 600;
     padding-left: 5px;
@@ -46,7 +45,7 @@
     margin-bottom: 5px;
     background-color: rgba(56, 18, 42, 0.8);
   }
-  .profile-nick{
+  .profile-nick {
     font-size: 1.75em;
     max-width: max-content;
     font-weight: 400;
@@ -56,23 +55,22 @@
     background-color: rgba(56, 18, 42, 0.8);
   }
 }
-.profile-banner-image{
+.profile-banner-image {
   width: 100%;
   height: 100%;
   border-bottom: 2px solid var(--pink);
 }
-.profile-avatar-image{
+.profile-avatar-image {
   left: 5%;
   width: 192px;
   height: 192px;
   border-radius: 50%;
-  background: 
-  linear-gradient(var(--black), var(--black)) padding-box,
-  linear-gradient(to right, var(--blue), var(--pink)) border-box;
+  background: linear-gradient(var(--black), var(--black)) padding-box,
+    linear-gradient(to right, var(--blue), var(--pink)) border-box;
   border-radius: 50%;
-  border: 6px solid transparent;  
+  border: 6px solid transparent;
 }
-.profile-content{
+.profile-content {
   grid-area: profile-content;
   margin-top: 10%;
   display: flex;
@@ -89,14 +87,14 @@
   min-width: 45%;
   flex-grow: 1;
 }
-.profile-banner-buttons-parent{
+.profile-banner-buttons-parent {
   display: flex;
   align-content: flex-start;
   justify-content: space-around;
   padding-top: 2%;
   width: 95%;
 }
-.profile-banner-button{
+.profile-banner-button {
   background-color: var(--black);
   border: none;
   color: white !important;
@@ -109,12 +107,11 @@
   margin-right: 10px;
   outline: 2px solid black;
 }
-.profile-banner-button:hover{
+.profile-banner-button:hover {
   background: linear-gradient(to bottom right, var(--blue), var(--pink));
   cursor: pointer;
-
 }
-.profile-buttons{
+.profile-buttons {
   grid-area: profile-buttons;
   position: absolute;
   display: flex;
@@ -122,5 +119,5 @@
   left: 35%;
   justify-content: flex-start;
   padding-top: 2%;
-  width: 100%
+  width: 100%;
 }

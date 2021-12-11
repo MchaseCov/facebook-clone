@@ -1,46 +1,45 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <!-- Open Sans Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-      <!-- "Font" used for sitewide icons! -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!-- Each Page Includes A Custom Title To Yield -->
-  <title>  
-    <% if content_for?(:title) %>
-    <%= yield :title %> | Friendsy 
-    <% end %>
-  </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Open Sans Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- "Font" used for sitewide icons! -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Each Page Includes A Custom Title To Yield -->
+    <title>
+      <% if content_for?(:title) %>
+        <%= yield :title %> | Friendsy 
+      <% end %>
+    </title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <style> /*TURBO STREAM WORKAROUNDS*/
-      <%if user_signed_in?%>
-      /*Current user's DMs turn blue & align right side*/
-      <%=".user-#{current_user.id}-message"%>{
-        background-color: var(--blue) !important;
-        margin: 10px 35px 10px auto;
-        text-align: right;}
-      <%=".user-#{current_user.id}-message"%> .read-reciept{
-        font-size: .75em;
-        font-weight: 200;
-        display: inline;}
-      <%=".user-#{current_user.id}-avatar"%>{
-        left: auto;
-        right: -30px;
-        outline: 1px solid var(--blue);}
-      /*Current User can see Edit/Delete links (they do not function for other users even if they display)*/
-      <%=".user-#{current_user.id}-edit-links"%>{
-        display: inline}
-      <%end%>
+    <style>
+      /*TURBO STREAM WORKAROUNDS*/
+           <%if user_signed_in?%>
+           /*Current user's DMs turn blue & align right side*/
+           <%=".user-#{current_user.id}-message"%>{
+             background-color: var(--blue) !important;
+             margin: 10px 35px 10px auto;
+             text-align: right;}
+           <%=".user-#{current_user.id}-message"%> .read-reciept{
+             font-size: .75em;
+             font-weight: 200;
+             display: inline;}
+           <%=".user-#{current_user.id}-avatar"%>{
+             left: auto;
+             right: -30px;
+             outline: 1px solid var(--blue);}
+           /*Current User can see Edit/Delete links (they do not function for other users even if they display)*/
+           <%=".user-#{current_user.id}-edit-links"%>{
+             display: inline}
+           <%end%>
     </style>
   </head>
-
   <body>
     <!-- Upper Header -->
     <div class="header-navbar" id="top"><%= render "shared/navbars/header" %></div>

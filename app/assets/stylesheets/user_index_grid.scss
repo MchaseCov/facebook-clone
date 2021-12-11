@@ -1,12 +1,12 @@
 .user-index-grid {
-  display: grid; 
-  grid-template-columns: 1fr 1fr 1fr; 
-  grid-template-rows: repeat(auto-fit, minmax(1fr, 1fr)); 
-  gap: 1em 1em; 
-  grid-template-areas: 
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: repeat(auto-fit, minmax(1fr, 1fr));
+  gap: 1em 1em;
+  grid-template-areas:
     ". . ."
     ". . ."
-    ". . ."; 
+    ". . .";
 }
 .user-index-result {
   overflow: hidden;
@@ -20,40 +20,39 @@
     text-decoration: none;
   }
 }
-.user-index-name{
+.user-index-name {
   color: var(--pink);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   text-decoration: underline;
-  font-size: .8vw;
+  font-size: 0.8vw;
   font-weight: 600;
 }
-.user-index-result-contents{
+.user-index-result-contents {
   width: 100%;
   list-style-type: none;
-  overflow: hidden; 
+  overflow: hidden;
   height: 100%;
-  position: relative;  
+  position: relative;
 }
-.user-index-image{
+.user-index-image {
   max-width: 100%;
   height: auto;
-  background: 
-  linear-gradient(var(--black), var(--black)) padding-box,
-  linear-gradient(to right, var(--blue), var(--pink)) border-box;
+  background: linear-gradient(var(--black), var(--black)) padding-box,
+    linear-gradient(to right, var(--blue), var(--pink)) border-box;
   border-radius: 50%;
-  border: 6px solid transparent;  
+  border: 6px solid transparent;
 }
-.user-index-button{
+.user-index-button {
   margin-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 24px
+  gap: 24px;
 }
 
-.index-result-icons-parent{
+.index-result-icons-parent {
   margin: 0;
   padding: 0;
   width: 2.5em;
@@ -65,66 +64,65 @@
   flex-flow: column wrap;
   justify-content: flex-end;
 
+  .user-index-result-icon {
+    font-size: 2.5em;
+    position: relative;
+  }
 
-.user-index-result-icon{
-  font-size: 2.5em;
-  position: relative;
-}
-
-.online-icon{
-  color: #378D54;
-}
-.away-icon{
-  color: #fc9745
-}
-.offline-icon{
-  color: #b4b6bf
-}
-.friends-icon{
-  color: var(--blue);
-}
-.not-friends-icon{
-  color: #b4b6bf
-}
-.private-icon{
-  color: #b4b6bf
-}
-.public-icon{
-  color: var(--blue);
-}
-.creator-icon{
-  color: #378D54;
-}
-.member-icon{
-  color: var(--blue);
-}
-.not-member-icon{
-  color: #b4b6bf;
-}
-.tooltiptext {
-  visibility: hidden;
-  background-color: var(--black);
-  color: var(--blue);
-  text-align: center;
-  padding: 5px 20px;
-  border-radius: 6px;
-  font-size: 1vw;
-  position: absolute;
-  z-index: 1;
-  overflow-x: visible; 
-  left: 105%;
-  top: 5px;
-}
-.user-index-result-icon .tooltiptext::after {
-  content: " ";
-  position: absolute;
-  top: 50%;
-  right: 100%;
-  margin-top: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: transparent var(--black) transparent transparent;
-}
+  .online-icon {
+    color: #378d54;
+  }
+  .away-icon {
+    color: #fc9745;
+  }
+  .offline-icon {
+    color: #b4b6bf;
+  }
+  .friends-icon {
+    color: var(--blue);
+  }
+  .not-friends-icon {
+    color: #b4b6bf;
+  }
+  .private-icon {
+    color: #b4b6bf;
+  }
+  .public-icon {
+    color: var(--blue);
+  }
+  .creator-icon {
+    color: #378d54;
+  }
+  .member-icon {
+    color: var(--blue);
+  }
+  .not-member-icon {
+    color: #b4b6bf;
+  }
+  .tooltiptext {
+    visibility: hidden;
+    background-color: var(--black);
+    color: var(--blue);
+    text-align: center;
+    padding: 5px 20px;
+    border-radius: 6px;
+    font-size: 1vw;
+    position: absolute;
+    z-index: 1;
+    overflow-x: visible;
+    left: 105%;
+    top: 5px;
+  }
+  .user-index-result-icon .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent var(--black) transparent transparent;
+  }
 }
 .user-index-result-icon:hover .tooltiptext {
   visibility: visible;

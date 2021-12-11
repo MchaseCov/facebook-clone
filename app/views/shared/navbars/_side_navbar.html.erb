@@ -1,118 +1,118 @@
 <div class="sidebar-parent">
- <div class="section-parent">
-<h2><%= link_to "Friendsy", root_path, class:"logo" %></h2>
-</div>
-<% if user_signed_in? %>
   <div class="section-parent">
-    <div class="section-header"><%= link_to user_path(current_user.id), id:"username" do %>
-    <%= image_tag((current_user.avatar.url), class:"avatar", draggable: "false") %>
-    <h4><%= current_user.name.titlecase %></h4> <% end %>
+    <h2><%= link_to "Friendsy", root_path, class:"logo" %></h2>
+  </div>
+  <% if user_signed_in? %>
+    <div class="section-parent">
+      <div class="section-header"><%= link_to user_path(current_user.id), id:"username" do %>
+          <%= image_tag((current_user.avatar.url), class:"avatar", draggable: "false") %>
+          <h4><%= current_user.name.titlecase %></h4>
+        <% end %>
+      </div>
+      <ul>
+        <li class="interactive">
+          <%= link_to edit_user_registration_path do %>
+            <span class="material-icons">manage_accounts</span>
+            Edit My Profile
+          <% end %>
+        </li>
+        <li class="interactive">
+          <%= link_to destroy_user_session_path, method: :delete, :data => { :no_turbolink => true }  do %>
+            <span class="material-icons">logout</span>
+            Sign Out
+          <% end %>
+        </li>
+      </div>
+    </ul>
+    <div class="section-parent">
+      <h4 class="section-header">Quick Navigation</h4>
+      <ul>
+        <li class="interactive">
+          <%= link_to root_path do %>
+            <span class="material-icons">home</span>
+            Home Feed
+          <% end %>
+        </li>
+        <li class="interactive">
+          <%= link_to friendships_user_path(current_user) do %>
+            <span class="material-icons">people</span>
+            Friends (<%=current_user.friends.size%>)
+          <% end %>
+        </li>
+        <li class="interactive">
+          <%= link_to images_user_path(current_user) do %>
+            <span class="material-icons">image</span>
+            Photos
+          <% end %>
+        </li>
+        <li class="interactive">
+          <%= link_to conversations_path do %>
+            <span class="material-icons">textsms</span>
+            Messages (<%=new_messages%> unread)
+          <% end %>
+        </li>
+      </ul>
     </div>
-    <ul>
-    <li class="interactive">
-      <%= link_to edit_user_registration_path do %>
-        <span class="material-icons">manage_accounts</span>
-        Edit My Profile
-      <% end %>
-    </li>
-    <li class="interactive">
-      <%= link_to destroy_user_session_path, method: :delete, :data => { :no_turbolink => true }  do %>
-        <span class="material-icons">logout</span>
-        Sign Out
-      <% end %>
-    </li>
-  </div>
-  </ul>
-  <div class="section-parent">
-    <h4 class="section-header">Quick Navigation</h4>
-    <ul>
-  <li class="interactive">
-      <%= link_to root_path do %>
-        <span class="material-icons">home</span>
-        Home Feed
-      <% end %>
-    </li>
-    <li class="interactive">
-      <%= link_to friendships_user_path(current_user) do %>
-        <span class="material-icons">people</span>
-        Friends (<%=current_user.friends.size%>)
-      <% end %>
-    </li>
-    <li class="interactive">
-      <%= link_to images_user_path(current_user) do %>
-        <span class="material-icons">image</span>
-        Photos
-      <% end %>
-    </li>
-    <li class="interactive">
-      <%= link_to conversations_path do %>
-        <span class="material-icons">textsms</span>
-        Messages (<%=new_messages%> unread)
-      <% end %>
-    </li>
-    </ul>
-  </div>
-  <div class="section-parent">
-    <h4 class="section-header">Groups</h4>
-    <ul>
-      <% @sidebar_groups.each do |group|%>
-      <li class="interactive">
-        <%= link_to group do %>
-          <%= image_tag(group.avatar.small_thumb.url) %>
-          <%= group.name %> (<%=group.users.size%>)
+    <div class="section-parent">
+      <h4 class="section-header">Groups</h4>
+      <ul>
+        <% @sidebar_groups.each do |group|%>
+          <li class="interactive">
+            <%= link_to group do %>
+              <%= image_tag(group.avatar.small_thumb.url) %>
+              <%= group.name %> (<%=group.users.size%>)
+            <% end %>
+          </li>
         <% end %>
-      </li>
-      <% end %>
-
-      <li class="interactive">
-        <%= link_to groups_user_path(current_user) do %>
-          <%= image_tag(current_user.avatar.small_thumb.url) %>
-          All My Groups (<%=current_user.groups.size%>)
-        <% end %>
-      </li>
-    </ul>
-  </div>
-  <div class="section-parent">
-    <h4 class="section-header">Discover</h4>
-    <ul>
-      <li class="interactive">
-        <%= link_to users_path do %>
-          <span class="material-icons">connect_without_contact</span>
-          Users
-        <% end %>
-      </li>
-      <li class="interactive">
-        <%= link_to groups_path do %>
-          <span class="material-icons">groups</span>
-          Groups
-        <% end %>
-      </li>
-      <li class="interactive">
-        <%= link_to 'https://github.com/MchaseCov/facebook-clone', target: :_blank do %>
-          <span class="material-icons">code</span>
-          Github Repo
-        <% end %>
-      </li>
-    </ul>
-  </div>
-  <div class="section-parent">
-    <ul>
-      <li class="interactive" id="bottom-link"><%= link_to "Back to top!", anchor:"top" %></li>
-    </ul>
-  </div>
-<% else %>
-  <div class="section-parent">
-  <ul>
-    <h4 class="section-header">Welcome to Friendsy!</h4>
-    <li>Sign up and start finding friends in an instant!!</li>
-  </ul>
-  <ul>
-    <h4 class="section-header">Registration Links:</h4>
-    <li class="interactive"><%= link_to "Sign Up", new_user_registration_path %></li>
-    <li class="interactive"><%= link_to "Sign In",  new_user_session_path %></li>
-    <h4 class="section-header">More Information:</h4>
-    <li class="interactive"><%= link_to  "Check out the Github Repo", 'https://github.com/MchaseCov/facebook-clone', target: :_blank %> </li>
-  </ul>
-  </div>
-<% end %>
+        <li class="interactive">
+          <%= link_to groups_user_path(current_user) do %>
+            <%= image_tag(current_user.avatar.small_thumb.url) %>
+            All My Groups (<%=current_user.groups.size%>)
+          <% end %>
+        </li>
+      </ul>
+    </div>
+    <div class="section-parent">
+      <h4 class="section-header">Discover</h4>
+      <ul>
+        <li class="interactive">
+          <%= link_to users_path do %>
+            <span class="material-icons">connect_without_contact</span>
+            Users
+          <% end %>
+        </li>
+        <li class="interactive">
+          <%= link_to groups_path do %>
+            <span class="material-icons">groups</span>
+            Groups
+          <% end %>
+        </li>
+        <li class="interactive">
+          <%= link_to 'https://github.com/MchaseCov/facebook-clone', target: :_blank do %>
+            <span class="material-icons">code</span>
+            Github Repo
+          <% end %>
+        </li>
+      </ul>
+    </div>
+    <div class="section-parent">
+      <ul>
+        <li class="interactive" id="bottom-link"><%= link_to "Back to top!", anchor:"top" %></li>
+      </ul>
+    </div>
+  <% else %>
+    <div class="section-parent">
+      <ul>
+        <h4 class="section-header">Welcome to Friendsy!</h4>
+        <li>Sign up and start finding friends in an instant!!</li>
+      </ul>
+      <ul>
+        <h4 class="section-header">Registration Links:</h4>
+        <li class="interactive"><%= link_to "Sign Up", new_user_registration_path %></li>
+        <li class="interactive"><%= link_to "Sign In",  new_user_session_path %></li>
+        <h4 class="section-header">More Information:</h4>
+        <li class="interactive"><%= link_to  "Check out the Github Repo", 'https://github.com/MchaseCov/facebook-clone', target: :_blank %> </li>
+      </ul>
+    </div>
+  <% end %>
 </div>

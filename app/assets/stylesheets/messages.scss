@@ -8,32 +8,32 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
-  flex: 1 1 0px 
+  flex: 1 1 0px;
 }
-.bottom-anchor{
+.bottom-anchor {
   display: none;
 }
-.jump-link{
-  position :sticky;
+.jump-link {
+  position: sticky;
   z-index: 2;
-  top:0;
+  top: 0;
   background-color: var(--light-black);
   padding: 2px;
   border-radius: 5px;
   text-decoration: none;
 }
-.scroll-fix{
+.scroll-fix {
   display: flex;
   flex-direction: column-reverse;
 }
-.messages{
+.messages {
   flex-shrink: 0;
   overflow-y: auto;
-  height:81vh;
-  max-height:81vh;
+  height: 81vh;
+  max-height: 81vh;
   position: relative;
 }
-.message-avatar{
+.message-avatar {
   display: inline;
   z-index: 1;
   border-radius: 50%;
@@ -41,8 +41,8 @@
   bottom: -25px;
   left: -30px;
   outline: 1px solid var(--pink);
-  }
-.chat-message{
+}
+.chat-message {
   background-color: #401423;
   color: white;
   padding: 10px 20px 10px 20px;
@@ -51,37 +51,36 @@
   border-radius: 10px;
   position: relative;
   min-width: 200px;
-  max-width:600px;
-  p{
+  max-width: 600px;
+  p {
     display: inline;
     word-wrap: break-word;
     white-space: initial;
   }
-  i{
+  i {
     text-align: center;
-    font-size: .75em;
+    font-size: 0.75em;
     font-weight: 200;
     margin-left: auto;
     margin-right: auto;
-    
   }
-  .read-reciept{
-    font-size: .75em;
+  .read-reciept {
+    font-size: 0.75em;
     font-weight: 200;
-    display: none
+    display: none;
   }
 }
-.new-message-window{
+.new-message-window {
   align-self: flex-end;
   background-color: var(--grey);
   width: 100%;
 }
-.new-message-form{
+.new-message-form {
   flex-shrink: 0;
   background-color: var(--grey);
   height: max-content;
   margin-top: auto;
-  textarea{
+  textarea {
     margin-left: auto;
     margin-right: auto;
     resize: none;
@@ -93,10 +92,10 @@
     color: white;
     box-sizing: border-box;
   }
-  textarea:focus{
+  textarea:focus {
     outline: solid 2px var(--blue);
   }
-  input{
+  input {
     margin-top: 5px;
     margin-bottom: 5px;
     width: 50%;
@@ -110,7 +109,7 @@
     outline: 2px solid black;
     border: 0;
   }
-  input:hover{
+  input:hover {
     background: linear-gradient(to bottom right, var(--blue), var(--pink));
     cursor: pointer;
     text-align: center;

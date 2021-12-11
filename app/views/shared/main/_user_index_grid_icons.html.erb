@@ -1,33 +1,29 @@
 <div class="index-result-icons-parent">
-<% if result.instance_of?(Group) %>
-
-  <% if result.private %>
-  <span class="material-icons user-index-result-icon private-icon">lock<span class="tooltiptext">Private Group</span></span>
+  <% if result.instance_of?(Group) %>
+    <% if result.private %>
+      <span class="material-icons user-index-result-icon private-icon">lock<span class="tooltiptext">Private Group</span></span>
+    <% else %>
+      <span class="material-icons user-index-result-icon public-icon">public<span class="tooltiptext">Public Group</span></span>
+    <% end %>
+    <% if result.creator == current_user %>
+      <span class="material-icons user-index-result-icon creator-icon">admin_panel_settings<span class="tooltiptext">You created this group.</span></span>
+    <% elsif result.users.pluck(:id).include? current_user.id %>
+      <span class="material-icons user-index-result-icon member-icon">groups<span class="tooltiptext">You are a member.</span></span>
+    <% else %>
+      <span class="material-icons user-index-result-icon not-member-icon">group_off<span class="tooltiptext">You aren't a member.</span></span>
+    <% end %>
   <% else %>
-  <span class="material-icons user-index-result-icon public-icon">public<span class="tooltiptext">Public Group</span></span>
-  <% end %>
-  <% if result.creator == current_user %>
-  <span class="material-icons user-index-result-icon creator-icon">admin_panel_settings<span class="tooltiptext">You created this group.</span></span>
-  <% elsif result.users.pluck(:id).include? current_user.id %>
-  <span class="material-icons user-index-result-icon member-icon">groups<span class="tooltiptext">You are a member.</span></span>
-  <% else %>
-  <span class="material-icons user-index-result-icon not-member-icon">group_off<span class="tooltiptext">You aren't a member.</span></span>
-  <% end %>
-
-<% else %>
-
-  <% if result.friends.include? current_user %>
-  <span class="material-icons user-index-result-icon friends-icon">person<span class="tooltiptext">You are friends with this user.</span></span>
-  <% else %>
-  <span class="material-icons user-index-result-icon not-friends-icon">person<span class="tooltiptext">You aren't friends with this user.</span></span>
-  <% end %>
+    <% if result.friends.include? current_user %>
+      <span class="material-icons user-index-result-icon friends-icon">person<span class="tooltiptext">You are friends with this user.</span></span>
+    <% else %>
+      <span class="material-icons user-index-result-icon not-friends-icon">person<span class="tooltiptext">You aren't friends with this user.</span></span>
+    <% end %>
     <% if result.try(:last_seen_at).try { |r| r >= 2.hour.ago } %>
-    <span class="material-icons user-index-result-icon online-icon">circle<span class="tooltiptext">Recently Online</span></span>
-  <% elsif result.try(:last_seen_at).try { |r| r >= 6.hour.ago } %>
-    <span class="material-icons md-36 user-index-result-icon away-icon">brightness_3<span class="tooltiptext">Away</span></span>
-  <% else %>
+      <span class="material-icons user-index-result-icon online-icon">circle<span class="tooltiptext">Recently Online</span></span>
+    <% elsif result.try(:last_seen_at).try { |r| r >= 6.hour.ago } %>
+      <span class="material-icons md-36 user-index-result-icon away-icon">brightness_3<span class="tooltiptext">Away</span></span>
+    <% else %>
       <span class="material-icons user-index-result-icon offline-icon">trip_origin<span class="tooltiptext">Offline</span></span>
+    <% end %>
   <% end %>
-
-<% end %>
 </div>

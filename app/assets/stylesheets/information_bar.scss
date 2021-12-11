@@ -2,21 +2,22 @@
   grid-area: information-bar;
   background-color: var(--black);
   max-width: 20vw;
-  .infobar-parent{
+  .infobar-parent {
     max-width: 98%;
   }
-  .notification-icon{
+  .notification-icon {
     font-size: 2em;
     padding: 7px;
     color: var(--grey);
   }
   .notification-icon:hover {
-    -webkit-text-fill-color:white;}
-  .notif-icons{
+    -webkit-text-fill-color: white;
+  }
+  .notif-icons {
     display: flex;
     justify-content: center;
     margin-bottom: 2px;
-    .icon{
+    .icon {
       font-size: 1.5rem;
       font-weight: 500;
       position: relative;
@@ -27,7 +28,7 @@
     }
   }
 }
-.notification-number{
+.notification-number {
   text-align: center;
   user-select: none;
   position: absolute;
