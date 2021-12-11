@@ -13,14 +13,14 @@ body {
 }
 .page-content {
   grid-area: body-content;
-  width: 100%;
+  width: 60vw;
   justify-content: center;
   align-items: center;
   text-align: center;
   background-color: var(--dark-blue);
   border-color: var(--grey);
   position: relative;
-  
+  overflow-x: hidden;
 
   h1{
     color:white

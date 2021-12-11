@@ -18,13 +18,17 @@
   height: max-content;
   box-shadow: 0 4px 8px 0 rgba(56, 18, 42, 0.2), 0 6px 20px 0 rgba(56, 18, 42, 0.19);
   margin-bottom: 1rem;
+  display: flex;
+  flex-flow: column nowrap;
 }
 .full-entry {
   max-height: max-content;
 }
 .journal-entry-avatar{
-  border-radius: 50%;
-  outline: 2px solid var(--pink);
+  img{
+    border-radius: 50%;
+    outline: 2px solid var(--pink);
+  }
   vertical-align:top;
 }
 .journal_image_field input {
@@ -40,7 +44,9 @@
 .journal-header{
   text-align: left;
   padding: 15px 0 0 15px;
+  flex-basis: 100%;
   display: flex;
+
   .header-text{
     margin-left: 10px;
     display: inline-block;
@@ -54,22 +60,23 @@
   padding: 15px 0 0 15px;
 }
 .journal-likes{
+  align-self: flex-end;
   text-align: right;
   display: inline-block;
   margin-left: auto;
   margin-right: 15px;
+  flex-wrap: nowrap;
 }
 .journal-image-attch{
   border-radius: 20px;
   display: block;
   margin: 0 auto 5px auto;
   padding-bottom: 5px;
+  max-width: 80%;
 }
 .comment-box{
   text-align: center;
   display: inline-block;
-  margin-left: auto;
-  padding-left: 10px;
 }
 .comment-count{
   font-weight: 200;

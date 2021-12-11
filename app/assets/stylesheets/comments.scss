@@ -14,14 +14,21 @@
   ul > li {
     margin-left: 50px;
   }
+  .nest-layer-12{
+    ul > li {
+      margin-left: 0px;
+    }
+  }
   .comment-block{
     margin-bottom: 10px;
     padding: 10px 10px 5px 10px;
     width: 100%;
+    min-width: 200px;
     border-radius: 20px;
     color:white;
     background-color: var(--grey);
     .comment-reply{
+      overflow-wrap: anywhere;
     .comment-header{
       display: flex;
       gap: 10px;

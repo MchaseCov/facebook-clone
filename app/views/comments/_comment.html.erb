@@ -13,7 +13,7 @@
       </div>
       <%= render  "likes/form", content: comment %>
       </div>
-      <%= comment.body%> <br>
+      <p><%= comment.body%></p> <br>
       <div class= "comment-links-parent">
       <%= link_to  "Reply", '#', data: {action: "click->comment-reply#toggle" } %>
       <span class="edit-links user-<%=comment.comment_author.id%>-edit-links">

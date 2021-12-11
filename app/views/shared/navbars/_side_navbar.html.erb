@@ -1,5 +1,7 @@
 <div class="sidebar-parent">
-<h2><%= link_to "Friendsy", root_path, id:"logo" %></h2>
+ <div class="section-parent">
+<h2><%= link_to "Friendsy", root_path, class:"logo" %></h2>
+</div>
 <% if user_signed_in? %>
   <div class="section-parent">
     <div class="section-header"><%= link_to user_path(current_user.id), id:"username" do %>

@@ -1,6 +1,6 @@
   <article class="journal-entry" id="<%=dom_id(journal)%>">
       <div class="journal-header">
-          <%= image_tag((journal.journal_author.avatar.thumb.url), class:"journal-entry-avatar") %>
+          <div class="journal-entry-avatar"><%= image_tag(journal.journal_author.avatar.thumb.url) %></div>
           <div class="header-text">
               <h4><%= link_to  "@#{journal.journal_author.nick_name}", journal.journal_author, class:"author_url", 'data-turbo-frame': :_top %></h4>
               <i><%= time_ago_in_words(journal.created_at) + ' ago' %></i>
@@ -14,7 +14,7 @@
                    <%= link_to journal_path(journal), 'data-turbo-frame': :_top do %>
                       <span class="material-icons">chat_bubble</span>
                     <% end %>
-                    <div @class="comment-count">
+                    <div class="comment-count">
                         <%= pluralize(journal.commentable_count, 'comment') %>
                     </div>
               </div>

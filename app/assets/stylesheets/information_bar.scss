@@ -1,8 +1,9 @@
 .information-bar {
   grid-area: information-bar;
   background-color: var(--black);
+  max-width: 20vw;
   .infobar-parent{
-    max-width: 85%;
+    max-width: 98%;
   }
   .notification-icon{
     font-size: 2em;
@@ -15,9 +16,8 @@
     display: flex;
     justify-content: center;
     margin-bottom: 2px;
-    max-width: 100%;
     .icon{
-      font-size: 24px;
+      font-size: 1.5rem;
       font-weight: 500;
       position: relative;
       text-decoration: none;
