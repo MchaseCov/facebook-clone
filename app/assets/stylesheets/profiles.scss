@@ -87,18 +87,10 @@
   min-width: 45%;
   flex-grow: 1;
 }
-.profile-banner-buttons-parent {
-  display: flex;
-  align-content: flex-start;
-  justify-content: space-around;
-  padding-top: 2%;
-  width: 95%;
-}
 .profile-banner-button {
   background-color: var(--black);
   border: none;
   color: white !important;
-  padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   font-size: 1em;
@@ -106,18 +98,26 @@
   border-radius: 15px;
   margin-right: 10px;
   outline: 2px solid black;
+  box-sizing: border-box;
+  width: 100%;
+  height: 4rem;
 }
 .profile-banner-button:hover {
   background: linear-gradient(to bottom right, var(--blue), var(--pink));
   cursor: pointer;
 }
 .profile-buttons {
-  grid-area: profile-buttons;
   position: absolute;
   display: flex;
+  right: 5px;
+  align-items: flex-end;
   top: 400px;
-  left: 35%;
-  justify-content: flex-start;
   padding-top: 2%;
-  width: 100%;
+  width: 80%;
+
+  form {
+    flex: 1 1 0;
+    box-sizing: border-box;
+    display: inline;
+  }
 }

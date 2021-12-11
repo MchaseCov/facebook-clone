@@ -1,13 +1,13 @@
 <% if button_target == current_user %>
-  <%= link_to "Edit Profile", edit_user_registration_path, class:"profile-banner-button", method: :get, 'data-turbo-frame': :_top  %>
+  <%= button_to "Edit Profile", edit_user_registration_path, class:"profile-banner-button", method: :get, 'data-turbo-frame': :_top  %>
 <% else %>
   <% if button_target.friends.include? current_user %>
-    <%= link_to "Unfriend", user_friendship_path(button_target, current_user), class:"profile-banner-button", method: :delete, 'data-turbo-frame': :_top %>
+    <%= button_to "Unfriend", user_friendship_path(button_target, current_user), class:"profile-banner-button", method: :delete, 'data-turbo-frame': :_top %>
   <% elsif button_target.received_requests.include? current_user %>
     <div class="profile-banner-button">Request Pending</div>
   <% elsif button_target.pending_requests.include? current_user %>
-    <%= link_to "Accept Friendship", accept_friend_request_user_friendships_path(button_target, current_user), class:"profile-banner-button", method: :get, 'data-turbo-frame': :_top %>
+    <%= button_to "Accept Friendship", accept_friend_request_user_friendships_path(button_target, current_user), class:"profile-banner-button", method: :get, 'data-turbo-frame': :_top %>
   <% else %>
-    <%= link_to "Request Friendship", user_friendships_path(button_target), class:"profile-banner-button", method: :post, 'data-turbo-frame': :_top %>
+    <%= button_to "Request Friendship", user_friendships_path(button_target), class:"profile-banner-button", method: :post, 'data-turbo-frame': :_top %>
   <% end %>
 <% end %>
