@@ -1,0 +1,75 @@
+<div class="profile-sidebar-info">
+  <% if profile_owner.instance_of?(Group) %>
+    <div class="information-row">
+      Total Journals: <%=profile_owner.journals.count%>
+    </div>
+    <hr>
+    <div class="information-row">
+      Created: <%= time_ago_in_words(profile_owner.created_at) + ' ago' %>
+    </div>
+    <hr>
+    <div class="information-row">
+      Location: Lorem Ipsum
+    </div>
+    <hr>
+    <div class="information-row">
+      Description:
+      <%=profile_owner.description%>
+    </div>
+    <hr>
+    <div class="information-row">
+      Group Privacy: 
+      <%=profile_owner.private ? "Private" : "Public" %>
+    </div>
+    <hr>
+    <div class="information-row">
+      Creator:
+      <%=link_to profile_owner.creator.name, profile_owner.creator%>
+    </div>
+    <hr>
+  <% else %>
+    <div class="information-row">
+      Total Journals: <%=profile_owner.authored_journals.count%>
+    </div>
+    <hr>
+    <div class="information-row">
+      Comments Posted: <%=profile_owner.authored_comments.count%>
+    </div>
+    <hr>
+    <div class="information-row">
+      Attended: Lorem Ipsum
+    </div>
+    <hr>
+    <div class="information-row">
+      Location: Lorem Ipsum
+    </div>
+    <hr>
+    <div class="information-row">
+      Age: ###
+    </div>
+    <hr>
+    <div class="information-row">
+      Hobbies:
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec mattis erat, eget eleifend felis. Phasellus tincidunt, est consequat vehicula dignissim, ex lorem gravida ante, sit amet auctor augue magna eu nisi. 
+    </div>
+  <% end %>
+  <hr>
+  <div class="information-row">
+    Recently posted images:
+  </div>
+  <div class="information-row images-preview">
+    <% recent_images[0..2].each do |j|%>
+      <%= link_to j, 'data-turbo-frame': :_top do %>
+        <div class="image-box"><%=image_tag(j.image.thumb.url)%></div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="information-row images-preview">
+    <% recent_images[3..5].each do |j|%>
+      <%= link_to j, 'data-turbo-frame': :_top do %>
+        <div class="image-box"><%=image_tag(j.image.thumb.url)%></div>
+      <% end %>
+    <% end %>
+  </div>
+  <hr>
+</div>

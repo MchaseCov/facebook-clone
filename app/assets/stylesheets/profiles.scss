@@ -19,7 +19,7 @@
 }
 .profile-banner-overlay {
   position: absolute;
-  bottom: -10%;
+  bottom: 0;
   padding-left: 5%;
   display: flex;
   width: 95%;
@@ -72,8 +72,8 @@
 }
 .profile-content {
   grid-area: profile-content;
-  margin-top: 10%;
   display: flex;
+  flex-flow: row wrap;
   color: black;
   width: 98%;
   justify-content: space-evenly;
@@ -82,10 +82,12 @@
 }
 .profile-sidebar {
   min-width: 25%;
+  flex-basis: 40%;
 }
 .profile-feed {
   min-width: 45%;
   flex-grow: 1;
+  flex-basis: 50%;
 }
 .profile-banner-button {
   background-color: var(--black);
@@ -102,22 +104,47 @@
   width: 100%;
   height: 4rem;
 }
+.text-button {
+  max-width: max-content;
+  line-height: 4rem;
+}
 .profile-banner-button:hover {
   background: linear-gradient(to bottom right, var(--blue), var(--pink));
   cursor: pointer;
 }
 .profile-buttons {
-  position: absolute;
   display: flex;
   right: 5px;
   align-items: flex-end;
-  top: 400px;
   padding-top: 2%;
   width: 80%;
-
+  flex-basis: 100%;
   form {
     flex: 1 1 0;
     box-sizing: border-box;
     display: inline;
+  }
+}
+.profile-sidebar-info {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  max-width: 100%;
+  .information-row {
+    max-width: 100%;
+  }
+  .images-preview {
+    display: flex;
+    flex-flow: row nowrap;
+    max-width: 100%;
+    height: auto;
+    gap: 5px;
+    .image-box {
+      img {
+        border-radius: 5px;
+        height: auto;
+        max-width: 100%;
+      }
+    }
   }
 }

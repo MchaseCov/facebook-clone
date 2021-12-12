@@ -23,6 +23,7 @@ class UsersController < ApplicationController
     @journals = @profile_owner.journals
                               .includes(:journal_author, :journalable, :likes)
                               .order(created_at: :desc)
+    @recent_images = @profile_owner.authored_journals.where.not(image: nil).order(created_at: :desc).first(6)
     render 'shared/profiles/show'
   end
 
@@ -46,6 +47,7 @@ class UsersController < ApplicationController
     @journals = @profile_owner.authored_journals
                               .where.not(image: nil)
                               .order(created_at: :desc)
+    @recent_images = @journals.first(6)
     render 'shared/profiles/show'
   end
 

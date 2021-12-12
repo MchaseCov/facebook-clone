@@ -1,5 +1,5 @@
 <div class="profile-sidebar" id="profile-sidebar">
-  SIDEBAR PLACEHOLDER!!
+  <%= render 'shared/profiles/sidebar', profile_owner: profile_owner , recent_images: recent_images %>
 </div>
 <div class="profile-feed">
   <%= turbo_frame_tag id="new_journal", src:eval("new_#{profile_owner.class.name.downcase}_journal_path(profile_owner)"), target:"_top", class:"journal-window" %>

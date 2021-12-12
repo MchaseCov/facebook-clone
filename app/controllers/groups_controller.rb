@@ -23,6 +23,7 @@ class GroupsController < ApplicationController
     @journals = @profile_owner.journals
                               .includes(:journal_author, :journalable, :likes)
                               .order(created_at: :desc)
+    @recent_images = @profile_owner.journals.where.not(image: nil).order(created_at: :desc).first(6)
     render 'shared/profiles/show'
   end
 
@@ -38,6 +39,7 @@ class GroupsController < ApplicationController
                               .where.not(image: nil)
                               .includes(:journal_author, :journalable, :likes)
                               .order(created_at: :desc)
+    @recent_images = @journals.first(6)
     render 'shared/profiles/show'
   end
 
