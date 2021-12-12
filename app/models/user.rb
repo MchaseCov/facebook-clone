@@ -24,9 +24,10 @@ class User < ApplicationRecord
 
   # Validations
   validates :email, presence: true
-  validates :name, presence: true
+  validates :name, presence: true,
+                   length: { maximum: 50 }
   validates :nick_name, presence: true,
-                        length: { maximum: 50 }
+                        length: { maximum: 16 }
 
   # Associations
   #   Comments
