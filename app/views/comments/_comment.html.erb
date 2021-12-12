@@ -3,7 +3,7 @@
   <div class="comment-header">
     <%= image_tag((comment.comment_author.avatar.thumb.url), class:"comment-avatar") %>
     <div class="header-text">
-      <h3 class="comment-author"><%= comment.comment_author.name %></h3>
+      <h3 class="comment-author"><%= link_to comment.comment_author.name, comment.comment_author, 'data-turbo-frame': :_top %></h3>
       <div class="time-text">
         Posted <%= time_ago_in_words(comment.created_at) + ' ago' %>
         <% if comment.created_at != comment.updated_at %>

@@ -2,15 +2,36 @@
   Pending Friend Requests
 <% end %>
 <%= turbo_frame_tag id="notification-dropdown", class:"turbo-dropdown" do %>
-  <h1>Received Requests</h1>
-  <% @received_requests.each do |r|%>
-    From:  <%= link_to r.name, user_path(r) %>
-    <%= link_to "Accept", accept_friend_request_user_friendships_path(r.id) %>
-    <%= link_to "Decline", decline_friend_request_user_friendships_path(r.id) %>
-    <br>
-  <% end %>
-  <h2>Sent Requests</h2>
-  <% @pending_requests.each do |r|%>
-    To:  <%= link_to r.name, user_path(r) %>
-  <% end %>
+  <div class="notifications-parent">
+    <h1>Received Requests</h1>
+    <% @received_requests.each do |r|%>
+      <div class="notification-listing">
+        <div class="notification-header">
+          <%=link_to r do %>
+            <%= image_tag((r.avatar.small_thumb.url), class:"journal-entry-avatar") %>
+            @<%=r.nick_name%>
+          <% end %>
+        </div>
+        <div class="notifications-options">
+          <%= link_to "Accept", accept_friend_request_user_friendships_path(r.id), class:"notification-submit" %>
+          <%= link_to "Decline", decline_friend_request_user_friendships_path(r.id), class:"notification-submit" %>
+        </div>
+      </div>
+      <hr>
+    <% end %>
+  </div>
+  <div class="notifications-parent">
+    <h2>Sent Requests</h2>
+    <% @pending_requests.each do |pr|%>
+      <div class="notification-listing">
+        <div class="notification-header">
+          <%=link_to pr do %>
+            <%= image_tag((pr.avatar.small_thumb.url), class:"journal-entry-avatar") %>
+            @<%=pr.nick_name%>
+          <% end %>
+        </div>
+      </div>
+      <hr>
+    <% end %>
+  </div>
 <% end %>

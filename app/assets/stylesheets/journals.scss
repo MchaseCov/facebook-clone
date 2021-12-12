@@ -26,10 +26,8 @@
   max-height: max-content;
 }
 .journal-entry-avatar {
-  img {
-    border-radius: 50%;
-    outline: 2px solid var(--pink);
-  }
+  border-radius: 50%;
+  outline: 2px solid var(--pink);
   vertical-align: top;
 }
 .journal_image_field input {
@@ -111,5 +109,18 @@
     background: linear-gradient(to bottom right, var(--blue), var(--pink));
     cursor: pointer;
     text-align: center;
+  }
+  .profile-content-flex {
+    display: inline-block;
+  }
+  div.profile-content-flex:nth-child(1) > div:nth-child(1) {
+    align-items: start;
+  }
+  div.profile-content-flex:nth-child(4) > div:nth-child(1) {
+    justify-content: start;
+    align-items: start;
+  }
+  div.profile-content-flex:nth-child(3) > div:nth-child(1) {
+    justify-content: start;
   }
 }

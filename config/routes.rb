@@ -51,7 +51,7 @@ Rails.application.routes.draw do
 
   # NOTIFICATIONS LIST
   resources :notifications, only: %i[index destroy] do
-    member do
+    collection do
       post 'read_all'
     end
   end

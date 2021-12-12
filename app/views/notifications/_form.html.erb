@@ -1,21 +1,29 @@
-<%= form_with url: "/notifications", method: :post do |f| %>
+<%# If you make this a collection, you must bring the form_with outside of it %>
+<%= form_with url: "/notifications", method: :post, class:"notifications-parent" do |f| %>
   <% notifications.each do |n| %>
-    <%= f.check_box :ids, {multiple: true}, n.id, nil %>
-    <%= f.label n.id do %>
-      <%=time_ago_in_words(n.created_at) %> ago:
-      <%=link_to n.actor.nick_name, n.actor %>
-      <% if n.notifiable_type == "Comment" %>
-        <%= link_to n.action, journal_path(n.notifiable.commentable, anchor: "comment_#{n.notifiable.id}")%>
-      <% elsif n.notifiable_type == "Friendship"%>
-        <%=n.action%>
-      <% else %>
-        <%=link_to *(n.notifiable_type == "Like" ? [n.notifiable.likeable] : [n.notifiable]) do %>
-          <%=n.action%>
+    <div class="notification-listing">
+      <div class="notification-header">
+        <%= f.check_box :ids, {multiple: true}, n.id, nil %>
+        <%= f.label n.id do %>
+          <%=time_ago_in_words(n.created_at, scope: 'datetime.distance_in_words.short') %>:
+        </div>
+        <%=link_to n.actor do %>
+          <%= image_tag((n.actor.avatar.small_thumb.url), class:"journal-entry-avatar") %>
+          @<%=n.actor.nick_name%>
         <% end %>
-      <% end %>
-      <br>
+        <% if n.notifiable_type == "Comment" %>
+          <%= link_to n.action, journal_path(n.notifiable.commentable, anchor: "comment_#{n.notifiable.id}")%>
+        <% elsif n.notifiable_type == "Friendship"%>
+          <%=n.action%>
+        <% elsif n.notifiable_type == "Like" %>
+          <%=link_to n.action, n.notifiable.likeable%>
+        <% elsif n.notifiable_type == "Journal" %>
+          <%=link_to n.action, n.notifiable%>
+        <% end %>
+      </div>
+      <hr>
     <% end %>
   <% end %>
-  <%= f.submit "Mark as read!" %>
+  <%= f.submit "Mark as read!", class:"notification-submit" %>
+  <%= link_to  "Mark ALL as read", read_all_notifications_path, data: { confirm: "Mark all notifications as read?" }, method: :post, class:"notification-submit" %>
 <% end %>
-<%= link_to  "Mark ALL as read", read_all_notification_path, data: { confirm: "Mark all notifications as read?" }, method: :post %>

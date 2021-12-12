@@ -3,7 +3,11 @@
 <% end %>
 <%= turbo_frame_tag id="notification-dropdown" do %>
   <% if @notifications.blank? %>
-    No notifs placeholder :)
+    <div class="notification-listing">
+      <div class="notification-header">
+        No new notifications!
+      </div>
+    </div>
   <% else %>
     <%= render  "form", notifications: @notifications %>
   <% end %>
