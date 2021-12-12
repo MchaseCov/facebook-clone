@@ -48,13 +48,6 @@
     <!-- Right Sidebar -->
     <div class="information-bar"><%= render "shared/navbars/information_bar" %></div>
     <!-- Middle Content (the page itself) -->
-    <div class="page-content">
-      <% flash.each do |type, msg| %>
-        <div class="flash flash-<%= type %>">
-          <%= msg %>
-        </div>
-      <% end %>
-      <%= yield %>
-    </div>
+    <div class="page-content"><%= yield %></div>
   </body>
 </html>

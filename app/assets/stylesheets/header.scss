@@ -29,6 +29,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 2rem;
 }
 
 .header-right {
@@ -51,4 +52,16 @@ a:visited {
   text-decoration: none;
   padding-right: 2%;
   padding-left: 2%;
+}
+.flash {
+  font-size: 2rem;
+  padding: 2px 4px;
+  border-radius: 8px;
+  font-weight: 300;
+}
+.flash-notice {
+  background-color: green;
+}
+.flash-alert {
+  background-color: red;
 }
