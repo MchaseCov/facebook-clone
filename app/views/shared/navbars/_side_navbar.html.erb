@@ -56,6 +56,12 @@
     <div class="section-parent">
       <h4 class="section-header">Groups</h4>
       <ul>
+        <li class="interactive">
+          <%= link_to new_group_path do %>
+            <span class="material-icons">group_add</span>
+            Create A Group!
+          <% end %>
+        </li>
         <% @sidebar_groups.each do |group|%>
           <li class="interactive">
             <%= link_to group do %>

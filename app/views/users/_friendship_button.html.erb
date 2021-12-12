@@ -4,7 +4,7 @@
   <% if button_target.friends.include? current_user %>
     <%= button_to "Unfriend", user_friendship_path(button_target, current_user), class:"profile-banner-button", method: :delete, 'data-turbo-frame': :_top %>
   <% elsif button_target.received_requests.include? current_user %>
-    <div class="profile-banner-button">Request Pending</div>
+    <div class="profile-banner-button text-button">Request Pending</div>
   <% elsif button_target.pending_requests.include? current_user %>
     <%= button_to "Accept Friendship", accept_friend_request_user_friendships_path(button_target, current_user), class:"profile-banner-button", method: :get, 'data-turbo-frame': :_top %>
   <% else %>

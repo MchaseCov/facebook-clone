@@ -50,6 +50,10 @@
   align-items: center;
   justify-content: center;
   gap: 24px;
+  .text-button {
+    line-height: 4rem;
+    max-width: 60%;
+  }
 }
 
 .index-result-icons-parent {

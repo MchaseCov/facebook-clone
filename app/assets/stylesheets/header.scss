@@ -1,63 +1,27 @@
 .header-navbar {
   display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
   background: var(--black);
-  color: var(--pink);
-  justify-self: stretch;
   grid-area: header-navbar;
   margin: 0;
-  font-size: 24px;
   font-weight: 500;
-  a {
-    color: var(--grey);
-  }
-}
-.header-left {
-  flex: 1;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding-left: 3%;
-
-  a {
-    padding-right: 1em;
-    text-decoration: none;
-  }
+  text-align: center;
 }
 
 .header-title {
   flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 2rem;
-}
-
-.header-right {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding-right: 10%;
-}
-
-.links a,
-a:visited {
-  color: var(--pink);
-  margin: 0 5px;
-  text-decoration: none;
-}
-.top-header-item {
-  height: 100%;
-  color: white;
-  text-decoration: none;
-  padding-right: 2%;
-  padding-left: 2%;
+  justify-self: flex-start;
 }
 .flash {
+  flex: 1;
+  font-size: 1rem;
   font-size: 2rem;
   padding: 2px 4px;
   border-radius: 8px;
   font-weight: 300;
+  justify-self: flex-end;
 }
 .flash-notice {
   background-color: green;
