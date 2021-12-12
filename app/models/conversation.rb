@@ -1,4 +1,6 @@
 class Conversation < ApplicationRecord
+  include ActionView::RecordIdentifier
+  extend ActiveSupport::Concern
   # Conversation Schema:
   # id:                                 integer
   # sender_id:                          integer
@@ -6,8 +8,9 @@ class Conversation < ApplicationRecord
   # [recipient_id, sender_id]:          index, unique: true
   # timestamps:                         datetime
   #
+  # Callbacks
   # Scopes
-  scope :between, ->(sender_id, recipient_id) {
+  scope :between, lambda { |sender_id, recipient_id|
     where('(sender_id = ? AND recipient_id =?)
           OR (sender_id = ? AND recipient_id =?)',
           sender_id, recipient_id, recipient_id, sender_id)

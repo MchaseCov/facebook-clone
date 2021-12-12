@@ -13,8 +13,8 @@ class Comment < ApplicationRecord
   # Callbacks
   after_create_commit do
     current_user = Current.user # Turbo Stream needs Devise current_user passed as a local for partials that call
-                                # for it, such as the "if X == current_user" checks for displaying different buttons.
-                                #
+    # for it, such as the "if X == current_user" checks for displaying different buttons.
+    #
     broadcast_prepend_later_to [commentable, :comments], locals: { current_user: current_user },
                                                          target: "#{dom_id(parent || commentable)}_comments",
                                                          partial: 'comments/comment_with_replies'
@@ -83,7 +83,7 @@ class Comment < ApplicationRecord
   private
 
   def create_notification
-    if !self.parent_id.nil? # Commenting on a comment
+    if !parent_id.nil? # Commenting on a comment
       return if parent.comment_author == comment_author # No Notif if comment on own Comment
 
       parent.comment_author.recieved_notifications.create(actor: comment_author,

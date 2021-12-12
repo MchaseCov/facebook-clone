@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   end
 
   # CONVERSATIONS & MESSAGES
-  resources :conversations, only: %i[index create] do
-    resources :messages, only: %i[index new create]
+  resources :conversations, only: %i[index create show] do
+    resources :messages, only: %i[new create]
   end
 
   # GROUPS [Journals, Membership]

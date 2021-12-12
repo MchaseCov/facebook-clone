@@ -1,31 +1,22 @@
 # Controller for fetching and creating messages in a conversation. See also: conversations_controller.rb
 class MessagesController < ApplicationController
-  before_action :fetch_conversation
-  before_action :verify_participation
-  before_action :fetch_current_user_conversations
-
-  # List of all messages in a conversation, i.e., a chat room.
-  def index
-    @messages = @conversation.messages.includes(:author)
-    @messages.unread_messages(current_user).each do |message|
-      message.update_attribute(:read_at, DateTime.now)
-    end
-  end
+  include MessagesReadAt
+  before_action :fetch_conversation, :fetch_current_user_conversations
+  before_action :set_created_message, only: %i[create]
+  before_action -> { mark_messages_as_read(@conversation, current_user) }, only: %i[create]
 
   def new
     @message = @conversation.messages.new
   end
 
   def create
-    @message = @conversation.messages.new(message_params)
-    @message.author = current_user
-    @message.recipient = @conversation.chat_partner(current_user)
-    if @message.save
-      flash[:notice] = 'Your message has been sent!'
-    else
-      flash[:alert] = 'Message failed to send.'
+    respond_to do |format|
+      if @message.save
+        format.turbo_stream
+      else flash[:alert] = 'Message failed to send.'
+      end
+      format.html { redirect_to @conversation }
     end
-    redirect_to conversation_messages_path(@conversation)
   end
 
   private
@@ -41,7 +32,7 @@ class MessagesController < ApplicationController
   def verify_participation
     case current_user
     when @conversation.sender, @conversation.recipient
-      return
+      nil
     else
       head 403
     end
@@ -51,5 +42,17 @@ class MessagesController < ApplicationController
     @conversations = current_user.total_conversations
                                  .includes(:most_recent_message)
                                  .order(updated_at: :desc)
+  end
+
+  def fetch_recipient_conversations(user)
+    @recipient_conversations = user.total_conversations
+                                   .includes(:most_recent_message)
+                                   .order(updated_at: :desc)
+  end
+
+  def set_created_message
+    @message = @conversation.messages.new(message_params)
+    @message.author = current_user
+    @message.recipient = @conversation.chat_partner(current_user)
   end
 end

@@ -6,20 +6,21 @@
     box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.2);
   }
 </style>
+<%= turbo_stream_from "user_#{current_user.id}_conversations" %>
+<%= turbo_stream_from @conversation %>
 <div class="conversation-grid">
   <aside class="conversation-list">
     <%= link_to conversations_path do %>
       <h1>Conversations:</h1>
     <% end %>
-    <%= render @conversations %>
+    <span id="user-<%=current_user.id%>-conversations">
+      <%= render @conversations, current_user: current_user %>
+    </span>
   </aside>
   <main class="message-region">
-    <%=  turbo_stream_from @conversation, :messages %>
-    <article class="messages" id="<%=dom_id(@conversation)%>_messages">
+    <article class="messages" id="messages">
       <a href="#bottom-anchor" class="jump-link">Jump to Bottom!</a>
-      <div id="messages">
-        <%= render @messages %>
-      </div>
+      <%= render @conversation.messages %>
       <source id="bottom-anchor">
     </article>
     <%= turbo_frame_tag id="new_message", src:new_conversation_message_path(@conversation), target:"_top", class:"new-message-window" %>

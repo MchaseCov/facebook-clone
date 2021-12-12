@@ -3,6 +3,6 @@ data: { controller: "reset-form", id: "new-message-form",
 action: "turbo:submit-end->reset-form#reset" } do |f| %>
   <div class="new-message-form">
     <%= f.text_area :body %>
-    <%= f.submit "Send Reply" %>
+    <%= f.submit "Send Reply",  data: { disable_with: false } %>
   </div>
 <% end %>

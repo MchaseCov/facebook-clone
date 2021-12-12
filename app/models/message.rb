@@ -8,6 +8,9 @@ class Message < ApplicationRecord
   # conversation_id:     integer
   # timestamps:          datetime
   #
+  # Callbacks
+  after_create_commit :broadcast_message, :update_recipient_sidebar
+
   # Scopes
   scope :unread_messages, ->(user) { where(recipient: user, read_at: nil) }
 
@@ -33,5 +36,25 @@ class Message < ApplicationRecord
 
   def read_ago
     "#{time_ago_in_words(read_at)} ago"
+  end
+
+  private
+
+  def broadcast_message
+    broadcast_append_later_to conversation
+  end
+
+  def update_recipient_sidebar
+    recipient_conversations = collect_recipient_conversations(recipient).to_a
+    broadcast_update_later_to "user_#{recipient.id}_conversations", target: "user-#{recipient.id}-conversations",
+                                                                    partial: 'conversations/conversation',
+                                                                    collection: recipient_conversations,
+                                                                    locals: { current_user: recipient }
+  end
+
+  def collect_recipient_conversations(recipient)
+    recipient.total_conversations
+             .includes(:most_recent_message)
+             .order(updated_at: :desc)
   end
 end

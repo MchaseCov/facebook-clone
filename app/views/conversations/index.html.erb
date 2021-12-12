@@ -3,9 +3,12 @@
 <% end %>
 <div class="conversation-grid">
   <%= turbo_frame_tag id="notification-dropdown", class:"turbo-dropdown" do %>
+    <%= turbo_stream_from "user_#{current_user.id}_conversations" %>
     <div class="conversation-list">
       <h1>Conversations:</h1>
-      <%= render @conversations %>
+      <span id="user-<%=current_user.id%>-conversations">
+        <%= render @conversations, current_user: current_user %>
+      </span>
     </div>
   <% end %>
   <main class="message-friends-list">

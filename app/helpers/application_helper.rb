@@ -11,8 +11,8 @@ module ApplicationHelper
     current_user.received_requests.count
   end
 
-  def conversation_new_messages(conversation)
-    Message.unread_messages(current_user).where(conversation: conversation).count
+  def conversation_new_messages(user, conversation)
+    Message.unread_messages(user).where(conversation: conversation).count
   end
 
   def unread_notifications
