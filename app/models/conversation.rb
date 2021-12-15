@@ -31,6 +31,7 @@ class Conversation < ApplicationRecord
                          foreign_key: :recipient_id,
                          inverse_of: :recieved_conversations
   # Methods
+  #   Uses the between scope to check for an existing convo, or creates a new one.
   def self.fetch_conversation(sender_id, recipient_id)
     conversation = between(sender_id, recipient_id).first
     return conversation if conversation.present?
@@ -38,6 +39,7 @@ class Conversation < ApplicationRecord
     create(sender_id: sender_id, recipient_id: recipient_id)
   end
 
+  # Unlike Friendships, this table only has one listing per conversation and thus needs to check the relation
   def chat_partner(user)
     user == sender ?  recipient : sender
   end

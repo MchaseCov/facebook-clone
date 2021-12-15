@@ -1,4 +1,5 @@
 class Message < ApplicationRecord
+  include ActionView::Helpers::DateHelper
   # Message Schema:
   # id:                  integer
   # body:                text
@@ -29,7 +30,6 @@ class Message < ApplicationRecord
                          foreign_key: :recipient_id,
                          inverse_of: :recieved_messages
   # Methods
-  include ActionView::Helpers::DateHelper
   def created_ago
     "sent #{time_ago_in_words(created_at)} ago"
   end

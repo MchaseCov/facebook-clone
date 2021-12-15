@@ -46,7 +46,7 @@ class Journal < ApplicationRecord
   private
 
   def create_notification
-    return if journalable == journal_author # No Notif if posting to self
+    return if journalable == journal_author # No notification on self posts
 
     if journalable_type == 'User'
       journalable.recieved_notifications.create(actor: journal_author,

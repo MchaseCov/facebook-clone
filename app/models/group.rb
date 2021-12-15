@@ -51,6 +51,6 @@ class Group < ApplicationRecord
   private
 
   def add_creator_to_users
-    self.users << (User.where(id: self.creator_id))
+    users << (User.where(id: creator_id))
   end
 end

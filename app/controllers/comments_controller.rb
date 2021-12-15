@@ -58,6 +58,7 @@ class CommentsController < ApplicationController
   end
 
   # Method for rendering a new partial form after leaving a comment
+  # This can also be done in a view file, see app/views/journals/create.turbo_stream.erb
   def turbo_stream_render(commentable, comment, htmlclass, data)
     respond_to do |format|
       format.turbo_stream do

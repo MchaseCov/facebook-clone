@@ -1,4 +1,4 @@
-# Controller for fetching and creating messages in a conversation. See also: conversations_controller.rb
+# Controller for creating and streaming messages in a conversation.
 class MessagesController < ApplicationController
   include MessagesReadAt
   before_action :fetch_conversation, :fetch_current_user_conversations

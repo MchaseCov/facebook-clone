@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
                                       keys: %i[name nick_name avatar avatar_cache banner banner_cache])
   end
 
-  # Turbo broadcast compatibility.
+  # Use Current.User in areas that require Turbo broadcast compatibility.
   def set_current_user
     Current.user = current_user
     yield

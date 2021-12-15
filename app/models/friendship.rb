@@ -26,8 +26,8 @@ class Friendship < ApplicationRecord
 
   def create_notification
     sent_by.recieved_notifications.create(actor: sent_to,
-                                                   action: 'accepted your friend request!',
-                                                   notifiable: self)
+                                          action: 'accepted your friend request!',
+                                          notifiable: self)
   end
 
   private

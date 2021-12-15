@@ -63,22 +63,6 @@ class Comment < ApplicationRecord
                            dependent: :destroy
 
   # Methods
-  def self.search(search)
-    return unless search
-
-    case search
-    when 'Newest First'
-      newest_first
-    when 'Oldest First'
-      oldest_first
-    when 'Most Likes First'
-      most_likes_first
-    when 'Least Likes First'
-      least_likes_first
-    else
-      newest_first
-    end
-  end
 
   private
 
