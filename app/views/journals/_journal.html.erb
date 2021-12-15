@@ -32,4 +32,8 @@
     <%= image_tag(journal.image.thumb.url, class:"journal-image-attch") %>
     <%= link_to 'View full image', journal_path(journal), 'data-turbo-frame': :_top%>
   <% end %>
+  <span class="edit-links user-<%=journal.journal_author.id%>-edit-links">
+    <%= link_to "Edit journal", edit_journal_path(journal), 'data-turbo-frame': :_top %> | 
+    <%= link_to  "Delete journal", journal, method: :delete, data: { confirm: "Are you sure?" }, 'data-turbo-frame': :_top%>
+  </span>
 </article>
