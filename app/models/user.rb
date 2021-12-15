@@ -18,6 +18,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook github]
 
+  # Callbacks
+  after_create_commit do
+    @admin_account = User.first
+    add_default_friend
+    add_default_notification
+    add_default_message
+  end
+
   # Carrierwave
   mount_uploader :avatar, AvatarUploader
   mount_uploader :banner, BannerUploader
@@ -154,5 +162,27 @@ class User < ApplicationRecord
 
   def has_no_password?
     encrypted_password.blank?
+  end
+
+  private
+
+  def add_default_friend
+    friendship = friend_sent.build(sent_to: @admin_account, status: true)
+    friendship.save
+    inverse_friendship = @admin_account.friend_sent.build(sent_to: self, status: true)
+    inverse_friendship.save
+  end
+
+  def add_default_notification
+    friendship = Friendship.where(sent_by: self).first
+    recieved_notifications.create(actor: @admin_account,
+                                  action: 'accepted your friend request!',
+                                  notifiable: friendship)
+  end
+
+  def add_default_message
+    conversation = Conversation.create(sender: @admin_account, recipient: self)
+    welcome_message = 'Hello! Thank you for checking out my demo website, Friendsy. Check out the Github repo for a summary of features and to peek behind the scenes! :)'
+    conversation.messages.create(author: @admin_account, recipient: self, body: welcome_message)
   end
 end
