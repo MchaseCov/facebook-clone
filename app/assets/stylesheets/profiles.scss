@@ -3,19 +3,22 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .profile-page {
-  display: grid;
-  grid-template-columns: minmax(0, auto) auto;
-  grid-template-rows: 400px auto;
+  width: 60vw;
+  max-width: 60vw;
+  //display: grid;
+  //grid-template-columns: minmax(0, auto) auto;
+  //grid-template-rows: 400px auto;
   gap: 0px 0px;
-  grid-template-areas:
-    "profile-banner profile-banner"
-    "profile-content profile-content";
+  //grid-template-areas:
+  //  "profile-banner profile-banner"
+  //  "profile-content profile-content";
   background-color: var(--dark-blue);
 }
 
 .profile-banner {
   grid-area: profile-banner;
   position: relative;
+  height: 400px;
 }
 .profile-banner-overlay {
   position: absolute;
@@ -76,6 +79,7 @@
   flex-flow: row wrap;
   color: black;
   width: 98%;
+  max-width: 98%;
   justify-content: space-evenly;
   gap: 50px;
   justify-self: center;
