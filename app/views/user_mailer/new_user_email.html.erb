@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to <strong>Friendsy</strong>, <a href=<%=@profile%>><%=@user.name%></a>!</h1>
+      <p>
+        <h2>Quick recap!</h2>
+        Your username is @<%= @user.nick_name %>.<br>
+        <%= "You signed up using #{@user.provider.titleize}." if @user.provider %>
+      </p>
+      <p>
+        If you haven't already, be sure to set an avatar and profile banner that represents yourself! <br>
+        <a href=<%=@url%>>Account Settings.</a>
+      </p>
+      <p>Thank you so much for joining, happy Friending!</p>
+      <hr>
+      <p><i>Thank you for checking out my demo website Friendsy. If you would like to contact me with any questions or feedback, please <%=mail_to @admin_email, 'Email me!'%>.</i></p>
+      </body>
+    </html>

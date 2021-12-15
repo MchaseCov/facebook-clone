@@ -24,6 +24,7 @@ class User < ApplicationRecord
     add_default_friend
     add_default_notification
     add_default_message
+    send_new_user_email
   end
 
   # Carrierwave
@@ -184,5 +185,9 @@ class User < ApplicationRecord
     conversation = Conversation.create(sender: @admin_account, recipient: self)
     welcome_message = 'Hello! Thank you for checking out my demo website, Friendsy. Check out the Github repo for a summary of features and to peek behind the scenes! :)'
     conversation.messages.create(author: @admin_account, recipient: self, body: welcome_message)
+  end
+
+  def send_new_user_email
+    UserMailer.with(user: self).new_user_email.deliver_later
   end
 end

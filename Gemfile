@@ -78,3 +78,6 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
+
+# Mailer
+gem 'letter_opener', group: :development

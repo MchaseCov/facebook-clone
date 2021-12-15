@@ -90,4 +90,7 @@ Rails.application.configure do
   config.web_console.whitelisted_ips = '0.0.0.0/0.0.0.0'
   config.web_console.permissions = '10.0.2.2'
   config.hosts.clear
+
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
 end

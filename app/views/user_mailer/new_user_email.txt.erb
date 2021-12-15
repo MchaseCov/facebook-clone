@@ -1,0 +1,8 @@
+Welcome to Friendsy, <%= @user.name %>! Thank you for signing up.
+=============================================================================
+Quick recap! Your username is @<%= @user.nick_name %> & your profile is located at <%=@profile%>
+<%= "You signed up using #{@user.provider.titleize}." if @user.provider %>
+If you haven't already, be sure to set an avatar and profile banner that represnts yourself!: <%= @url %>.
+Thank you so much for joining, happy Friendsying!
+______________________________________________________________________________
+(Thank you for checking out my demo website Friendsy. If you would like to contact me, please reach out to me at <%=@admin_email%>.)
