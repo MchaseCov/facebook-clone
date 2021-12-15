@@ -6,9 +6,10 @@
     max-width: 98%;
   }
   .notification-icon {
-    font-size: 2em;
-    padding: 7px;
+    font-size: 3em;
+    margin-top: 0.25em;
     color: var(--grey);
+    padding: 0.33rem;
   }
   .notification-icon:hover {
     -webkit-text-fill-color: white;
@@ -36,9 +37,9 @@
   font-size: 1.5em;
   color: white;
   background-color: red;
-  line-height: 40px;
+  line-height: 1.5em;
   text-align: center;
-  width: 40px;
+  width: 1.5em;
   border-radius: 50%;
   z-index: 3;
 }
