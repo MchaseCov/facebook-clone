@@ -1,14 +1,17 @@
 <% content_for(:title) do %>
   Sign Up
 <% end %>
-<div data-turbo="false">
+<div data-turbo="false" class="devise-form">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
     <hr class="rounded">
-    <div class="field">
+    <div class="field devise-image-field">
       <label>My Avatar</label> <br>
-      <%= image_tag(@user.avatar_url) if @user.avatar? %> <br>
+      <%= image_tag(@user.avatar.thumb.url) if @user.avatar? %> <br>
       <%= f.file_field :avatar %>
+      <label for="user_avatar">
+        <span class="material-icons image_upload_icon">image</span>
+      </label>
       <%= f.hidden_field :avatar_cache %>
     </div>
     <hr class="rounded">
@@ -31,17 +34,17 @@
     </div>
     <hr class="rounded">
     <div class="field">
-      <%= f.label "Full Name:" %><br />
+      <%= f.label :name, "Full Name" %><br />
       <%= f.text_field :name %>
     </div>
     <hr class="rounded">
     <div class="field">
-      <%= f.label :nick_name %><br />
+      <%= f.label :nick_name, "@Username/Nick Name" %><br />
       <%= f.text_field :nick_name %>
     </div>
     <hr class="rounded">
     <div class="actions">
-      <%= f.submit "Sign up", 'data-turbo-frame': :_top %>
+      <%= f.submit "Sign up", 'data-turbo-frame': :_top, class:"registration-button" %>
     </div>
     <hr class="rounded">
   <% end %>

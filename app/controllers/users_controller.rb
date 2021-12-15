@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   # User profile page. Facebook/Twitter hybrid style; shows self posts and recieved posts, but not directed to others
   def show
     @journals = @profile_owner.journals
-                              .includes(:journal_author, :journalable, :likes)
+                              .includes(:journal_author, :likes)
                               .order(created_at: :desc)
     @recent_images = @profile_owner.authored_journals.where.not(image: nil).order(created_at: :desc).first(6)
     render 'shared/profiles/show'

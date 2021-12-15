@@ -3,17 +3,23 @@
 <% end %>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-  <div class="field">
+  <div class="field devise-image-field">
     <label>My Avatar</label> <br>
-    <%= image_tag(@user.avatar.thumb.url,  style:"color:white") if @user.avatar? %> <br>
+    <%= image_tag(@user.avatar.thumb.url) if @user.avatar? %> <br>
     <%= f.file_field :avatar %>
+    <label for="user_avatar">
+      <span class="material-icons image_upload_icon">image</span>
+    </label>
     <%= f.hidden_field :avatar_cache %>
   </div>
   <hr class="rounded">
-  <div class="field">
+  <div class="field devise-image-field">
     <label>My Banner</label> <br>
     <%= image_tag(@user.banner.thumb.url) if @user.banner? %> <br>
     <%= f.file_field :banner %>
+    <label for="user_banner">
+      <span class="material-icons image_upload_icon">image</span>
+    </label>
     <%= f.hidden_field :banner_cache %>
   </div>
   <hr class="rounded">
@@ -59,11 +65,11 @@
     <p>Since you signed up with <%=current_user.provider.titleize%>, you don't need to provide your password to edit your settings.</p>
   <% end %>
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Update", class:"registration-button" %>
   </div>
   <hr class="rounded">
 <% end %>
 <h3>Cancel my account</h3>
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:"registration-button" %>
 <hr class="rounded">
 <%= link_to "Back", :back %>

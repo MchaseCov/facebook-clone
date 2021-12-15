@@ -8,33 +8,45 @@
         <% end %>
       </ul>
     </div>
+    <hr>
   <% end %>
-  <div class="field">
-    <label>Group Avatar</label>
-    <%= image_tag(group.avatar.thumb.url) if group.avatar? %>
+  <div class="field devise-image-field">
+    <label>Group Avatar</label><br>
+    <%= image_tag(group.avatar.thumb.url) if group.avatar? %><br>
     <%= f.file_field :avatar %>
+    <label for="group_avatar">
+      <span class="material-icons image_upload_icon">image</span>
+    </label>
     <%= f.hidden_field :avatar_cache %>
   </div>
-  <div class="field">
-    <label>Group Banner</label>
-    <%= image_tag(group.banner.thumb.url) if group.banner? %>
+  <hr class="rounded">
+  <div class="field devise-image-field">
+    <label>Group Banner</label><br>
+    <%= image_tag(group.banner.thumb.url) if group.banner? %><br>
     <%= f.file_field :banner %>
+    <label for="group_banner">
+      <span class="material-icons image_upload_icon">image</span>
+    </label>
     <%= f.hidden_field :banner_cache %>
   </div>
+  <hr class="rounded">
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name%>
   </div>
+  <hr class="rounded">
   <div class="field">
     <%= f.label 'Description of your group (255 character limit)' %><br />
-    <%= f.text_field :description %>
+    <%= f.text_area :description, class:"large-text-box" %>
   </div>
+  <hr class="rounded">
   <div class="field">
     <%= hidden_field_tag :private, 'false' %>
     <%= f.label 'Check this if you would like to make your group private and not show up to other users' %><br />
     <%= f.check_box :private %>
   </div>
+  <hr class="rounded">
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit!", class:"registration-button" %>
   </div>
 <% end %>
