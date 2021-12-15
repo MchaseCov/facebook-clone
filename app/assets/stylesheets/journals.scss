@@ -62,7 +62,8 @@
 }
 .journal-body {
   text-align: left;
-  padding: 15px 0 0 15px;
+  padding: 15px 15px 5px 15px;
+  overflow-wrap: break-word;
 }
 .journal-likes {
   align-self: flex-end;
