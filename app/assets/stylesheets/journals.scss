@@ -27,10 +27,14 @@
 }
 .journal-entry-avatar {
   border-radius: 50%;
-  width: 48px;
-  height: 48px;
+  width: 24px;
+  height: 24px;
   outline: 2px solid var(--pink);
   vertical-align: top;
+}
+.larger-avatar {
+  width: 48px;
+  height: 48px;
 }
 .journal_image_field input {
   display: none;

@@ -1,6 +1,6 @@
 <article class="journal-entry" id="<%=dom_id(journal)%>">
   <div class="journal-header">
-    <div><%= image_tag(journal.journal_author.avatar.thumb.url, class:"journal-entry-avatar") %></div>
+    <div><%= image_tag(journal.journal_author.avatar.thumb.url, class:"journal-entry-avatar larger-avatar") %></div>
     <div class="header-text">
       <h4><%= link_to  "@#{journal.journal_author.nick_name}", journal.journal_author, class:"author_url", 'data-turbo-frame': :_top %></h4>
       <i><%= time_ago_in_words(journal.created_at) + ' ago' %></i>
