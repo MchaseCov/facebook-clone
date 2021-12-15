@@ -1,4 +1,4 @@
-<article class="journal-entry" id="<%=dom_id(journal)%>">
+<%= turbo_frame_tag journal, class:"journal-entry", id:dom_id(journal) do %>
   <div class="journal-header">
     <div><%= image_tag(journal.journal_author.avatar.thumb.url, class:"journal-entry-avatar larger-avatar") %></div>
     <div class="header-text">
@@ -33,7 +33,7 @@
     <%= link_to 'View full image', journal_path(journal), 'data-turbo-frame': :_top%>
   <% end %>
   <span class="edit-links user-<%=journal.journal_author.id%>-edit-links">
-    <%= link_to "Edit journal", edit_journal_path(journal), 'data-turbo-frame': :_top %> | 
+    <%= link_to "Edit journal", edit_journal_path(journal)%> | 
     <%= link_to  "Delete journal", journal, method: :delete, data: { confirm: "Are you sure?" }, 'data-turbo-frame': :_top%>
   </span>
-</article>
+<% end %>

@@ -3,7 +3,7 @@
 <% end %>
 <%# The following block is mostly the same as the _journal.html.erb partial, with the exception of the image size and lack of truncation %>
 <h1>Journal entry:</h1>
-<%= turbo_frame_tag id="show_journal" do %>
+<%= turbo_frame_tag @journal do %>
   <article class="journal-entry full-entry" id="<%=dom_id(@journal)%>">
     <div class="journal-header">
       <%= image_tag((@journal.journal_author.avatar.thumb.url), class:"journal-entry-avatar") %>
@@ -17,7 +17,7 @@
       <div class="journal-likes">
         <%= render  "likes/form", content: @journal %>
         <div class="comment-box">
-          <%= link_to journal_path(@journal) do %>
+          <%= link_to journal_path(@journal), 'data-turbo-frame': :_top do %>
             <span class="material-icons">chat_bubble</span>
           <% end %>
           <div @class="comment-count">
@@ -35,7 +35,7 @@
     </p>
     <%= image_tag(@journal.image.url, class:"journal-image-attch") if @journal.image? %>
     <span class="edit-links user-<%=@journal.journal_author.id%>-edit-links">
-      <%= link_to "Edit journal", edit_journal_path(@journal), 'data-turbo-frame': :_top %> | 
+      <%= link_to "Edit journal", edit_journal_path(@journal)%> | 
       <%= link_to  "Delete journal", @journal, method: :delete, data: { confirm: "Are you sure?" }, 'data-turbo-frame': :_top%>
     </span>
   </article>
