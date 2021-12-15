@@ -57,19 +57,21 @@
   <div class="information-row">
     Recently posted images:
   </div>
-  <div class="information-row images-preview">
-    <% recent_images[0..2].each do |j|%>
-      <%= link_to j, 'data-turbo-frame': :_top do %>
-        <div class="image-box"><%=image_tag(j.image.thumb.url)%></div>
+  <% unless recent_images.empty? %>
+    <div class="information-row images-preview">
+      <% recent_images[0..2].each do |j|%>
+        <%= link_to j, 'data-turbo-frame': :_top do %>
+          <div class="image-box"><%=image_tag(j.image.thumb.url)%></div>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
-  <div class="information-row images-preview">
-    <% recent_images[3..5].each do |j|%>
-      <%= link_to j, 'data-turbo-frame': :_top do %>
-        <div class="image-box"><%=image_tag(j.image.thumb.url)%></div>
+    </div>
+    <div class="information-row images-preview">
+      <% recent_images[3..5].each do |j|%>
+        <%= link_to j, 'data-turbo-frame': :_top do %>
+          <div class="image-box"><%=image_tag(j.image.thumb.url)%></div>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
   <hr>
 </div>

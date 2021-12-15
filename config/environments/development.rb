@@ -1,4 +1,4 @@
-require "active_support/core_ext/integer/time"
+require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   config.after_initialize do
@@ -6,7 +6,7 @@ Rails.application.configure do
     Bullet.alert         = true
     Bullet.bullet_logger = true
     Bullet.console       = true
-  # Bullet.growl         = true
+    # Bullet.growl         = true
     Bullet.rails_logger  = true
     Bullet.add_footer    = true
   end
@@ -89,4 +89,5 @@ Rails.application.configure do
   config.active_storage.service = :amazon
   config.web_console.whitelisted_ips = '0.0.0.0/0.0.0.0'
   config.web_console.permissions = '10.0.2.2'
+  config.hosts.clear
 end

@@ -72,8 +72,10 @@
     margin-right: auto;
   }
   .avatar {
+    width: 200px;
+    height: 200px;
     max-width: 15vw;
-    height: auto;
+    max-height: 15vw;
     display: block;
     margin: auto;
     background: linear-gradient(var(--black), var(--black)) padding-box,

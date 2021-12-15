@@ -7,13 +7,16 @@ class User < ApplicationRecord
   # last_seen_at:       datetime
   # avatar:             string (Carrierwave gem)
   # banner:             string (Carrierwave gem)
+  # provider:           string (OmniAuth)
+  # uid:                string (OmniAuth)
   # timestamps:         datetime
   #
   # Devise
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: %i[facebook github]
 
   # Carrierwave
   mount_uploader :avatar, AvatarUploader
@@ -108,7 +111,48 @@ class User < ApplicationRecord
            inverse_of: :recipient
 
   # Methods
+  #   Conversation tracking
   def total_conversations
     started_conversations.or(recieved_conversations)
+  end
+
+  #   Omniauth Related
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+      user.name = auth.info.name
+      user.nick_name = (auth.info.nickname || auth.info.name)
+      user.avatar = AvatarUploader.new
+      user.avatar.download! auth.info.image
+      user.save
+    end
+  end
+
+  def self.new_with_session(params, session)
+    if session['devise.user_attributes']
+      new(session['devise.user_attributes'], without_protection: true) do |user|
+        user.attributes = params
+        user.valid?
+      end
+    else
+      super
+    end
+  end
+
+  def password_required?
+    super && provider.blank?
+  end
+
+  def update_with_password(params, *options)
+    if encrypted_password.blank?
+      update_attributes(params, *options)
+    else
+      super
+    end
+  end
+
+  def has_no_password?
+    encrypted_password.blank?
   end
 end

@@ -29,7 +29,8 @@ Rails.application.routes.draw do
   end
 
   # USERS [Devise, Journals, Friendships]
-  devise_for :users
+  devise_for :users,
+             controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }
 
   resources :users, only: %i[index show] do
     member do # NOTE: may be worth refactoring these back into their respective controller with turbo tag partials

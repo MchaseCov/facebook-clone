@@ -17,7 +17,7 @@
           <% end %>
         </li>
         <li class="interactive">
-          <%= link_to destroy_user_session_path, method: :delete, :data => { :no_turbolink => true }  do %>
+          <%= link_to destroy_user_session_path, method: :delete, :data => {turbo: "false"} do %>
             <span class="material-icons">logout</span>
             Sign Out
           <% end %>

@@ -37,8 +37,10 @@
   position: relative;
 }
 .user-index-image {
-  max-width: 100%;
-  height: auto;
+  width: 200px;
+  height: 200px;
+  max-width: 80%;
+  max-height: 80%;
   background: linear-gradient(var(--black), var(--black)) padding-box,
     linear-gradient(to right, var(--blue), var(--pink)) border-box;
   border-radius: 50%;
